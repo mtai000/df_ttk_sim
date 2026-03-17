@@ -1,2 +1,202 @@
-<h1>hello world
-</h1>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三角洲行动 ttk 模拟</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 并排行：基础参数 + 防护装备 -->
+        <div class="settings-row">
+            <section class="settings-section">
+                <h2>⚙️ 基础参数</h2>
+                <div class="input-row">
+                    <label for="bullet_type">子弹等级：</label>
+                    <select name="bullet_type" id="bullet_type">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+                <div class="input-row">
+                    <label for="health_point">生命值：</label>
+                    <input type="number" name="health_point" id="health_point" placeholder="生命值" value="100" min="0">
+                </div>
+                <div class="input-row">
+                    <label for="distance">距离：</label>
+                    <input type="number" name="distance" id="distance" placeholder="距离" value="20" min="0">
+                </div>
+                <div class="input-row">
+                    <label for="hit_chance">命中率：</label>
+                    <input type="number" id="hit_chance" name="hit_chance" value="100" min="0" max="100">
+                    <span class="suffix">%</span>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2>🛡️ 防护装备</h2>
+                <div class="input-row">
+                    <label for="helmet_lv">头盔等级：</label>
+                    <select name="helmet_lv" id="helmet_lv">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+                <div class="input-row">
+                    <label for="helmet_point">头盔耐久：</label>
+                    <input type="number" name="helmet_point" id="helmet_point" placeholder="头盔耐久" value="48" min="0">
+                </div>
+                <div class="input-row">
+                    <label for="armor_lv">护甲等级：</label>
+                    <select name="armor_lv" id="armor_lv">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+                <div class="input-row">
+                    <label for="armor_point">护甲耐久：</label>
+                    <input type="number" name="armor_point" id="armor_point" placeholder="护甲耐久" value="100" min="0">
+                </div>
+                <div class="input-row checkbox-row">
+                    <label for="is_protect_abdomen">是否保护腹部：</label>
+                    <input type="checkbox" id="is_protect_abdomen" name="is_protect_abdomen" value="true" checked>
+                </div>
+                <div class="input-row checkbox-row">
+                    <label for="is_protect_arms">是否有护臂：</label>
+                    <input type="checkbox" id="is_protect_arms" name="is_protect_arms" value="true" checked>
+                </div>
+            </section>
+        </div>
+
+        <!-- 部位权重区域 -->
+        <section class="settings-section">
+            <h2>🎯 击中部位权重</h2>
+            <div class="weight-group">
+                <label for="head">头</label>
+                <input type="number" id="head" name="hit_part_weight" value="1">
+                <label for="chest">胸</label>
+                <input type="number" id="chest" name="hit_part_weight" value="2">
+                <label for="abdomen">腹</label>
+                <input type="number" id="abdomen" name="hit_part_weight" value="3">
+                <label for="arm">臂</label>
+                <input type="number" id="arm" name="hit_part_weight" value="4">
+                <label for="hand">手</label>
+                <input type="number" id="hand" name="hit_part_weight" value="4">
+                <label for="leg">腿</label>
+                <input type="number" id="leg" name="hit_part_weight" value="5">
+                <label for="foot">足</label>
+                <input type="number" id="foot" name="hit_part_weight" value="6">
+            </div>
+        </section>
+
+        <!-- 操作按钮 -->
+        <div class="actions-section">
+            <button type="button" id="button_cal_ttk">模拟计算 ttk 对比</button>
+            <button type="button" id="button_cal_ttk_according_distance">按距离对比 ttk</button>
+        </div>
+        <!-- 武器表格 -->
+        <section class="table-section">
+            <table id="weapon_table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select_all_weapons"></th>
+                        <th>武器</th>
+                        <th>秒肉伤</th>
+                        <th>秒甲伤</th>
+                        <th>初速</th>
+                        <th>射程</th>
+                        <th>衰减</th>
+                        <th>基础伤害</th>
+                        <th>护甲伤害</th>
+                        <th>射速</th>
+                        <th>子弹类型</th>
+                        <th>删除</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 动态生成的内容 -->
+                </tbody>
+            </table>
+        </section>
+        <div style="border:1px solid #ccc; padding:16px; margin:20px 0; background:#f9f9f9; border-radius: 15px;">
+            <h2>添加新枪</h2>
+            <h3>基础属性</h3>
+            <form id="addWeaponForm">
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+                    <input type="text" id="newName" placeholder="武器名" required>
+                    <input type="number" id="newVelocity" placeholder="子弹初速" required>
+                    <input type="number" id="newBaseDamage" placeholder="基础伤害" step="0.1" required>
+                    <input type="number" id="newArmorDamage" placeholder="护甲伤害" step="0.01" required>    
+                    <input type="number" id="newRateOfFire" placeholder="射速" step="1" required>
+                </div>
+                <label for="isBurst">是否为连发:</label>
+                <input type="checkbox" id="isBurst" value="true" checked required>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+                    <!--几连发-->
+                    <input type="number" id="burstCount" placeholder="连发数" step="1" required>
+                    <!--连发射速-->
+                    <input type="number" id="burstRateOfFire" placeholder="连发射速" step="1" required>
+                    <!--连发间隔时间-->
+                    <input type="number" id="burstInterval" placeholder="连发间隔时间" step="0.1" required>
+                </div>
+                <h3>部位倍率：</h3>
+                <section class="settings-section">
+                    <div style="grid-column: span 4; margin-top: 8px;">
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+                            <div><label>头</label><input type="number" id="multHead" step="0.1" value="1.9" required></div>
+                            <div><label>胸</label><input type="number" id="multChest" step="0.1" value="1.0" required></div>
+                            <div><label>手</label><input type="number" id="multHand" step="0.1" value="0.4" required></div>
+                            <div><label>腹</label><input type="number" id="multAbdomen" step="0.1" value="0.9" required></div>
+                            <div><label>臂</label><input type="number" id="multarm" step="0.1" value="0.4" required></div>
+                            <div><label>腿</label><input type="number" id="multLeg" step="0.1" value="0.4" required></div>
+                            <div><label>足</label><input type="number" id="multFoot" step="0.1" value="0.4" required></div>
+                      </div>
+                    </div>
+                    </section>
+                    <h3>可用子弹：</h3>
+                    <div id="ammoCheckBoxGroup" style="display: flex; flex-wrap: wrap; gap:16px;">  
+
+                    </div>
+                    </select>
+                <div style="margin-bottom: 12px;">
+                    <h3>射程衰减区间：</h3>
+                <section class="settings-section">
+                    <table id="decayTable" class="decayTable" style="width:100%; border-collapse: collapse;">
+                        <thead>
+                        <tr>
+                            <th>起始距离</th>
+                            <th>终止距离</th>
+                            <th>衰减系数</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="decayTableBody">
+                        <!-- 初始行由 JavaScript 动态生成，这里留空 -->
+                        </tbody>
+                    </table>
+                </section>
+                    <button type="button" id="addSegmentBtn" style="margin-top:8px;">+ 添加区间</button>
+                </div>
+               
+                <button type="button" id="addNewWeaponBtn" style="margin-top:12px;">添加武器</button>
+                <button type="button" id="importWeaponsBtn" style="margin-top:12px;">导入武器</button>
+                <button type="button" id="exportWeaponsBtn" style="margin-top:12px;">导出武器</button>
+        </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>
