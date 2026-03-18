@@ -311,7 +311,7 @@ export class UIHandle{
         }
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="checkbox" class="select_current_weapon"></input></td>
+            <td><input type="checkbox" class="select_current_weapon" ${weaponData.isSelected ? 'checked' : ''}></input></td>
             <td>${weaponData.name}</td>
             <td>${weaponData.baseDamagePerSecond.toFixed(2)}</td>
             <td>${weaponData.armorDamagePerSecond.toFixed(2)}</td>

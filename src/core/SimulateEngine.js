@@ -47,7 +47,7 @@ export class SimulateEngine {
             for(let sim_count= 0; sim_count< ConstConfig.SIMULATE_COUNT;sim_count++){
                 const shots = this.runSingleWeaponSimulate(weaponData,distance,hitChance);
                 Log.log_detail(`武器${weaponData.name}, 第${sim_count + 1}次模拟，射击${shots.shotCount}枪,命中${shots.hitShot}枪`);
-                TTKChart.addSimulateShotCount(weaponData,shots.shotCount,shots.hitShot,distance);
+                TTKChart.addSimulateShotCount(weaponData,shots.shotCount,shots.hitShot,distance,shots.shotCount);
             }
         })
         console.log("模拟射击完成");
