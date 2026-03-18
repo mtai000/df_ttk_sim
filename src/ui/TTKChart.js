@@ -25,10 +25,9 @@ export class TTKChart{
             const missTTK = (value.total - value.hit) / ConstConfig.SIMULATE_COUNT / value.weaponData.rof * 60 * 1000;
             value.hitTTK = hitTTK;
             value.missTTK = missTTK;
-            value.triggerDelay = (value.weaponData.triggerDelay || 0);
-            value.flyDelay = value.distance / value.weaponData.velocity * 1000;
-            const totalTTK = hitTTK + value.triggerDelay + value.flyDelay;
-            value.totalTTK = totalTTK;
+            value.triggerDelay = Number(value.weaponData.triggerDelay || 0);
+            value.flyDelay = Number(value.distance / value.weaponData.velocity * 1000);
+            value.totalTTK = hitTTK + missTTK + value.triggerDelay + value.flyDelay;
         });
         
         const sortedEntries = Array.from(this.resultsMap.entries()).sort((a, b) => a[1].totalTTK - b[1].totalTTK);
