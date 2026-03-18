@@ -51,10 +51,10 @@ export class SimulateEngine {
                 TTKChart.addSimulateShotCount(weaponData,shots.shotCount,shots.hitShot,distance);
             }
         })
-        console.log("模拟射击完成");
+        Log.log("模拟射击完成");
         const endTime = Date.now();
         Log.log(`完成用间:${endTime-startTime}`);
-        Log.saveDetailLogToTempFile();
+        //Log.saveDetailLogToTempFile();
         TTKChart.showResultsInChart();
     }    
 
