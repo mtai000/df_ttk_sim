@@ -38,6 +38,7 @@ export class SimulateEngine {
     }
 
     runMultipleSimulations(distance,hitChance){
+        Log.startDetailLogSession();
         TTKChart.clear();
         const startTime = Date.now();
         Log.log_detail(`开始模拟时间:${startTime}`);
@@ -53,6 +54,7 @@ export class SimulateEngine {
         console.log("模拟射击完成");
         const endTime = Date.now();
         Log.log(`完成用间:${endTime-startTime}`);
+        Log.saveDetailLogToTempFile();
         TTKChart.showResultsInChart();
     }    
 
@@ -154,10 +156,10 @@ export class SimulateEngine {
                 } else if(this.armorData.helmetPoint < headArmorDamage)
                 {
                     const overflowArmorDamagePercent = (headArmorDamage - this.armorData.helmetPoint)/headArmorDamage;
-                    const overflowHealthDamage = partDamage* overflowArmorDamagePercent;
-                    this.hp -= overflowHealthDamage;
+                    const overflowHealthDamage = partDamage * overflowArmorDamagePercent;
+                    this.hp -= overflowHealthDamage * (1-headPenetrate);
                     this.armorData.helmetPoint = 0;
-                    this.hp -= partDamage * (1 - headPenetrate);
+                    this.hp -= partDamage *  headPenetrate;
                 } else {
                     this.armorData.helmetPoint -= headArmorDamage;
                     this.hp -= partDamage * headPenetrate;

@@ -3,5 +3,5 @@ export const ConstConfig = {
     SIMULATE_COUNT: 1000,
     SIMULATE_ACCORDING_DISTANCE_COUNT: 1000,
     SEED: 10086,
-    LOG_LEVEL: 1,
+    LOG_LEVEL: 2,
 } 
