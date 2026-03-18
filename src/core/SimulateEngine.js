@@ -138,11 +138,11 @@ export class SimulateEngine {
         const bulletData = BulletsData[weaponData.currentAmmoType];
         //根据命中部位系数计算伤害
         const partMultiplier = weaponData[`${hitPart}Multiplier`];
-        const partDamage = (weaponData.baseDamage * bulletData.damage * partMultiplier);
+        const partDamage = (weaponData.baseDamage * bulletData.damage * partMultiplier) * decay;
         Log.log_detail(`${hitPart},${partMultiplier},${partDamage}`)
-        const headArmorDamage = (weaponData.armorDamage * bulletData.armor[this.armorData.helmetLv].armorDamage);
+        const headArmorDamage = (weaponData.armorDamage * bulletData.armor[this.armorData.helmetLv].armorDamage) * decay; 
         const headPenetrate = bulletData.armor[this.armorData.helmetLv].penetrate;
-        const bodyArmorDamage = (weaponData.armorDamage * bulletData.armor[this.armorData.armorLv].armorDamage);
+        const bodyArmorDamage = (weaponData.armorDamage * bulletData.armor[this.armorData.armorLv].armorDamage) * decay;
         const bodyPenetrate = bulletData.armor[this.armorData.armorLv].penetrate;
 
         //命中部位如果有护甲，则先扣除护甲，如果穿甲值大于护甲值，则按百分比扣除生命值，如50%剩余穿甲值，则扣除50%的basedamage的血量以及按穿透值扣除生命
