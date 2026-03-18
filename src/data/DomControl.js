@@ -12,7 +12,6 @@ export class ArmorData {
 
 export class DOMControl {
     constructor() {
-        // 这里可以放一些初始化代码，比如绑定事件等
     }
     static getArmorDataFromUI() {
     return new ArmorData({
@@ -39,7 +38,7 @@ export class DOMControl {
     }
 
     static getHitChanceFromUI() {
-        return parseFloat(document.getElementById('hit_chance').value);
+        return parseFloat(document.getElementById('hit_chance').value)/100;
     }
 
     static getDistanceFromUI() {

@@ -21,6 +21,7 @@ export class WeaponData {
     this.burstInterval = 0;
     this.isSelected = false;
     this.currentAmmoType = supportedAmmoTypes.length > 0 ? supportedAmmoTypes[0] : null;
+    this.triggerDelay=0.0
   }
 
   setBurstSettings({isBurst, burstCount, burstRateOfFire, burstInterval}) {

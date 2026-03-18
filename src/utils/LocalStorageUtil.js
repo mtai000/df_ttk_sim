@@ -1,6 +1,8 @@
 
 export class LocalStorageUtil {
     static STORAGE_KEY = 'df_ttk_sim_weapons';
+    static HIT_PART_WEIGHTS_KEY = 'df_ttk_sim_hit_part_weights';
+    static HIT_PART_KEYS = ['head', 'chest', 'abdomen', 'arm', 'hand', 'leg', 'foot'];
     static initialize() {
         if (typeof localStorage === 'undefined') {
             console.warn('当前环境不支持 localStorage，LocalStorageUtil 将无法正常工作');
@@ -34,6 +36,56 @@ export class LocalStorageUtil {
             console.log('成功保存武器数据:', weapons);
         } catch (error) {
             console.error('保存武器数据时发生错误:', error);
+        }
+    }
+
+    static loadHitPartWeights() {
+        const stored = localStorage.getItem(this.HIT_PART_WEIGHTS_KEY);
+        if (!stored) {
+            return null;
+        }
+
+        try {
+            const parsed = JSON.parse(stored);
+            const normalized = {};
+
+            this.HIT_PART_KEYS.forEach((key) => {
+                const numericValue = Number(parsed[key]);
+                if (Number.isFinite(numericValue)) {
+                    normalized[key] = numericValue;
+                }
+            });
+
+            if (Object.keys(normalized).length !== this.HIT_PART_KEYS.length) {
+                return null;
+            }
+
+            return normalized;
+        } catch (error) {
+            console.error('解析命中部位权重时发生错误:', error);
+            return null;
+        }
+    }
+
+    static saveHitPartWeights(weights) {
+        try {
+            const normalized = {};
+
+            this.HIT_PART_KEYS.forEach((key) => {
+                const numericValue = Number(weights[key]);
+                if (Number.isFinite(numericValue)) {
+                    normalized[key] = numericValue;
+                }
+            });
+
+            if (Object.keys(normalized).length !== this.HIT_PART_KEYS.length) {
+                console.warn('命中部位权重不完整，未保存');
+                return;
+            }
+
+            localStorage.setItem(this.HIT_PART_WEIGHTS_KEY, JSON.stringify(normalized));
+        } catch (error) {
+            console.error('保存命中部位权重时发生错误:', error);
         }
     }
 

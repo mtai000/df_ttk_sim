@@ -1,12 +1,15 @@
 import { SimulateEngine } from "../core/SimulateEngine.js";
 import { BulletsData } from "../data/BulletsData.js";
+import { DOMControl } from "../data/DomControl.js";
 import { WeaponData } from "../data/WeaponData.js";
 import { LocalStorageUtil } from "../utils/LocalStorageUtil.js";
+import { Log } from "../utils/Log.js";
 
 export class UIHandle{ 
     constructor() {
         this.bindEventHandlers();
         this.showBulletOptions();
+        this.restoreHitPartWeights();
         this.addSegmentRow(0,200,1.0);
         this.weaponDatas=LocalStorageUtil.loadWeapons();
         this.refreshWeaponTable();
@@ -27,7 +30,6 @@ export class UIHandle{
         if(btn_cal_ttk ) {
             btn_cal_ttk.addEventListener('click', (event) => {
                 event.preventDefault();
-                console.log('计算 ttk 对比按钮被点击');
                 //获取选中的武器数据
                 const selectedWeapons = this.weaponDatas.filter(w => w.isSelected);
                 if(selectedWeapons.length === 0) {
@@ -36,7 +38,7 @@ export class UIHandle{
                 }
                 // 调用计算 ttk 的函数
                 const simulateEngine = new SimulateEngine(selectedWeapons);
-                const results = simulateEngine.calculateTTK();
+                simulateEngine.runMultipleSimulations(DOMControl.getDistanceFromUI(),DOMControl.getHitChanceFromUI());
             });
         }
     }
@@ -46,7 +48,7 @@ export class UIHandle{
         if(btn_cal_ttk_according_distance) {
             btn_cal_ttk_according_distance.addEventListener('click', (event) => {
                 event.preventDefault();
-                console.log('按距离对比 ttk 按钮被点击');
+                Log.log_detail('按距离对比 ttk 按钮被点击');
             });
         }
     }
@@ -108,8 +110,10 @@ export class UIHandle{
                 });
 
                 this.showWeaponInTable(weaponData);
-                LocalStorageUtil.addWeapon(weaponData);
-                console.log('添加武器按钮被点击');
+                this.weaponDatas.push(weaponData);
+                LocalStorageUtil.saveWeapons(this.weaponDatas);
+                //LocalStorageUtil.addWeapon(weaponData);
+                Log.log('添加武器');
             });
         }
     }
@@ -140,7 +144,6 @@ export class UIHandle{
             btn_import_guns.addEventListener('click', (event) => {
                 event.preventDefault();
                 LocalStorageUtil.import();
-                console.log('导入武器按钮被点击');
             });
         }
     }
@@ -151,7 +154,6 @@ export class UIHandle{
             btn_export_guns.addEventListener('click', (event) => {
                 event.preventDefault();
                 LocalStorageUtil.export();
-                console.log('导出武器按钮被点击');
             });
         }
     } 
@@ -160,7 +162,6 @@ export class UIHandle{
         if(addSegmentBtn) {
             addSegmentBtn.addEventListener('click', (event) => {
                 event.preventDefault();
-                console.log('添加射程段按钮被点击');
                 this.addSegmentRow('',200,1.0);
             });
         }
@@ -175,6 +176,35 @@ export class UIHandle{
         this.bindAddSegment();
         this.bindBurstSettings();
         this.bindCheckboxSelectAll();
+        this.bindHitPartWeightsPersistence();
+    }
+
+    bindHitPartWeightsPersistence() {
+        const hitPartIds = ['head', 'chest', 'abdomen', 'arm', 'hand', 'leg', 'foot'];
+        hitPartIds.forEach((id) => {
+            const input = document.getElementById(id);
+            if (!input) {
+                return;
+            }
+
+            input.addEventListener('change', () => {
+                LocalStorageUtil.saveHitPartWeights(DOMControl.getPartHitWeightsFromUI());
+            });
+        });
+    }
+
+    restoreHitPartWeights() {
+        const savedWeights = LocalStorageUtil.loadHitPartWeights();
+        if (!savedWeights) {
+            return;
+        }
+
+        Object.entries(savedWeights).forEach(([part, weight]) => {
+            const input = document.getElementById(part);
+            if (input) {
+                input.value = weight;
+            }
+        });
     }
 
     bindCheckboxSelectAll() {
@@ -304,7 +334,7 @@ export class UIHandle{
             const isChecked = selectCheckbox.checked;
             this.weaponDatas.forEach(w => {
                 if(w.name === weaponData.name) {
-                    console.log(`武器 ${w.name} 选中状态: ${isChecked}`);
+                    Log.log(`武器 ${w.name} 选中状态: ${isChecked}`);
                     w.isSelected = isChecked;
                 }
             });
@@ -314,7 +344,7 @@ export class UIHandle{
         const selectBulletType = row.querySelector('.ammo-type-select');
         selectBulletType.addEventListener('change', () => {
             const currentBulletType = selectBulletType.value;
-            console.log(`武器 ${weaponData.name} 选择子弹类型: ${currentBulletType}`);
+            Log.log(`武器 ${weaponData.name} 选择子弹类型: ${currentBulletType}`);
             weaponData.currentAmmoType = currentBulletType;
         });
     
@@ -322,8 +352,8 @@ export class UIHandle{
         removeBtn.addEventListener('click', () => {
             LocalStorageUtil.removeWeapon(weaponData);
             this.weaponDatas = this.weaponDatas.filter(w => w.name !== weaponData.name);
-            console.log(`已删除武器: ${weaponData.name}`);
-            console.log('当前武器列表:', this.weaponDatas);
+            Log.log(`已删除武器: ${weaponData.name}`);
+            Log.log('当前武器列表:', this.weaponDatas);
             row.remove();
             this.refreshWeaponTable();
         });
