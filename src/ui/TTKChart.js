@@ -1,13 +1,15 @@
 import { Chart } from "chart.js/auto";
 import { Log } from "../utils/Log";
 import { ConstConfig } from "../data/ConstConfig";
+import SimulateShot from "../utils/SimulateShot";
 
 export class TTKChart{
     static resultsMap = new Map();
     static chartInstance = null;
+
+
+
     static showResultsInChart(){
-        let distance = 0;
-        
         console.log('显示结果');
         const canvas = document.getElementById('ttkChart');
         if(!canvas){
@@ -19,22 +21,73 @@ export class TTKChart{
             this.chartInstance.destroy();
             this.chartInstance = null;
         }
-        //计算各把枪的ttk情况，然后显示在图表上命中为蓝色，未命中为红色,扳机延时为橙色，飞行时间为绿色
-        this.resultsMap.forEach((value,key) =>{
-            //根据value中weaponData,以及total和hit,计算武器的ttk,子弹飞行时间如果考虑扳机延时，只加上延时
-            const hitTTK = (value.hit / ConstConfig.SIMULATE_COUNT - 1) / value.weaponData.rof * 60 * 1000;
-            const missTTK = (value.total - value.hit) / ConstConfig.SIMULATE_COUNT / value.weaponData.rof * 60 * 1000;
-            value.hitTTK = hitTTK;
-            value.missTTK = missTTK;
-            value.triggerDelay = Number(value.weaponData.triggerDelay || 0);
-            value.flyDelay = Number(value.distance / value.weaponData.velocity * 1000);
-            value.totalTTK = hitTTK + missTTK + value.triggerDelay + value.flyDelay;
-            if(distance === 0 && value.distance !== undefined){
-                distance = value.distance;
+        //读取结构：weaponName -> subMap，其中 subMap 的键是 distance，值是 { btkDistribution }
+        const normalizedEntries = [];
+
+        this.resultsMap.forEach((weaponSubMap, weaponName) => {
+            if(!(weaponSubMap instanceof Map) || weaponSubMap.size === 0){
+                return;
             }
+
+            let weaponData = null;
+            let distance = 0;
+            let distributionMap = null;
+
+            weaponSubMap.forEach((entry, key) => {
+                if(entry && entry.weaponData){
+                    weaponData = entry.weaponData;
+                    return;
+                }
+
+                const numericDistance = Number(key);
+                if(Number.isFinite(numericDistance) && entry && entry.btkDistribution instanceof Map){
+                    distance = numericDistance;
+                    distributionMap = entry.btkDistribution;
+                }
+            });
+
+            if(!weaponData || !distributionMap || distributionMap.size === 0){
+                return;
+            }
+
+            const totalCount = Array.from(distributionMap.values()).reduce((sum, count) => sum + count, 0) || ConstConfig.SIMULATE_COUNT;
+            let totalBtk = 0;
+            distributionMap.forEach((count, btk) => {
+                totalBtk += Number(btk) * count;
+            });
+
+            const triggerDelay = Number(weaponData.triggerDelay || 0);
+            const velocity = Number(weaponData.velocity || 0);
+            const flyDelay = velocity > 0 ? Number(distance) / velocity * 1000 : 0;
+
+            let totalTTK = 0;
+            if(weaponData.isBurst){
+                let totalTtkSum = 0;
+                distributionMap.forEach((count, btk) => {
+                    totalTtkSum += SimulateShot.calculateBurstTtkByBtk(weaponData, btk, triggerDelay, flyDelay) * count;
+                });
+                totalTTK = totalTtkSum / totalCount;
+            } else {
+                totalTTK = SimulateShot.calculateAutoTtkByBtk(weaponData, totalBtk / totalCount, triggerDelay, flyDelay);
+            }
+
+            normalizedEntries.push([
+                weaponName,
+                {
+                    weaponData,
+                    distance,
+                    btkDistribution: distributionMap,
+                    total: totalBtk,
+                    totalCount,
+                    triggerDelay,
+                    flyDelay,
+                    totalTTK,
+                    firingTTK: Math.max(0, totalTTK - triggerDelay - flyDelay)
+                }
+            ]);
         });
-        
-        const sortedEntries = Array.from(this.resultsMap.entries()).sort((a, b) => a[1].totalTTK - b[1].totalTTK);
+
+        const sortedEntries = normalizedEntries.sort((a, b) => a[1].totalTTK - b[1].totalTTK);
         const formatNumber = (value, fractionDigits = 2) => {
             const numericValue = Number(value);
             if(!Number.isFinite(numericValue)){
@@ -47,17 +100,10 @@ export class TTKChart{
             labels: sortedEntries.map(([key]) => key),
             datasets: [
                 {
-                    label: '命中',
-                    data: sortedEntries.map(([, value]) => value.hitTTK),
+                    label: '射击',
+                    data: sortedEntries.map(([, value]) => value.firingTTK),
                     backgroundColor: 'rgba(54, 162, 235, 0.5)',
                     borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: '未命中',
-                    data: sortedEntries.map(([, value]) => value.missTTK),
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1
                 },
                 {
@@ -126,7 +172,7 @@ export class TTKChart{
                                 }
 
                                 const weaponStats = entry[1];
-                                const totalCount = Number(ConstConfig.SIMULATE_COUNT) || 1;
+                                const totalCount = Number(weaponStats.totalCount) || 1;
                                 const distributionMap = weaponStats.btkDistribution;
                                 if(!distributionMap || distributionMap.size === 0){
                                     return ['---- BTK 概率分布 ----', '无数据'];
@@ -137,13 +183,19 @@ export class TTKChart{
 
                                 const distributionLines = sortedDistribution.map(([btk, count]) => {
                                     const probability = count / totalCount * 100;
-                                    return `BTK ${btk}: ${formatNumber(probability, 1)}%  \t\t (${count}/${totalCount}),  \t\t
-                                            ttk:${((btk-1) / weaponStats.weaponData.rof * 60 * 1000 + distance/Number(weaponStats.weaponData.velocity)*1000 + Number(weaponStats.weaponData.triggerDelay)).toFixed(0)}ms`;
+                                    const ttk = SimulateShot.calculateTtkByBtk(
+                                        weaponStats.weaponData,
+                                        btk,
+                                        weaponStats.triggerDelay,
+                                        weaponStats.flyDelay
+                                    );
+                                    return `BTK ${btk}: ${formatNumber(probability, 1)}% (${count}/${totalCount}), TTK: ${formatNumber(ttk, 0)}ms`;
                                 });
 
                                 return [
                                     '---- BTK 概率分布 ----',
-                                    `使用子弹: ${weaponStats.weaponData.currentAmmoType}  ttk考虑扳机和飞行时间`,
+                                    `使用子弹: ${weaponStats.weaponData.currentAmmoType}  平均btk: ${(weaponStats.total / totalCount).toFixed(2)}`,
+                                    `扳机延时: ${formatNumber(weaponStats.triggerDelay, 0)}ms 飞行延时: ${formatNumber(weaponStats.flyDelay, 0)}ms`,
                                     ...distributionLines
                                 ];
                             }
@@ -155,30 +207,6 @@ export class TTKChart{
         this.chartInstance = new Chart(canvas, config);  
     }
 
-    static addSimulateShotCount(weaponData,shots,hit,distance,btk){
-        if(!this.resultsMap.has(weaponData.name)){
-            this.resultsMap.set(weaponData.name,{weaponData : weaponData,total: 0, hit: 0,distance: distance})
-        }  
-        const stats = this.resultsMap.get(weaponData.name)
-        Log.log_detail(stats)
-        stats.total += shots;
-        stats.hit += hit;
-        if(distance !== undefined){
-            stats.distance = distance;
-        }
-        //统计概率分布情况，以便分析各btk的概率
-        //定义个map， btk为key，统中该btk的出现次数
-        if(!stats.btkDistribution){
-            stats.btkDistribution = new Map();
-        }
-        const btkValue = Number.isFinite(Number(btk)) ? Number(btk) : Number(shots);
-        const currentCount = stats.btkDistribution.get(btkValue) || 0;
-        stats.btkDistribution.set(btkValue, currentCount + 1);
-    }
-
-    static showResultMap(){
-        Log.log(this.resultsMap);
-    }
 
     static clear(){
         TTKChart.resultsMap.clear();

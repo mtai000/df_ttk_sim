@@ -48,7 +48,13 @@ export class UIHandle{
         if(btn_cal_ttk_according_distance) {
             btn_cal_ttk_according_distance.addEventListener('click', (event) => {
                 event.preventDefault();
-                Log.log_detail('按距离对比 ttk 按钮被点击');
+                const selectedWeapons = this.weaponDatas.filter(w => w.isSelected);
+                if(selectedWeapons.length === 0) {
+                    alert('请至少选择一把武器');
+                    return;
+                }
+                const simulateEngine = new SimulateEngine(selectedWeapons);
+                simulateEngine.runSimulationsAccordingDistance(DOMControl.getHitChanceFromUI());
             });
         }
     }

@@ -4,6 +4,8 @@ import { ConstConfig } from "../data/ConstConfig.js"
 import { Log } from "../utils/Log.js";
 import { Prng } from "../utils/Rng.js";
 import { TTKChart } from "../ui/TTKChart.js";
+import { DistanceChart } from "../ui/DistanceChart.js";
+import SimulateShot from "../utils/SimulateShot.js";
 
 export class SimulateEngine {
     constructor(weaponDatas) {
@@ -46,17 +48,48 @@ export class SimulateEngine {
             this.resetStatus();
             this.checkBulletType(weaponData);
             for(let sim_count= 0; sim_count< ConstConfig.SIMULATE_COUNT;sim_count++){
-                const shots = this.runSingleWeaponSimulate(weaponData,distance,hitChance);
-                Log.log_detail(`武器${weaponData.name}, 第${sim_count + 1}次模拟，射击${shots.shotCount}枪,命中${shots.hitShot}枪`);
-                TTKChart.addSimulateShotCount(weaponData,shots.shotCount,shots.hitShot,distance);
+                const shotStats = this.runSingleWeaponSimulate(weaponData,distance,hitChance);
+                Log.log_detail(`武器${weaponData.name}, 第${sim_count + 1}次模拟，射击${shotStats.shotCount}枪,命中${shotStats.hitShot}枪`);
+                SimulateShot.addSimulateShotCount(TTKChart,weaponData,shotStats,distance);
             }
         })
         Log.log("模拟射击完成");
         const endTime = Date.now();
         Log.log(`完成用间:${endTime-startTime}`);
-        //Log.saveDetailLogToTempFile();
+        Log.saveDetailLogToTempFile();
         TTKChart.showResultsInChart();
     }    
+
+    runSimulationsAccordingDistance(hitChance)
+    {
+        Log.startDetailLogSession();
+        DistanceChart.clear();
+
+        const startTime = Date.now();
+        Log.log_detail(`开始距离模拟，时间:${startTime}`);
+        this.weaponDatas.forEach(weaponData =>{
+            this.resetStatus();
+            this.checkBulletType(weaponData);
+            Log.log(weaponData.range)
+            //获取武器衰减距离点
+            weaponData.range.forEach(distance =>{
+                if(distance > 100){
+                    distance = 100;
+                }
+                Log.log(`正在模拟武器 ${weaponData.name} 在距离 ${distance} 米的表现`);
+                for(let sim_count= 0; sim_count< ConstConfig.SIMULATE_ACCORDING_DISTANCE_COUNT;sim_count++){
+                    const shotStats = this.runSingleWeaponSimulate(weaponData,distance,hitChance);
+                    Log.log_detail(`武器${weaponData.name}, 距离${distance}米, 第${sim_count + 1}次模拟，射击${shotStats.shotCount}枪,命中${shotStats.hitShot}枪`);
+                    SimulateShot.addSimulateShotCount(DistanceChart,weaponData,shotStats,distance);
+                }
+            });
+        });
+        Log.log("模拟射击完成");
+        const endTime = Date.now();
+        Log.log(`完成用间:${endTime-startTime}`);
+        Log.saveDetailLogToTempFile();
+        DistanceChart.showResultsInDistanceChart();
+    }
 
     runSingleWeaponSimulate(weaponData,distance = 20,hitChance) {
         this.resetStatus();
@@ -126,14 +159,15 @@ export class SimulateEngine {
             return false;
         }
         
-        //计算衰减系数
+        //计算衰减系数：距离命中衰减点边界时，仍按当前档处理。
+        //例如 range 为 [30, 50, 200] 时，30m 仍使用 decay[0]，50m 使用 decay[1]。
         let decay=1.0
-        const index = weaponData.range.findIndex(r => distance < r);
+        const index = weaponData.range.findIndex(r => distance <= r); 
         if(index !== -1){
             decay = weaponData.decay[index];
         }
         else{
-            console.error(`衰减数值不正确`);
+            decay = weaponData.decay[weaponData.decay.length - 1];
         }
         Log.log_detail(`距离${distance}， ${weaponData.name}的衰减为${decay}`);
         //计算伤害

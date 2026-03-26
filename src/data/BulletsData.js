@@ -99,7 +99,7 @@ export const BulletsData = {
         }
     },
     双头弹:{
-        damage: 0.66,
+        damage: 1.32,
         armor:{
             1:{armorDamage: 1.0, penetrate: 1.0},
             2:{armorDamage: 1.0, penetrate: 1.0},
