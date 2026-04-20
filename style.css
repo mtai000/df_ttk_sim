@@ -60,22 +60,27 @@ body {
   color: #334155;
 }
 
-.input-row select,
-.input-row input[type="number"] {
-  width: 180px;
-  padding: 8px 12px;
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  max-width: 240px;
+  padding: 10px 14px;
   border: 1px solid #cbd5e1;
-  border-radius: 14px;
+  border-radius: 16px;
   font-size: 0.95rem;
   background: white;
-  transition: 0.15s;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-.input-row select:focus,
-.input-row input[type="number"]:focus {
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
   outline: none;
   border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
 }
 
 /* 复选框行特殊处理 */
@@ -205,6 +210,54 @@ button:active {
   text-align: left;
 }
 
+.tab-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  border: none;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #334155;
+  padding: 10px 22px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tab-btn:hover {
+  background: #cbd5e1;
+}
+
+.tab-btn.active {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.tab-page {
+  display: none;
+}
+
+.tab-page.active {
+  display: block;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.inline-input {
+  width: 100px;
+}
+
+
+.inline-textarea {
+  min-width: 320px;
+}
 
 /* 新增：基础参数和防护装备并排 */
 .settings-row {
@@ -217,6 +270,21 @@ button:active {
   flex: 1;
   margin-bottom: 0;  /* 移除卡片自带的下边距 */
 }
+
+.json-editor {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 500px;
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  line-height: 1.4;
+  resize: vertical;
+}
+
 .remove-segment-btn {
   width:20px;
   height: 20px;

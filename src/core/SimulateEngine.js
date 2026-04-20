@@ -1,4 +1,4 @@
-import { BulletsData } from "../data/BulletsData.js";
+import { BulletsData, getMergedBulletsData } from "../data/BulletsData.js";
 import { DOMControl,ArmorData } from "../data/DomControl.js";
 import { ConstConfig } from "../data/ConstConfig.js"
 import { Log } from "../utils/Log.js";
@@ -10,6 +10,7 @@ import SimulateShot from "../utils/SimulateShot.js";
 export class SimulateEngine {
     constructor(weaponDatas) {
         this.weaponDatas = weaponDatas;
+        this.bulletsData = getMergedBulletsData();
         this.hitChanceByPart = this.calHitChanceByPartHitWeights(DOMControl.getPartHitWeightsFromUI());
         this.setDefault();
         this.resetStatus();
@@ -19,6 +20,83 @@ export class SimulateEngine {
     setDefault(){
         this.default_hp = DOMControl.getHealthPointFromUI();
         this.default_armorData = DOMControl.getArmorDataFromUI();
+    }
+
+    resolvePartMultipliers(weaponData) {
+        const mult = weaponData.mult || {};
+        return {
+            head: Number(mult.head ?? weaponData.headMultiplier ?? 1.9),
+            chest: Number(mult.chest ?? weaponData.chestMultiplier ?? 1.0),
+            abdomen: Number(mult.abdomen ?? mult.stomach ?? weaponData.abdomenMultiplier ?? 0.9),
+            arm: Number(mult.arm ?? mult.limbs ?? weaponData.armMultiplier ?? 0.4),
+            hand: Number(mult.hand ?? mult.limbs ?? weaponData.handMultiplier ?? 0.4),
+            leg: Number(mult.leg ?? mult.limbs ?? weaponData.legMultiplier ?? 0.4),
+            foot: Number(mult.foot ?? mult.limbs ?? weaponData.footMultiplier ?? 0.4),
+        };
+    }
+
+    getActiveWeaponConfig(weaponData) {
+        const config = { ...weaponData };
+        config.range = Array.isArray(weaponData.ranges) ? weaponData.ranges : (Array.isArray(weaponData.range) ? weaponData.range : []);
+        config.decay = Array.isArray(weaponData.decays) ? weaponData.decays : (Array.isArray(weaponData.decay) ? weaponData.decay : []);
+        config.barrels = Array.isArray(weaponData.barrels) ? weaponData.barrels : (Array.isArray(weaponData.barrelOptions) ? weaponData.barrelOptions : []);
+        config.currentBarrelIndex = Number.isFinite(weaponData.currentBarrelIndex) ? weaponData.currentBarrelIndex : 0;
+        config.currentAmmoType = weaponData.currentAmmoType ?? 'global';
+        config.allowedBullets = Array.isArray(weaponData.allowedBullets) ? weaponData.allowedBullets : (Array.isArray(weaponData.supportedAmmoTypes) ? weaponData.supportedAmmoTypes : []);
+        config.partMultipliers = this.resolvePartMultipliers(weaponData);
+
+        const barrel = config.barrels[config.currentBarrelIndex];
+        if (barrel) {
+            if (Array.isArray(barrel.ranges) && barrel.ranges.length) {
+                config.range = barrel.ranges;
+            } else if (typeof barrel.rangeMult === 'number' && config.range.length) {
+                config.range = config.range.map(r => r * barrel.rangeMult);
+            }
+            if (Array.isArray(barrel.decays) && barrel.decays.length) {
+                config.decay = barrel.decays;
+            }
+            if (typeof barrel.velocityAdd === 'number') {
+                config.velocity = (Number(weaponData.velocity) || 0) + barrel.velocityAdd;
+            }
+            if (typeof barrel.damageBonus === 'number') {
+                config.baseDamage = (Number(weaponData.baseDamage) || 0) + barrel.damageBonus;
+            }
+            if (typeof barrel.armorDamageBonus === 'number') {
+                config.armorDamage = (Number(weaponData.armorDamage) || 0) + barrel.armorDamageBonus;
+            }
+            if (typeof barrel.rofMult === 'number') {
+                config.rof = (Number(weaponData.rof) || 0) * barrel.rofMult;
+            }
+            if (barrel.partMultAdd && typeof barrel.partMultAdd === 'object') {
+                Object.entries(barrel.partMultAdd).forEach(([part, value]) => {
+                    const numericValue = Number(value) || 0;
+                    if (part === 'stomach') {
+                        config.partMultipliers.abdomen += numericValue;
+                    } else if (part === 'limbs') {
+                        config.partMultipliers.arm += numericValue;
+                        config.partMultipliers.hand += numericValue;
+                        config.partMultipliers.leg += numericValue;
+                        config.partMultipliers.foot += numericValue;
+                    } else if (config.partMultipliers[part] !== undefined) {
+                        config.partMultipliers[part] += numericValue;
+                    }
+                });
+            }
+            if (typeof barrel.burstCount === 'number') {
+                config.burstCount = barrel.burstCount;
+            }
+            if (typeof barrel.burstInternalROF === 'number') {
+                config.burstRateOfFire = barrel.burstInternalROF;
+            }
+            if (typeof barrel.burstInterval === 'number') {
+                config.burstInterval = barrel.burstInterval;
+            }
+            if (typeof barrel.fireMode === 'string') {
+                config.fireMode = barrel.fireMode;
+            }
+        }
+
+        return config;
     }
 
     resetStatus(){
@@ -46,9 +124,10 @@ export class SimulateEngine {
         Log.log_detail(`开始模拟时间:${startTime}`);
         this.weaponDatas.forEach(weaponData =>{
             this.resetStatus();
-            this.checkBulletType(weaponData);
+            const activeWeapon = this.getActiveWeaponConfig(weaponData);
+            this.checkBulletType(activeWeapon);
             for(let sim_count= 0; sim_count< ConstConfig.SIMULATE_COUNT;sim_count++){
-                const shotStats = this.runSingleWeaponSimulate(weaponData,distance,hitChance);
+                const shotStats = this.runSingleWeaponSimulate(activeWeapon,distance,hitChance);
                 Log.log_detail(`武器${weaponData.name}, 第${sim_count + 1}次模拟，射击${shotStats.shotCount}枪,命中${shotStats.hitShot}枪`);
                 SimulateShot.addSimulateShotCount(TTKChart,weaponData,shotStats,distance);
             }
@@ -69,10 +148,11 @@ export class SimulateEngine {
         Log.log_detail(`开始距离模拟，时间:${startTime}`);
         this.weaponDatas.forEach(weaponData =>{
             this.resetStatus();
-            this.checkBulletType(weaponData);
-            Log.log(weaponData.range)
+            const activeWeapon = this.getActiveWeaponConfig(weaponData);
+            this.checkBulletType(activeWeapon);
+            Log.log(activeWeapon.range)
             //获取武器衰减距离点
-            weaponData.range.forEach(distance =>{
+            activeWeapon.range.forEach(distance =>{
                 if(distance > 100){
                     distance = 100;
                 }
@@ -94,9 +174,9 @@ export class SimulateEngine {
     runSingleWeaponSimulate(weaponData,distance = 20,hitChance) {
         this.resetStatus();
         Log.log_detail(`正在计算武器: ${weaponData.name},初始生命 ${this.hp}`);
-        Log.log_detail(`护甲信息：${this.armorData}`);
+        Log.log_detail(`护甲信息：${JSON.stringify(this.armorData)}`);
         this.checkBulletType(weaponData);
-        Log.log_detail(`使用子弹类型: ${weaponData.currentAmmoType}, 子弹数据:`, BulletsData[weaponData.currentAmmoType]);
+        Log.log_detail(`使用子弹类型: ${weaponData.currentAmmoType}, 子弹数据:`, this.bulletsData[weaponData.currentAmmoType]);
         Log.log_detail(`命中率为${hitChance}`)
         //循环模拟射击，直到目标死亡
         let shotCount = 0;
@@ -171,14 +251,15 @@ export class SimulateEngine {
         }
         Log.log_detail(`距离${distance}， ${weaponData.name}的衰减为${decay}`);
         //计算伤害
-        const bulletData = BulletsData[weaponData.currentAmmoType];
+        const bulletData = this.bulletsData[weaponData.currentAmmoType];
         //根据命中部位系数计算伤害
-        const partMultiplier = weaponData[`${hitPart}Multiplier`];
+        const partMultiplier = (bulletData.multipliers && bulletData.multipliers[hitPart]) ? bulletData.multipliers[hitPart] : weaponData.partMultipliers?.[hitPart] ?? weaponData[`${hitPart}Multiplier`];
         const partDamage = (weaponData.baseDamage * bulletData.damage * partMultiplier) * decay;
         Log.log_detail(`${hitPart},${partMultiplier},${partDamage}`)
-        const headArmorDamage = (weaponData.armorDamage * bulletData.armor[this.armorData.helmetLv].armorDamage) * decay; 
+        const effectiveArmorDamage = weaponData.armorDamage * (bulletData.armorDamageMultiplier || 1);
+        const headArmorDamage = (effectiveArmorDamage * bulletData.armor[this.armorData.helmetLv].armorDamage) * decay; 
         const headPenetrate = bulletData.armor[this.armorData.helmetLv].penetrate;
-        const bodyArmorDamage = (weaponData.armorDamage * bulletData.armor[this.armorData.armorLv].armorDamage) * decay;
+        const bodyArmorDamage = (effectiveArmorDamage * bulletData.armor[this.armorData.armorLv].armorDamage) * decay;
         const bodyPenetrate = bulletData.armor[this.armorData.armorLv].penetrate;
 
         //命中部位如果有护甲，则先扣除护甲，如果穿甲值大于护甲值，则按百分比扣除生命值，如50%剩余穿甲值，则扣除50%的basedamage的血量以及按穿透值扣除生命

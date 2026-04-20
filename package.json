@@ -9,7 +9,7 @@
     "author": "mtai000",
     "license": "MIT",
     "devDependencies": {
-        "esbuild": "^0.27.4"
+        "esbuild": "^0.27.7"
     },
     "dependencies": {
         "chart.js": "^4.5.1",

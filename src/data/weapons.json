@@ -1,0 +1,780 @@
+[
+  {
+    "name": "战斧ash",
+    "velocity": 545,
+    "baseDamage": 75,
+    "armorDamage": 40,
+    "rof": 400,
+    "supportedAmmoTypes": [
+      "3",
+      "4",
+      "5",
+      "双头弹"
+    ],
+    "headMultiplier": 1.75,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.25,
+    "abdomenMultiplier": 0.7,
+    "armMultiplier": 0.25,
+    "legMultiplier": 0.25,
+    "footMultiplier": 0.25,
+    "armorDamagePerSecond": 266.7,
+    "baseDamagePerSecond": 500,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": "0",
+    "range": [
+      55,
+      90,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.8
+    ]
+  },
+  {
+    "name": "mcx lt 焰魂",
+    "velocity": 491,
+    "baseDamage": 36,
+    "armorDamage": 26,
+    "rof": 870,
+    "supportedAmmoTypes": [
+      "3",
+      "4",
+      "5",
+      ".300 V SUB",
+      ".300 BCP SUB"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.35,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.35,
+    "legMultiplier": 0.35,
+    "footMultiplier": 0.35,
+    "armorDamagePerSecond": 377,
+    "baseDamagePerSecond": 522,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": true,
+    "currentAmmoType": 4,
+    "triggerDelay": 0,
+    "range": [
+      30,
+      50,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "k437长管",
+    "velocity": 815,
+    "baseDamage": 36,
+    "armorDamage": 32,
+    "rof": 780,
+    "supportedAmmoTypes": [
+      "3",
+      "4",
+      "5",
+      ".300 V SUB",
+      ".300 BCP SUB"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 416,
+    "baseDamagePerSecond": 468,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      45.5,
+      78,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.7
+    ]
+  },
+  {
+    "name": "M249长管",
+    "velocity": 815,
+    "baseDamage": 30,
+    "armorDamage": 38,
+    "rof": 858,
+    "supportedAmmoTypes": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 543.4,
+    "baseDamagePerSecond": 429,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 50,
+    "range": [
+      52,
+      91,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "KC17长管",
+    "velocity": 815,
+    "baseDamage": 31,
+    "armorDamage": 48,
+    "rof": 740,
+    "supportedAmmoTypes": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "BT+P"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 592,
+    "baseDamagePerSecond": 382.33333333333337,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      71.5,
+      121,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.8
+    ]
+  },
+  {
+    "name": "M7",
+    "velocity": 630,
+    "baseDamage": 38,
+    "armorDamage": 40,
+    "rof": 649,
+    "supportedAmmoTypes": [
+      "3",
+      "4",
+      "5",
+      "M250AP"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 1,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 432.66666666666663,
+    "baseDamagePerSecond": 411.0333333333333,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      50,
+      70,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.8
+    ]
+  },
+  {
+    "name": "M7堤风",
+    "velocity": 893,
+    "baseDamage": 40,
+    "armorDamage": 42,
+    "rof": 649,
+    "supportedAmmoTypes": [
+      "3",
+      "4",
+      "5",
+      "M250AP"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 1,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 454.3,
+    "baseDamagePerSecond": 432.66666666666663,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": true,
+    "currentAmmoType": 4,
+    "triggerDelay": 0,
+    "range": [
+      65,
+      91,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.8
+    ]
+  },
+  {
+    "name": "MK47",
+    "velocity": 525,
+    "baseDamage": 42,
+    "armorDamage": 46,
+    "rof": 625,
+    "supportedAmmoTypes": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "BP SUB",
+      "AP SUB"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 479.16666666666663,
+    "baseDamagePerSecond": 437.5,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      30,
+      45,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "MK47短管",
+    "velocity": 572,
+    "baseDamage": 46,
+    "armorDamage": 47,
+    "rof": 625,
+    "supportedAmmoTypes": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "BP SUB",
+      "AP SUB"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 489.5833333333333,
+    "baseDamagePerSecond": 479.16666666666663,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": true,
+    "currentAmmoType": 4,
+    "triggerDelay": 0,
+    "range": [
+      25,
+      40,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "MK47长管",
+    "velocity": 763,
+    "baseDamage": 45,
+    "armorDamage": 46,
+    "rof": 625,
+    "supportedAmmoTypes": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "BP SUB",
+      "AP SUB"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 479.16666666666663,
+    "baseDamagePerSecond": 468.75,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      35,
+      50,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "akm性能",
+    "velocity": 605,
+    "baseDamage": 40,
+    "armorDamage": 42,
+    "rof": 600,
+    "supportedAmmoTypes": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "BP SUB",
+      "AP SUB"
+    ],
+    "headMultiplier": 2.5,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 420,
+    "baseDamagePerSecond": 400,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      42,
+      74,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "QJB高导无延时",
+    "velocity": 627,
+    "baseDamage": 32,
+    "armorDamage": 38,
+    "rof": 873,
+    "supportedAmmoTypes": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 552.9,
+    "baseDamagePerSecond": 465.6,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      40,
+      70,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "QJB稳固无延时",
+    "velocity": 627,
+    "baseDamage": 32,
+    "armorDamage": 38,
+    "rof": 714,
+    "supportedAmmoTypes": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 452.2,
+    "baseDamagePerSecond": 380.8,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      54,
+      94.5,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "腾龙稳固",
+    "velocity": 815,
+    "baseDamage": 35,
+    "armorDamage": 38,
+    "rof": 660,
+    "supportedAmmoTypes": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "headMultiplier": 2.1,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 418,
+    "baseDamagePerSecond": 385,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      45.5,
+      78,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.7
+    ]
+  },
+  {
+    "name": "腾龙高导",
+    "velocity": 815,
+    "baseDamage": 35,
+    "armorDamage": 38,
+    "rof": 759,
+    "supportedAmmoTypes": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "headMultiplier": 2.1,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 480.7,
+    "baseDamagePerSecond": 442.75,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": true,
+    "currentAmmoType": 4,
+    "triggerDelay": 0,
+    "range": [
+      45.5,
+      78,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.7
+    ]
+  },
+  {
+    "name": "P90长弓",
+    "velocity": 654,
+    "baseDamage": 32,
+    "armorDamage": 35,
+    "rof": 785,
+    "supportedAmmoTypes": [
+      "3",
+      "4",
+      "5"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 457.9166666666667,
+    "baseDamagePerSecond": 418.6666666666667,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      35,
+      60,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "mp7",
+    "velocity": 638,
+    "baseDamage": 32,
+    "armorDamage": 28,
+    "rof": 950,
+    "supportedAmmoTypes": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 443.33333333333337,
+    "baseDamagePerSecond": 506.6666666666667,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": true,
+    "currentAmmoType": 4,
+    "triggerDelay": 0,
+    "range": [
+      26,
+      35,
+      52,
+      200
+    ],
+    "decay": [
+      1,
+      0.75,
+      0.65,
+      0.55
+    ]
+  },
+  {
+    "name": "sr3m",
+    "velocity": 424,
+    "baseDamage": 36,
+    "armorDamage": 48,
+    "rof": 727,
+    "supportedAmmoTypes": [
+      "3",
+      "4",
+      "5"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 581.6,
+    "baseDamagePerSecond": 436.20000000000005,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      18,
+      36.5,
+      200
+    ],
+    "decay": [
+      1,
+      0.75,
+      0.65
+    ]
+  },
+  {
+    "name": "ar57夜莺",
+    "velocity": 675,
+    "baseDamage": 30,
+    "armorDamage": 31,
+    "rof": 900,
+    "supportedAmmoTypes": [
+      "5.7_LV1",
+      "5.7_LV2",
+      "3",
+      "4",
+      "5"
+    ],
+    "headMultiplier": 1.9,
+    "chestMultiplier": 1,
+    "handMultiplier": 0.4,
+    "abdomenMultiplier": 0.9,
+    "armMultiplier": 0.4,
+    "legMultiplier": 0.4,
+    "footMultiplier": 0.4,
+    "armorDamagePerSecond": 465,
+    "baseDamagePerSecond": 450,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "barrelOptions": [],
+    "range": [
+      41,
+      59,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.75
+    ],
+    "allowedBullets": [
+      "3",
+      "4",
+      "5",
+      "5.7_LV1",
+      "5.7_LV2"
+    ],
+    "mult": {
+      "head": 1.9,
+      "chest": 1,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "hand": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "type": ""
+  }
+]

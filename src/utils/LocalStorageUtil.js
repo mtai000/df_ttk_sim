@@ -1,6 +1,7 @@
 
 export class LocalStorageUtil {
     static STORAGE_KEY = 'df_ttk_sim_weapons';
+    static BULLETS_STORAGE_KEY = 'df_ttk_sim_bullets';
     static HIT_PART_WEIGHTS_KEY = 'df_ttk_sim_hit_part_weights';
     static HIT_PART_KEYS = ['head', 'chest', 'abdomen', 'arm', 'hand', 'leg', 'foot'];
     static initialize() {
@@ -36,6 +37,47 @@ export class LocalStorageUtil {
             console.log('成功保存武器数据:', weapons);
         } catch (error) {
             console.error('保存武器数据时发生错误:', error);
+        }
+    }
+
+    static loadBullets() {
+        const stored = localStorage.getItem(this.BULLETS_STORAGE_KEY);
+        if (!stored) {
+            return {};
+        }
+        try {
+            const bullets = JSON.parse(stored);
+            if (bullets && typeof bullets === 'object') {
+                return bullets;
+            }
+            return {};
+        } catch (error) {
+            console.error('解析存储的子弹数据时发生错误:', error);
+            return {};
+        }
+    }
+
+    static saveBullets(bullets) {
+        try {
+            const bulletsData = JSON.stringify(bullets);
+            localStorage.setItem(this.BULLETS_STORAGE_KEY, bulletsData);
+            console.log('成功保存子弹数据:', bullets);
+        } catch (error) {
+            console.error('保存子弹数据时发生错误:', error);
+        }
+    }
+
+    static addBullet(name, bullet) {
+        const bullets = this.loadBullets();
+        bullets[name] = bullet;
+        this.saveBullets(bullets);
+    }
+
+    static removeBullet(name) {
+        const bullets = this.loadBullets();
+        if (bullets.hasOwnProperty(name)) {
+            delete bullets[name];
+            this.saveBullets(bullets);
         }
     }
 
@@ -103,6 +145,12 @@ export class LocalStorageUtil {
     }
 
     static import() {
+        // 询问用户是否需要备份
+        const shouldBackup = confirm('导入数据将覆盖现有武器数据。是否需要先备份当前数据？');
+        if (shouldBackup) {
+            this.export();
+        }
+
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.accept = 'application/json';
@@ -151,6 +199,56 @@ export class LocalStorageUtil {
         const a = document.createElement('a');
         a.href = url;
         a.download = `weapons_export_${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    static importBullets() {
+        // 询问用户是否需要备份
+        const shouldBackup = confirm('导入数据将覆盖现有子弹数据。是否需要先备份当前数据？');
+        if (shouldBackup) {
+            this.exportBullets();
+        }
+
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'application/json';
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) {
+                console.warn('没有选择文件');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const importedBullets = JSON.parse(e.target.result);
+                    if (importedBullets && typeof importedBullets === 'object') {
+                        this.saveBullets(importedBullets);
+                        console.log('成功导入子弹数据:', importedBullets);
+                        window.location.reload();
+                    } else {
+                        console.error('导入的文件格式不正确，应该是一个子弹对象');
+                    }
+                } catch (error) {
+                    console.error('解析导入的子弹数据时发生错误:', error);
+                }
+            };
+            reader.readAsText(file);
+        });
+        fileInput.click();
+    }
+
+    static exportBullets() {
+        const bullets = this.loadBullets();
+        const jsonStr = JSON.stringify(bullets, null, 2);
+        const blob = new Blob([jsonStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `bullets_export_${new Date().toISOString().slice(0, 10)}.json`;
         a.click();
         URL.revokeObjectURL(url);
     }

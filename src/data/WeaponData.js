@@ -1,3 +1,14 @@
+export class BarralOption {
+  // 枪管选项类
+  constructor({ name, velocityModifier=1.0, damageModifier=1.0, armorDamageModifier =1.0}) {
+    this.name = name;
+    this.velocityModifier = velocityModifier;
+    this.damageModifier = damageModifier;
+    this.armorDamageModifier = armorDamageModifier;
+  }
+}
+
+
 export class WeaponData {
   constructor({ name, velocity, baseDamage, armorDamage, rof,supportedAmmoTypes = [] }) {
     this.name = name;
@@ -22,6 +33,9 @@ export class WeaponData {
     this.isSelected = false;
     this.currentAmmoType = supportedAmmoTypes.length > 0 ? supportedAmmoTypes[0] : null;
     this.triggerDelay=0.0
+
+    //可选枪管
+    this.barrelOptions = [];
   }
 
   setBurstSettings({isBurst, burstCount, burstRateOfFire, burstInterval}) {

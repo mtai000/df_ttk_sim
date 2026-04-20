@@ -1,0 +1,220 @@
+ [
+    {
+        "name": "RIP",
+        "damage": 1.4,
+        "armor":{
+            "1":{"armorDamage": 0.4, "penetrate": 0.0},
+            "2":{"armorDamage": 0.3, "penetrate": 0.0},
+            "3":{"armorDamage": 0.2, "penetrate": 0.0},
+            "4":{"armorDamage": 0.2, "penetrate": 0.0},
+            "5":{"armorDamage": 0.2, "penetrate": 0.0},
+            "6":{"armorDamage": 0.2, "penetrate": 0.0}
+        }
+    },
+    {
+        "name": "RIP45",
+        "damage": 1.35,
+        "armor":{
+            "1":{"armorDamage": 0.4, "penetrate": 0.0},
+            "2":{"armorDamage": 0.3, "penetrate": 0.0},
+            "3":{"armorDamage": 0.2, "penetrate": 0.0},
+            "4":{"armorDamage": 0.2, "penetrate": 0.0},
+            "5":{"armorDamage": 0.2, "penetrate": 0.0},
+            "6":{"armorDamage": 0.2, "penetrate": 0.0}
+        }
+    },
+    {
+        "name" : "1",
+        "damage": 1.1,
+        "armor":{
+            "1":{"armorDamage": 0.6, "penetrate": 0.5},
+            "2":{"armorDamage": 0.6, "penetrate": 0.0},
+            "3":{"armorDamage": 0.4, "penetrate": 0.0},
+            "4":{"armorDamage": 0.3, "penetrate": 0.0},
+            "5":{"armorDamage": 0.2, "penetrate": 0.0},
+            "6":{"armorDamage": 0.2, "penetrate": 0.0}
+        }
+    },
+    {
+        "name" : "5.7_LV1",
+        "damage": 1.2,
+        "armor":{
+            "1":{"armorDamage": 0.6, "penetrate": 0.5},
+            "2":{"armorDamage": 0.6, "penetrate": 0.0},
+            "3":{"armorDamage": 0.4, "penetrate": 0.0},
+            "4":{"armorDamage": 0.3, "penetrate": 0.0},
+            "5":{"armorDamage": 0.2, "penetrate": 0.0},
+            "6":{"armorDamage": 0.2, "penetrate": 0.0}
+     
+        }
+    },
+    {
+        "name" : "2",
+        "damage": 1.1,
+        "armor":{
+            "1":{"armorDamage": 0.7, "penetrate": 0.75},
+            "2":{"armorDamage": 0.7, "penetrate": 0.5},
+            "3":{"armorDamage": 0.7, "penetrate": 0.0},
+            "4":{"armorDamage": 0.5, "penetrate": 0.0},
+            "5":{"armorDamage": 0.4, "penetrate": 0.0},
+            "6":{"armorDamage": 0.3, "penetrate": 0.0}
+        }
+    },
+    {
+        "name" : "5.7_LV2",
+        "damage": 1.2,
+        "armor":{
+            "1":{"armorDamage": 0.7, "penetrate": 0.75},
+            "2":{"armorDamage": 0.7, "penetrate": 0.5},
+            "3":{"armorDamage": 0.7, "penetrate": 0.0},
+            "4":{"armorDamage": 0.5, "penetrate": 0.0},
+            "5":{"armorDamage": 0.4, "penetrate": 0.0},
+            "6":{"armorDamage": 0.3, "penetrate": 0.0}
+        }
+    },
+    {
+        "name" : "3",
+        "armor":{
+            "1":{"armorDamage": 0.7, "penetrate": 0.75},
+            "2":{"armorDamage": 0.7, "penetrate": 0.5},
+            "3":{"armorDamage": 0.7, "penetrate": 0.0},
+            "4":{"armorDamage": 0.5, "penetrate": 0.0},
+            "5":{"armorDamage": 0.4, "penetrate": 0.0},
+            "6":{"armorDamage": 0.3, "penetrate": 0.0}
+        }
+    },
+    {
+        "name" : "4",
+        "armor":{
+            "1":{"armorDamage": 1.0, "penetrate": 1.0},
+            "2":{"armorDamage": 1.0, "penetrate": 1.0},
+            "3":{"armorDamage": 1.0, "penetrate": 0.75},
+            "4":{"armorDamage": 1.0, "penetrate": 0.5},
+            "5":{"armorDamage": 1.0, "penetrate": 0.0},
+            "6":{"armorDamage": 0.6, "penetrate": 0.0}
+        }
+    },
+     
+    {
+        "name" : "5",
+        "damage": 1.0,
+        "armor":{
+            "1":{"armorDamage": 1.1, "penetrate": 1.0},
+            "2":{"armorDamage": 1.1, "penetrate": 1.0},
+            "3":{"armorDamage": 1.1, "penetrate": 1.0},
+            "4":{"armorDamage": 1.1, "penetrate": 0.75},
+            "5":{"armorDamage": 1.1, "penetrate": 0.5},
+            "6":{"armorDamage": 1.1, "penetrate": 0.0}
+        }
+    },
+    {
+        "name" : "6.8AP",
+        "damage": 1.0,
+        "armor":{
+            "1":{"armorDamage": 1.1, "penetrate": 1.0},
+            "2":{"armorDamage": 1.1, "penetrate": 1.0},
+            "3":{"armorDamage": 1.1, "penetrate": 1.0},
+            "4":{"armorDamage": 1.1, "penetrate": 1.0},
+            "5":{"armorDamage": 1.1, "penetrate": 0.75},
+            "6":{"armorDamage": 1.1, "penetrate": 0.5}
+        }
+    },
+    {
+        "name": "M61",
+        "damage": 1.0,
+        "armor":{
+            "1":{"armorDamage": 1.2, "penetrate": 1.0},
+            "2":{"armorDamage": 1.2, "penetrate": 1.0},
+            "3":{"armorDamage": 1.2, "penetrate": 1.0},
+            "4":{"armorDamage": 1.2, "penetrate": 1.0},
+            "5":{"armorDamage": 1.2, "penetrate": 0.75},
+            "6":{"armorDamage": 1.2, "penetrate": 0.5}
+        }
+    },
+    { "name" : "双头弹",
+        "damage": 0.66,
+        "armor":{
+            "1":{"armorDamage": 1.0, "penetrate": 1.0},
+            "2":{"armorDamage": 1.0, "penetrate": 1.0},
+            "3":{"armorDamage": 1.0, "penetrate": 0.75},
+            "4":{"armorDamage": 1.0, "penetrate": 0.5},
+            "5":{"armorDamage": 1.0, "penetrate": 0.4},
+            "6":{"armorDamage": 1.0, "penetrate": 0.3}
+        }
+    },
+    { 
+        "name" : "BT+P",
+        "damage": 1.1,
+        "armor":{
+            "1":{"armorDamage": 1.0, "penetrate": 1.0},
+            "2":{"armorDamage": 1.0, "penetrate": 1.0},
+            "3":{"armorDamage": 1.0, "penetrate": 0.75},
+            "4":{"armorDamage": 1.0, "penetrate": 0.5},
+            "5":{"armorDamage": 1.0, "penetrate": 0.0},
+            "6":{"armorDamage": 0.6, "penetrate": 0.0}
+        }
+    },
+    { 
+        "name" : "ACP SUPER",
+        "damage": 0.85,
+        "armor":{
+            "1":{"armorDamage": 1.1, "penetrate": 1.0},
+            "2":{"armorDamage": 1.1, "penetrate": 1.0},
+            "3":{"armorDamage": 1.1, "penetrate": 1.0},
+            "4":{"armorDamage": 1.1, "penetrate": 0.75},
+            "5":{"armorDamage": 1.1, "penetrate": 0.5},
+            "6":{"armorDamage": 1.1, "penetrate": 0.0}
+        }
+    },
+    {   
+        "name" : ".300 V SUB",
+        "damage": 1.05,
+        "armor":{
+            "1":{"armorDamage": 0.9, "penetrate": 1.0},
+            "2":{"armorDamage": 0.9, "penetrate": 0.75},
+            "3":{"armorDamage": 0.9, "penetrate": 0.5},
+            "4":{"armorDamage": 0.9, "penetrate": 0.0},
+            "5":{"armorDamage": 0.5, "penetrate": 0.0},
+            "6":{"armorDamage": 0.4, "penetrate": 0.0}
+        }
+    },
+    { 
+        "name" : ".300 BCP SUB",
+        "damage": 1.05,
+        "armor":{
+            "1":{"armorDamage": 1.0, "penetrate": 1.0},
+            "2":{"armorDamage": 1.0, "penetrate": 1.0},
+            "3":{"armorDamage": 1.0, "penetrate": 0.75},
+            "4":{"armorDamage": 1.0, "penetrate": 0.5},
+            "5":{"armorDamage": 1.0, "penetrate": 0.0},
+            "6":{"armorDamage": 0.6, "penetrate": 0.0}
+        }
+    },
+    { 
+        "name" : "BP SUB",
+        "damage": 1.05,
+        "armor_damage": 1.0,
+        "armor":{
+            "1":{"armorDamage": 1.0, "penetrate": 1.0},
+            "2":{"armorDamage": 1.0, "penetrate": 1.0},
+            "3":{"armorDamage": 1.0, "penetrate": 0.75},
+            "4":{"armorDamage": 1.0, "penetrate": 0.5},
+            "5":{"armorDamage": 1.0, "penetrate": 0.0},
+            "6":{"armorDamage": 0.6, "penetrate": 0.0}
+        }
+    },
+    { 
+        "name" : "AP SUB",
+        "damage": 1.05,
+        "armor_damage": 0.95,
+        "armor":{
+            "1":{"armorDamage": 1.1, "penetrate": 1.0},
+            "2":{"armorDamage": 1.1, "penetrate": 1.0},
+            "3":{"armorDamage": 1.1, "penetrate": 1.0},
+            "4":{"armorDamage": 1.1, "penetrate": 0.75},
+            "5":{"armorDamage": 1.1, "penetrate": 0.5},
+            "6":{"armorDamage": 1.1, "penetrate": 0.0}
+        }
+    }
+]
+   
