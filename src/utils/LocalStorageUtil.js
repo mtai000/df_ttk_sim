@@ -252,4 +252,103 @@ export class LocalStorageUtil {
         a.click();
         URL.revokeObjectURL(url);
     }
+
+    // ==================== 原始结构（bullets.json 格式）相关方法 ====================
+    
+    static BULLETS_JSON_STRUCTURE_KEY = 'df_ttk_sim_bullets_json_structure';
+
+    /**
+     * 保存原始结构格式的子弹数据（保持 bullets.json 的分层结构）
+     * @param {object} structure - 原始结构的子弹数据
+     */
+    static saveBulletsJsonStructure(structure) {
+        try {
+            const jsonStr = JSON.stringify(structure);
+            localStorage.setItem(this.BULLETS_JSON_STRUCTURE_KEY, jsonStr);
+            console.log('成功保存结构化子弹数据:', structure);
+        } catch (error) {
+            console.error('保存结构化子弹数据时发生错误:', error);
+        }
+    }
+
+    /**
+     * 获取原始结构格式的子弹数据
+     * @returns {object|null} 原始结构的子弹数据，如果不存在返回 null
+     */
+    static getBulletsJsonStructure() {
+        const stored = localStorage.getItem(this.BULLETS_JSON_STRUCTURE_KEY);
+        if (!stored) {
+            return null;
+        }
+        try {
+            const structure = JSON.parse(stored);
+            if (structure && typeof structure === 'object') {
+                return structure;
+            }
+            return null;
+        } catch (error) {
+            console.error('解析结构化子弹数据时发生错误:', error);
+            return null;
+        }
+    }
+
+    /**
+     * 导出原始结构格式的子弹数据为 bullets.json 文件
+     */
+    static exportBulletsJsonStructure() {
+        // 动态导入 BulletsData 中的导出方法
+        import('../data/BulletsData.js').then(module => {
+            const jsonStr = module.exportBulletsJson();
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `bullets_${new Date().toISOString().slice(0, 10)}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }).catch(error => {
+            console.error('导出子弹数据时发生错误:', error);
+        });
+    }
+
+    /**
+     * 导入原始结构格式的子弹数据（bullets.json 文件）
+     */
+    static importBulletsJsonStructure() {
+        // 询问用户是否需要备份
+        const shouldBackup = confirm('导入数据将覆盖现有子弹数据。是否需要先备份当前数据？');
+        if (shouldBackup) {
+            this.exportBulletsJsonStructure();
+        }
+
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'application/json';
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) {
+                console.warn('没有选择文件');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const importedStructure = JSON.parse(e.target.result);
+                    if (importedStructure && typeof importedStructure === 'object') {
+                        this.saveBulletsJsonStructure(importedStructure);
+                        console.log('成功导入结构化子弹数据:', importedStructure);
+                        window.location.reload();
+                    } else {
+                        console.error('导入的文件格式不正确，应该是一个有效的 bullets.json 结构');
+                    }
+                } catch (error) {
+                    console.error('解析导入的子弹数据时发生错误:', error);
+                }
+            };
+            reader.readAsText(file);
+        });
+        fileInput.click();
+    }
 }

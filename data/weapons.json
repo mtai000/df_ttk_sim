@@ -1,0 +1,470 @@
+﻿[
+  {
+    "name": "ar57夜莺",
+    "velocity": 675,
+    "baseDamage": 30,
+    "armorDamage": 31,
+    "rof": 900,
+    "caliber": "5.7x28mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "range": [
+      41,
+      59,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.75
+    ],
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "hand": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "baseDamagePerSecond": 450,
+    "armorDamagePerSecond": 465
+  },
+  {
+    "name": "mcx lt 焰魂",
+    "velocity": 491,
+    "baseDamage": 36,
+    "armorDamage": 26,
+    "rof": 870,
+    "caliber": ".300",
+    "armorDamagePerSecond": 377,
+    "baseDamagePerSecond": 522,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      30,
+      50,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "k437长管",
+    "velocity": 815,
+    "baseDamage": 36,
+    "armorDamage": 32,
+    "rof": 780,
+    "caliber": ".300",
+    "armorDamagePerSecond": 416,
+    "baseDamagePerSecond": 468,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      45.5,
+      78,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.7
+    ]
+  },
+  {
+    "name": "k249长管",
+    "velocity": 815,
+    "baseDamage": 30,
+    "armorDamage": 38,
+    "rof": 858,
+    "caliber": "5.56x45mm",
+    "armorDamagePerSecond": 543.4,
+    "baseDamagePerSecond": 429,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 50,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      52,
+      91,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "KC17长管",
+    "velocity": 815,
+    "baseDamage": 30,
+    "armorDamage": 38,
+    "rof": 858,
+    "caliber": "5.45x39mm",
+    "armorDamagePerSecond": 543.4,
+    "baseDamagePerSecond": 429,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      71.5,
+      121,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.8
+    ]
+  },
+  {
+    "name": "M7",
+    "velocity": 630,
+    "baseDamage": 38,
+    "armorDamage": 40,
+    "rof": 649,
+    "caliber": "6.8x51mm",
+    "armorDamagePerSecond": 432.66666666666663,
+    "baseDamagePerSecond": 411.0333333333333,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 1,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      50,
+      70,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.8
+    ]
+  },
+  {
+    "name": "M7堤风",
+    "velocity": 893,
+    "baseDamage": 40,
+    "armorDamage": 42,
+    "rof": 649,
+    "caliber": "6.8x51mm",
+    "armorDamagePerSecond": 454.3,
+    "baseDamagePerSecond": 432.66666666666663,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 1,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      65,
+      91,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.8
+    ]
+  },
+  {
+    "name": "MK47",
+    "velocity": 525,
+    "baseDamage": 42,
+    "armorDamage": 46,
+    "rof": 625,
+    "caliber": "7.62x39mm",
+    "armorDamagePerSecond": 479.16666666666663,
+    "baseDamagePerSecond": 437.5,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      30,
+      45,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "MK47短管",
+    "velocity": 575,
+    "baseDamage": 46,
+    "armorDamage": 47,
+    "rof": 625,
+    "caliber": "7.62x39mm",
+    "armorDamagePerSecond": 489.5833333333333,
+    "baseDamagePerSecond": 479.16666666666663,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      25,
+      40,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "MK47长管",
+    "velocity": 763,
+    "baseDamage": 45,
+    "armorDamage": 46,
+    "rof": 625,
+    "caliber": "7.62x39mm",
+    "armorDamagePerSecond": 479.16666666666663,
+    "baseDamagePerSecond": 468.75,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      35,
+      50,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "akm性能枪管",
+    "velocity": 605,
+    "baseDamage": 40,
+    "armorDamage": 42,
+    "rof": 600,
+    "caliber": "7.62x39mm",
+    "armorDamagePerSecond": 420,
+    "baseDamagePerSecond": 400,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2.5,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      42,
+      74,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "M4A1加百列",
+    "velocity": 928,
+    "baseDamage": 31,
+    "armorDamage": 33,
+    "rof": 800,
+    "caliber": "5.56x45mm",
+    "armorDamagePerSecond": 440,
+    "baseDamagePerSecond": 413.33333333333337,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      52,
+      91,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "SG552",
+    "velocity": 740,
+    "baseDamage": 25,
+    "armorDamage": 34,
+    "rof": 906,
+    "caliber": "5.56x45mm",
+    "armorDamagePerSecond": 513.4,
+    "baseDamagePerSecond": 377.5,
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      41.3,
+      76.7,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.75
+    ]
+  }
+]

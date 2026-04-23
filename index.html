@@ -27,7 +27,6 @@
                             <option value="3">3</option>
                             <option value="4" selected>4</option>
                             <option value="5">5</option>
-                            <option value="6">6</option>
                         </select>
                     </div>
                     <div class="input-row">
@@ -145,7 +144,6 @@
                 <h1>管理武器</h1>
                 <h2>📋 武器参数</h2>
                 <form id="addWeaponForm">
-
                     <section class="settings-section">
                     <div class="input-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
                         <input type="text" id="newName" placeholder="武器名" required>
@@ -163,6 +161,12 @@
                         <input type="number" id="burstCount" placeholder="连发数" step="1">
                         <input type="number" id="burstRateOfFire" placeholder="连发射速" step="1">
                         <input type="number" id="burstInterval" placeholder="连发间隔时间" step="0.1">
+                    </div>
+                    <div class="input-row">
+                        <label for="caliberSelect">武器口径：</label>
+                        <select id="caliberSelect" required>
+                            <option value="">请选择口径</option>
+                        </select>
                     </div>
                     </section>
                     <h3 style="margin-top: 20px;">射程衰减区间：</h3>
@@ -194,10 +198,7 @@
                             <div><label>足</label><input type="number" id="multFoot" step="0.1" value="0.4" required></div>
                         </div>
                     </section>
-                    <h3>可用子弹：</h3>
-                    <section class="settings-section">
-                        <div  id="ammoCheckBoxGroup" class="input-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
-                    </section>
+              
                     <div style="margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap;">
                         <button type="button" id="addNewWeaponBtn">添加武器</button>
                     </div>
@@ -221,6 +222,12 @@
         <div id="tab-data" class="tab-page">
             <section class="settings-section">
                 <h2>管理子弹</h2>
+                <div class="input-row">
+                        <label for="bulletCaliberSelect">武器口径：</label>
+                        <select id="bulletCaliberSelect" required>
+                            <option value="">请选择口径</option>
+                        </select>
+                </div>
                 <div class="input-row">
                     <label for="newBulletName">子弹名称：</label>
                     <input type="text" id="newBulletName" placeholder="例如 7.62AP" required>
@@ -278,22 +285,11 @@
                         <div><label>足</label><input type="number" id="bulletMultFoot" step="0.1" placeholder="默认使用枪支"></div>
                     </div>
                 </section>
-                <button type="button" id="addNewBulletBtn">添加子弹</button>
+                <button type="button" id="addNewBulletBtn">保存</button>
             </section>
-            <section class="settings-section" style="margin-top: 24px;">
-                <h2>🧩 子弹数据编辑 (JSON)</h2>
-                <button type="button" id="toggleBulletsJsonEditor">展开/折叠 JSON 编辑器</button>
-                <div id="bulletsJsonEditorContainer" style="display: none; margin-top: 12px;">
-                    <textarea id="bulletsJsonEditor" class="json-editor"></textarea>
-                    <div style="margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap;">
-                        <button type="button" id="saveBulletsJson">保存子弹数据</button>
-                        <button type="button" id="importBulletsBtn">导入子弹</button>
-                        <button type="button" id="exportBulletsBtn">导出子弹</button>
-                        <button type="button" id="resetBulletsToDefault">还原为默认</button>
-                    </div>
-                </div>
-            </section>
+            <div id="bullets-table-container"></div>
         </div>
+    </div>
     </div>
     <script src="./main.js"></script>
 </body>

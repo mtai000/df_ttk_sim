@@ -1,19 +1,24 @@
 import { SimulateEngine } from "../core/SimulateEngine.js";
-import { BulletsData, getMergedBulletsData } from "../data/BulletsData.js";
+import { BulletsData, getMergedBulletsData, getBulletsJsonStructure, addBulletToStructure } from "../data/BulletsData.js";
 import { DOMControl } from "../data/DomControl.js";
 import { WeaponData } from "../data/WeaponData.js";
 import { LocalStorageUtil } from "../utils/LocalStorageUtil.js";
 import { Log } from "../utils/Log.js";
+import { BulletsTableUI } from "./BulletsTableUI.js";
+import { getSupportedAmmoTypes } from "../data/WeaponData.js";
 
-export class UIHandle{ 
+export class UIHandle {
     constructor() {
-        this.weaponDatas = LocalStorageUtil.loadWeapons().map(weapon => this.normalizeWeaponData(weapon));
+        this.weaponDatas = LocalStorageUtil.loadWeapons();
         this.bulletsData = getMergedBulletsData();
         this.bindEventHandlers();
-        this.showBulletOptions();
+        this.showCaliberOptions();
         this.restoreHitPartWeights();
-        this.addSegmentRow(0,200,1.0);
+        this.addSegmentRow(0, 200, 1.0);
         this.refreshWeaponTable();
+
+        // 初始化子弹表格 UI
+        this.bulletsTableUI = new BulletsTableUI('bullets-table-container');
     }
 
     refreshWeaponTable() {
@@ -26,31 +31,31 @@ export class UIHandle{
         });
     }
 
-    bindCalTTk(){
-        const btn_cal_ttk = document.getElementById('button_cal_ttk'); 
-        if(btn_cal_ttk ) {
+    bindCalTTk() {
+        const btn_cal_ttk = document.getElementById('button_cal_ttk');
+        if (btn_cal_ttk) {
             btn_cal_ttk.addEventListener('click', (event) => {
                 event.preventDefault();
                 //获取选中的武器数据
                 const selectedWeapons = this.weaponDatas.filter(w => w.isSelected);
-                if(selectedWeapons.length === 0) {
+                if (selectedWeapons.length === 0) {
                     alert('请至少选择一把武器');
                     return;
                 }
                 // 调用计算 ttk 的函数
                 const simulateEngine = new SimulateEngine(selectedWeapons);
-                simulateEngine.runMultipleSimulations(DOMControl.getDistanceFromUI(),DOMControl.getHitChanceFromUI());
+                simulateEngine.runMultipleSimulations(DOMControl.getDistanceFromUI(), DOMControl.getHitChanceFromUI());
             });
         }
     }
 
     bindCalTTkAccordingDistance() {
         const btn_cal_ttk_according_distance = document.getElementById('button_cal_ttk_according_distance');
-        if(btn_cal_ttk_according_distance) {
+        if (btn_cal_ttk_according_distance) {
             btn_cal_ttk_according_distance.addEventListener('click', (event) => {
                 event.preventDefault();
                 const selectedWeapons = this.weaponDatas.filter(w => w.isSelected);
-                if(selectedWeapons.length === 0) {
+                if (selectedWeapons.length === 0) {
                     alert('请至少选择一把武器');
                     return;
                 }
@@ -62,7 +67,7 @@ export class UIHandle{
 
     bindBurstSettings() {
         const isBurstCheckbox = document.getElementById('isBurst');
-        if(isBurstCheckbox) {
+        if (isBurstCheckbox) {
             // 获取连发设置的输入元素
             const burstSettingsContainer = document.getElementById('burstSettingsContainer');
             const burstCountInput = document.getElementById('burstCount');
@@ -95,28 +100,32 @@ export class UIHandle{
     }
     bindAddNewWeapon() {
         const btn_add_new_gun = document.getElementById('addNewWeaponBtn');
-        if(btn_add_new_gun) {
+        if (btn_add_new_gun) {
             btn_add_new_gun.addEventListener('click', (event) => {
                 event.preventDefault();
-                const supportedAmmoTypes = [];
-                document.querySelectorAll('input[name="ammoType"]:checked').forEach(checkbox => {
-                    supportedAmmoTypes.push(checkbox.value);
-                });
+
+                // 从口径选择框获取选定的口径
+                const caliber = document.getElementById('caliberSelect').value;
+                if (!caliber) {
+                    alert('请选择武器口径');
+                    return;
+                }
+
                 const weaponData = new WeaponData({
                     name: document.getElementById('newName').value,
                     velocity: parseFloat(document.getElementById('newVelocity').value),
                     baseDamage: parseFloat(document.getElementById('newBaseDamage').value),
                     armorDamage: parseFloat(document.getElementById('newArmorDamage').value),
                     rof: parseFloat(document.getElementById('newRateOfFire').value),
-                    supportedAmmoTypes: supportedAmmoTypes,
+                    caliber: caliber,
                 });
-                weaponData.setPartMultiplier('head', parseFloat(document.getElementById('multHead').value));
-                weaponData.setPartMultiplier('chest', parseFloat(document.getElementById('multChest').value));
-                weaponData.setPartMultiplier('hand', parseFloat(document.getElementById('multHand').value));
-                weaponData.setPartMultiplier('abdomen', parseFloat(document.getElementById('multAbdomen').value));
-                weaponData.setPartMultiplier('arm', parseFloat(document.getElementById('multarm').value));
-                weaponData.setPartMultiplier('leg', parseFloat(document.getElementById('multLeg').value));
-                weaponData.setPartMultiplier('foot', parseFloat(document.getElementById('multFoot').value));
+                weaponData.setPartMultiplier('head', parseFloat(document.getElementById('multHead').value) || 1.9);
+                weaponData.setPartMultiplier('chest', parseFloat(document.getElementById('multChest').value) || 1.0);
+                weaponData.setPartMultiplier('hand', parseFloat(document.getElementById('multHand').value) || 0.4);
+                weaponData.setPartMultiplier('abdomen', parseFloat(document.getElementById('multAbdomen').value) || 0.9);
+                weaponData.setPartMultiplier('arm', parseFloat(document.getElementById('multarm').value) || 0.4);
+                weaponData.setPartMultiplier('leg', parseFloat(document.getElementById('multLeg').value) || 0.4);
+                weaponData.setPartMultiplier('foot', parseFloat(document.getElementById('multFoot').value) || 0.4);
 
                 weaponData.setRangeDecay(this.collectDecaySegment());
                 weaponData.setBurstSettings({
@@ -137,13 +146,13 @@ export class UIHandle{
     }
     collectDecaySegment() {
         const rows = document.querySelectorAll('.decay-segment-row');
-        const range=[];
-        const decay=[];
+        const range = [];
+        const decay = [];
 
-        rows.forEach((row,index) => {
-            const end=parseFloat(row.querySelector('.segment-end').value);
-            const multiplier=parseFloat(row.querySelector('.segment-multiplier').value);
-            if(isNaN(end) || isNaN(multiplier)) {
+        rows.forEach((row, index) => {
+            const end = parseFloat(row.querySelector('.segment-end').value);
+            const multiplier = parseFloat(row.querySelector('.segment-multiplier').value);
+            if (isNaN(end) || isNaN(multiplier)) {
                 alert(`请确保第 ${index + 1} 行的结束距离和伤害倍率都是有效数字`);
                 throw new Error(`Invalid input in decay segment row ${index + 1}`);
             }
@@ -152,44 +161,14 @@ export class UIHandle{
             decay.push(multiplier);
         });
 
-        return {range, decay};
+        return { range, decay };
     }
 
-    normalizeWeaponData(weaponData) {
-        weaponData = weaponData || {};
-        if (!weaponData.range && Array.isArray(weaponData.ranges)) {
-            weaponData.range = weaponData.ranges;
-        }
-        if (!weaponData.decay && Array.isArray(weaponData.decays)) {
-            weaponData.decay = weaponData.decays;
-        }
-        if (!Array.isArray(weaponData.range)) {
-            weaponData.range = Array.isArray(weaponData.range) ? weaponData.range : [];
-        }
-        if (!Array.isArray(weaponData.decay)) {
-            weaponData.decay = Array.isArray(weaponData.decay) ? weaponData.decay : [];
-        }
-        weaponData.currentAmmoType = weaponData.currentAmmoType ?? 'global';
-        weaponData.allowedBullets = Array.isArray(weaponData.allowedBullets) ? weaponData.allowedBullets : (Array.isArray(weaponData.supportedAmmoTypes) ? weaponData.supportedAmmoTypes : []);
-        weaponData.supportedAmmoTypes = Array.isArray(weaponData.supportedAmmoTypes) ? weaponData.supportedAmmoTypes : weaponData.allowedBullets;
-        weaponData.baseDamagePerSecond = Number(weaponData.baseDamagePerSecond) || ((Number(weaponData.baseDamage) || 0) * (Number(weaponData.rof) || 0) / 60);
-        weaponData.armorDamagePerSecond = Number(weaponData.armorDamagePerSecond) || ((Number(weaponData.armorDamage) || 0) * (Number(weaponData.rof) || 0) / 60);
-        weaponData.mult = weaponData.mult || {
-            head: weaponData.headMultiplier,
-            chest: weaponData.chestMultiplier,
-            abdomen: weaponData.abdomenMultiplier,
-            arm: weaponData.armMultiplier,
-            hand: weaponData.handMultiplier,
-            leg: weaponData.legMultiplier,
-            foot: weaponData.footMultiplier
-        };
-        weaponData.type = weaponData.type || '';
-        return weaponData;
-    }
+
 
     bindImportWeapons() {
         const btn_import_guns = document.getElementById('importWeaponsBtn');
-        if(btn_import_guns) {
+        if (btn_import_guns) {
             btn_import_guns.addEventListener('click', (event) => {
                 event.preventDefault();
                 LocalStorageUtil.import();
@@ -197,21 +176,21 @@ export class UIHandle{
         }
     }
 
-    bindExportWeapons() {  
+    bindExportWeapons() {
         const btn_export_guns = document.getElementById('exportWeaponsBtn');
-        if(btn_export_guns) {
+        if (btn_export_guns) {
             btn_export_guns.addEventListener('click', (event) => {
                 event.preventDefault();
                 LocalStorageUtil.export();
             });
         }
-    } 
+    }
     bindAddSegment() {
         const addSegmentBtn = document.getElementById('addSegmentBtn');
-        if(addSegmentBtn) {
+        if (addSegmentBtn) {
             addSegmentBtn.addEventListener('click', (event) => {
                 event.preventDefault();
-                this.addSegmentRow('',200,1.0);
+                this.addSegmentRow('', 200, 1.0);
             });
         }
     }
@@ -233,7 +212,7 @@ export class UIHandle{
         });
 
         if (tabId === 'tab-add') {
-            this.showBulletOptions();
+            this.showCaliberOptions();
         }
         if (tabId === 'tab-data') {
             // Delay loading JSON editors to prevent UI blocking on large data
@@ -248,10 +227,15 @@ export class UIHandle{
         }
         addBulletBtn.addEventListener('click', (event) => {
             event.preventDefault();
+            const caliber = document.getElementById('bulletCaliberSelect').value;
             const name = document.getElementById('newBulletName').value.trim();
             const damage = parseFloat(document.getElementById('newBulletDamage').value);
             const armorDamageMultiplier = parseFloat(document.getElementById('newBulletArmorDamage').value);
 
+            if (!caliber || caliber === 'default_bullets') {
+                alert('默认模板不可修改，请选择一个具体的口径');
+                return;
+            }
             if (!name) {
                 alert('请填写子弹名称');
                 return;
@@ -285,20 +269,34 @@ export class UIHandle{
                 }
             });
 
-            if (this.bulletsData[name]) {
-                alert(`子弹名 ${name} 已存在，请使用不同名称`);
-                return;
-            }
+            // 检查指定口径下是否已存在同名子弹
+            const structure = getBulletsJsonStructure();
+            const isExisting = structure[caliber]?.special_bullets?.[name];
 
-            const bulletData = { damage, armorDamageMultiplier, armor };
+            const bulletData = {
+                damage,
+                armorDamage: armorDamageMultiplier,
+                armor
+            };
             if (Object.keys(multipliers).length > 0) {
                 bulletData.multipliers = multipliers;
             }
-            this.bulletsData[name] = bulletData;
+
+            // 添加或更新子弹到指定口径的 special_bullets
+            addBulletToStructure(caliber, 'special', name, bulletData);
+
             this.saveBulletsToStorage();
-            this.showBulletOptions();
+            this.showCaliberOptions();
             this.updateJsonEditorsIfVisible();
-            Log.log(`添加子弹: ${name}`);
+
+            // 刷新子弹表格UI
+            if (this.bulletsTableUI) {
+                this.bulletsTableUI.render();
+                this.bulletsTableUI.bindEvents();
+            }
+
+            Log.log(`${isExisting ? '更新' : '添加'}子弹: ${caliber} - ${name}`);
+
             // 清空表单
             document.getElementById('newBulletName').value = '';
             document.getElementById('newBulletDamage').value = '';
@@ -362,14 +360,14 @@ export class UIHandle{
 
     bindCheckboxSelectAll() {
         const selectAllCheckbox = document.getElementById('select_all_weapons');
-        if(selectAllCheckbox) {
+        if (selectAllCheckbox) {
             selectAllCheckbox.addEventListener('change', () => {
                 const isChecked = selectAllCheckbox.checked;
                 document.querySelectorAll('.select_current_weapon').forEach(checkbox => {
                     checkbox.checked = isChecked;
                     const weaponName = checkbox.closest('tr').querySelector('td:nth-child(2)').textContent;
                     this.weaponDatas.forEach(w => {
-                        if(w.name === weaponName) {
+                        if (w.name === weaponName) {
                             w.isSelected = isChecked;
                         }
                     });
@@ -378,9 +376,9 @@ export class UIHandle{
         }
     }
 
-    addSegmentRow(start, end, multiplier=1.0) {
+    addSegmentRow(start, end, multiplier = 1.0) {
         const tableBody = document.getElementById('decayTableBody');
-        if(!tableBody) return;
+        if (!tableBody) return;
 
         const row = document.createElement('tr');
         row.className = 'decay-segment-row';
@@ -393,10 +391,10 @@ export class UIHandle{
         `;
 
         tableBody.appendChild(row);
-        
+
         const removeBtn = row.querySelector('.remove-segment-btn');
         removeBtn.addEventListener('click', () => {
-            if(tableBody.children.length <= 1) {
+            if (tableBody.children.length <= 1) {
                 alert('至少保留一个射程段');
                 return;
             }
@@ -418,7 +416,7 @@ export class UIHandle{
         rows.forEach((row, index) => {
             const startInput = row.querySelector('.segment-start');
             const endInput = row.querySelector('.segment-end');
-            if(index === 0) {
+            if (index === 0) {
                 startInput.value = 0;
             } else {
                 startInput.value = lastEndValue;
@@ -427,34 +425,53 @@ export class UIHandle{
         });
     }
 
-    showBulletOptions() {
-        const ammoCheckBoxGroup = document.getElementById('ammoCheckBoxGroup');
-        if(!ammoCheckBoxGroup) return;
-        ammoCheckBoxGroup.innerHTML = '';
- 
-        const defaultSelected = ['1','2','3','4','5'];
+    showCaliberOptions() {
+        const caliberSelect = document.getElementById('caliberSelect');
+        if (!caliberSelect) return;
 
-        Object.keys(this.bulletsData).forEach(bulletType => {
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = `bullet_${bulletType}`;
-            checkbox.value = bulletType;
-            checkbox.name = 'ammoType';
-            if (defaultSelected.includes(bulletType)) {
-                checkbox.checked = true;
+        // 清空旧选项（保留默认选项）
+        while (caliberSelect.options.length > 1) {
+            caliberSelect.remove(1);
+        }
+
+        // 获取所有可用的口径
+        const calibers = this.getCalibers();
+
+        calibers.forEach(caliber => {
+            const option = document.createElement('option');
+            option.value = caliber;
+            option.textContent = caliber;
+            caliberSelect.appendChild(option);
+        });
+    }
+
+    getCalibers() {
+        // 从bulletsData中提取所有口径
+        const calibers = new Set();
+
+        Object.keys(this.bulletsData).forEach(bulletKey => {
+            if (bulletKey !== "default_bullets") {
+                calibers.add(bulletKey);
             }
+        });
 
-            const container = document.createElement('label');
-            container.className = 'ammo-option';
-            container.htmlFor = checkbox.id;
-            container.appendChild(checkbox);
-            const text = document.createElement('span');
-            text.textContent = bulletType;
-            container.appendChild(text);
+        // 返回排序后的口径列表
+        return Array.from(calibers).sort();
+    }
 
-            ammoCheckBoxGroup.appendChild(container);
-        });   
-    } 
+    getSupportedAmmoTypesByCaliper(caliber) {
+        // 根据口径返回该口径的所有可用弹药类型
+        const ammoTypes = [];
+
+        Object.keys(this.bulletsData).forEach(bulletKey => {
+            const bullet = this.bulletsData[bulletKey];
+            if (bullet.caliber === caliber) {
+                ammoTypes.push(bulletKey);
+            }
+        });
+
+        return ammoTypes;
+    }
 
     saveWeaponsToStorage() {
         this.weaponDatas.forEach((weaponData) => {
@@ -490,8 +507,7 @@ export class UIHandle{
                 const weaponsEditor = document.getElementById('weaponsJsonEditor');
                 if (!weaponsEditor) return;
                 try {
-                    const parsed = JSON.parse(weaponsEditor.value);
-                    this.weaponDatas = parsed.map(weapon => this.normalizeWeaponData(weapon));
+                    this.weaponDatas = JSON.parse(weaponsEditor.value);
                     this.saveWeaponsToStorage();
                     this.refreshWeaponTable();
                     alert('武器数据保存成功');
@@ -507,10 +523,9 @@ export class UIHandle{
                 const bulletsEditor = document.getElementById('bulletsJsonEditor');
                 if (!bulletsEditor) return;
                 try {
-                    const parsed = JSON.parse(bulletsEditor.value);
-                    this.bulletsData = parsed;
+                    this.bulletsData = JSON.parse(bulletsEditor.value);
                     this.saveBulletsToStorage();
-                    this.showBulletOptions();
+                    this.showCaliberOptions();
                     alert('子弹数据保存成功');
                 } catch (error) {
                     alert('子弹数据 JSON 格式不正确，请检查');
@@ -521,7 +536,7 @@ export class UIHandle{
 
     bindImportBullets() {
         const btn_import_bullets = document.getElementById('importBulletsBtn');
-        if(btn_import_bullets) {
+        if (btn_import_bullets) {
             btn_import_bullets.addEventListener('click', (event) => {
                 event.preventDefault();
                 LocalStorageUtil.importBullets();
@@ -531,7 +546,7 @@ export class UIHandle{
 
     bindExportBullets() {
         const btn_export_bullets = document.getElementById('exportBulletsBtn');
-        if(btn_export_bullets) {
+        if (btn_export_bullets) {
             btn_export_bullets.addEventListener('click', (event) => {
                 event.preventDefault();
                 LocalStorageUtil.exportBullets();
@@ -582,16 +597,14 @@ export class UIHandle{
             this.loadJsonEditors();
         }
     }
-
-    bindResetToDefault() {
+    bindResetWeapons() {
         const resetWeaponsBtn = document.getElementById('resetWeaponsToDefault');
         if (resetWeaponsBtn) {
             resetWeaponsBtn.addEventListener('click', async () => {
                 if (confirm('确定要还原武器数据为默认值吗？这将覆盖当前的所有武器数据。')) {
                     try {
-                        const response = await fetch('./src/data/weapons.json');
-                        const defaultWeapons = await response.json();
-                        this.weaponDatas = defaultWeapons.map(weapon => this.normalizeWeaponData(weapon));
+                        const response = await fetch('./data/weapons.json');
+                        this.weaponDatas = await response.json();
                         this.saveWeaponsToStorage();
                         this.refreshWeaponTable();
                         this.loadJsonEditors();
@@ -602,17 +615,18 @@ export class UIHandle{
                 }
             });
         }
-
+    }
+    bindResetBullets() {
         const resetBulletsBtn = document.getElementById('resetBulletsToDefault');
         if (resetBulletsBtn) {
             resetBulletsBtn.addEventListener('click', async () => {
                 if (confirm('确定要还原子弹数据为默认值吗？这将覆盖当前的所有子弹数据。')) {
                     try {
-                        const response = await fetch('./src/data/bullets.json');
+                        const response = await fetch('./data/bullets.json');
                         const defaultBullets = await response.json();
                         this.bulletsData = defaultBullets;
                         this.saveBulletsToStorage();
-                        this.showBulletOptions();
+                        this.showCaliberOptions();
                         this.loadJsonEditors();
                         alert('子弹数据已还原为默认值');
                     } catch (error) {
@@ -623,89 +637,9 @@ export class UIHandle{
         }
     }
 
-    showEditableWeaponRow(weaponData) {
-        const weaponBody = document.querySelector('#editable_weapon_table tbody');
-        if (!weaponBody) {
-            return;
-        }
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><input type="text" class="weapon-name inline-input" value="${weaponData.name}"></td>
-            <td><input type="number" class="weapon-velocity inline-input" value="${weaponData.velocity || 0}"></td>
-            <td><input type="number" class="weapon-base-damage inline-input" value="${weaponData.baseDamage || 0}" step="0.1"></td>
-            <td><input type="number" class="weapon-armor-damage inline-input" value="${weaponData.armorDamage || 0}" step="0.01"></td>
-            <td><input type="number" class="weapon-rof inline-input" value="${weaponData.rof || 0}" step="1"></td>
-            <td><input type="text" class="weapon-supported-ammo inline-input" value="${(weaponData.supportedAmmoTypes || []).join(',')}"></td>
-            <td><input type="text" class="weapon-current-ammo inline-input" value="${weaponData.currentAmmoType || ''}"></td>
-            <td><button type="button" class="remove-weapon-btn">-</button></td>
-        `;
-        weaponBody.appendChild(row);
-
-        const nameInput = row.querySelector('.weapon-name');
-        const velocityInput = row.querySelector('.weapon-velocity');
-        const baseDamageInput = row.querySelector('.weapon-base-damage');
-        const armorDamageInput = row.querySelector('.weapon-armor-damage');
-        const rofInput = row.querySelector('.weapon-rof');
-        const supportedAmmoInput = row.querySelector('.weapon-supported-ammo');
-        const currentAmmoInput = row.querySelector('.weapon-current-ammo');
-        const removeBtn = row.querySelector('.remove-weapon-btn');
-
-        nameInput.addEventListener('change', () => {
-            const newName = nameInput.value.trim();
-            if (!newName) {
-                nameInput.value = weaponData.name;
-                return;
-            }
-            if (newName !== weaponData.name && this.weaponDatas.some(w => w.name === newName)) {
-                alert('武器名已存在，请使用不同名称');
-                nameInput.value = weaponData.name;
-                return;
-            }
-            weaponData.name = newName;
-            this.saveWeaponsToStorage();
-            this.refreshWeaponTable();
-        });
-
-        velocityInput.addEventListener('change', () => {
-            weaponData.velocity = parseFloat(velocityInput.value) || 0;
-            this.saveWeaponsToStorage();
-            this.refreshWeaponTable();
-        });
-
-        baseDamageInput.addEventListener('change', () => {
-            weaponData.baseDamage = parseFloat(baseDamageInput.value) || 0;
-            this.saveWeaponsToStorage();
-            this.refreshWeaponTable();
-        });
-
-        armorDamageInput.addEventListener('change', () => {
-            weaponData.armorDamage = parseFloat(armorDamageInput.value) || 0;
-            this.saveWeaponsToStorage();
-            this.refreshWeaponTable();
-        });
-
-        rofInput.addEventListener('change', () => {
-            weaponData.rof = parseFloat(rofInput.value) || 0;
-            this.saveWeaponsToStorage();
-            this.refreshWeaponTable();
-        });
-
-        supportedAmmoInput.addEventListener('change', () => {
-            weaponData.supportedAmmoTypes = supportedAmmoInput.value.split(',').map(item => item.trim()).filter(Boolean);
-            this.saveWeaponsToStorage();
-        });
-
-        currentAmmoInput.addEventListener('change', () => {
-            weaponData.currentAmmoType = currentAmmoInput.value.trim();
-            this.saveWeaponsToStorage();
-        });
-
-        removeBtn.addEventListener('click', () => {
-            this.weaponDatas = this.weaponDatas.filter(w => w.name !== weaponData.name);
-            this.saveWeaponsToStorage();
-            this.refreshWeaponTable();
-        });
+    bindResetToDefault() {
+        this.bindResetWeapons();
+        this.bindResetBullets();
     }
 
     showEditableBulletRow(bulletName, bulletData) {
@@ -744,7 +678,7 @@ export class UIHandle{
             delete this.bulletsData[currentBulletKey];
             currentBulletKey = newName;
             this.saveBulletsToStorage();
-            this.showBulletOptions();
+            this.showCaliberOptions();
         });
 
         damageInput.addEventListener('change', () => {
@@ -767,25 +701,26 @@ export class UIHandle{
         removeBtn.addEventListener('click', () => {
             delete this.bulletsData[currentBulletKey];
             this.saveBulletsToStorage();
-            this.showBulletOptions();
+            this.showCaliberOptions();
         });
     }
 
-    showWeaponInTable(weaponData){
+    showWeaponInTable(weaponData) {
         const tbody = document.querySelector('#weapon_table tbody');
-        if(!tbody) {
+        if (!tbody) {
             console.error('无法找到武器表格的 tbody 元素');
             return;
         }
 
         const rangeDisplay = (Array.isArray(weaponData.range) && weaponData.range.length) ? weaponData.range.join('/') : ((Array.isArray(weaponData.ranges) && weaponData.ranges.length) ? weaponData.ranges.join('/') : '');
         const decayDisplay = (Array.isArray(weaponData.decay) && weaponData.decay.length) ? weaponData.decay.join('/') : ((Array.isArray(weaponData.decays) && weaponData.decays.length) ? weaponData.decays.join('/') : '');
-        const bulletOptions = (weaponData.allowedBullets || weaponData.supportedAmmoTypes || []).map(ammo => {
+        // 根据口径获取支持的子弹类型
+        let bulletList = getSupportedAmmoTypes(weaponData);
+        let bulletOptions = bulletList.map(ammo => {
             const value = ammo.toString();
-            const selected = weaponData.currentAmmoType?.toString() === value ? 'selected' : '';
+            const selected = this.currentAmmoType?.toString() === value ? 'selected' : '';
             return `<option value="${value}" ${selected}>${value}</option>`;
         }).join('');
-
         const row = document.createElement('tr');
         row.innerHTML = `
             <td><input type="checkbox" class="select_current_weapon" ${weaponData.isSelected ? 'checked' : ''}></input></td>
@@ -805,24 +740,23 @@ export class UIHandle{
             <td><button type="button" class="remove-weapon-btn">-</button></td>
             `;
         tbody.appendChild(row);
-    
+
         const selectCheckbox = row.querySelector('.select_current_weapon');
         selectCheckbox.addEventListener('change', () => {
             const isChecked = selectCheckbox.checked;
             this.weaponDatas.forEach(w => {
-                if(w.name === weaponData.name) {
+                if (w.name === weaponData.name) {
                     Log.log(`武器 ${w.name} 选中状态: ${isChecked}`);
                     w.isSelected = isChecked;
                 }
             });
         });
-        
+
         const selectBulletType = row.querySelector('.ammo-type-select');
         selectBulletType.addEventListener('change', () => {
             const currentBulletType = selectBulletType.value;
             Log.log(`武器 ${weaponData.name} 选择子弹类型: ${currentBulletType}`);
             weaponData.currentAmmoType = currentBulletType;
-            LocalStorageUtil.saveWeapons(this.weaponDatas);
         });
 
         const removeBtn = row.querySelector('.remove-weapon-btn');
