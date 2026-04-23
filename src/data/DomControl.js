@@ -26,13 +26,13 @@ export class DOMControl {
 
     static getPartHitWeightsFromUI() {
         return {
-            head: parseFloat(document.getElementById('head').value),
-            chest: parseFloat(document.getElementById('chest').value),
-            abdomen: parseFloat(document.getElementById('abdomen').value),
-            arm: parseFloat(document.getElementById('arm').value),
-            hand: parseFloat(document.getElementById('hand').value),
-            leg: parseFloat(document.getElementById('leg').value),
-            foot: parseFloat(document.getElementById('foot').value),
+            head: parseFloat(document.getElementById('head').value) || 0,
+            chest: parseFloat(document.getElementById('chest').value) || 0,
+            abdomen: parseFloat(document.getElementById('abdomen').value) || 0,
+            arm: parseFloat(document.getElementById('arm').value) || 0,
+            hand: parseFloat(document.getElementById('hand').value) || 0,
+            leg: parseFloat(document.getElementById('leg').value) || 0,
+            foot: parseFloat(document.getElementById('foot').value) || 0,
         };
 
     }

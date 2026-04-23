@@ -92,7 +92,7 @@ export class LocalStorageUtil {
             const normalized = {};
 
             this.HIT_PART_KEYS.forEach((key) => {
-                const numericValue = Number(parsed[key]);
+                const numericValue = Number(parsed[key] || 0);
                 if (Number.isFinite(numericValue)) {
                     normalized[key] = numericValue;
                 }
@@ -114,7 +114,7 @@ export class LocalStorageUtil {
             const normalized = {};
 
             this.HIT_PART_KEYS.forEach((key) => {
-                const numericValue = Number(weights[key]);
+                const numericValue = Number(weights[key] || 0);
                 if (Number.isFinite(numericValue)) {
                     normalized[key] = numericValue;
                 }

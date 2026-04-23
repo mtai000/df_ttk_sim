@@ -37,7 +37,7 @@ export class SimulateEngine {
         for (const part in hitPartWeights) {
             hitChanceByPart[part] = hitPartWeights[part] / totalWeight;
         }
-        Log.log_detail(hitChanceByPart)
+        Log.log(hitChanceByPart);
         return hitChanceByPart;
     }
 

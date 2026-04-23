@@ -353,7 +353,7 @@ export class UIHandle {
         Object.entries(savedWeights).forEach(([part, weight]) => {
             const input = document.getElementById(part);
             if (input) {
-                input.value = weight;
+                input.value = weight || 0;
             }
         });
     }
