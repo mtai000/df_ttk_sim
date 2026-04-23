@@ -71,6 +71,7 @@ export class TTKChart{
                 burstIntervalTime = burstIntervalSum / totalCount;
             } else {
                 totalTTK = SimulateShot.calculateAutoTtkByBtk(weaponData, totalBtk / totalCount, triggerDelay, flyDelay);
+                burstIntervalTime = 0;
             }
 
             normalizedEntries.push([
@@ -91,7 +92,7 @@ export class TTKChart{
         });
         Log.log('normalizedEntries', normalizedEntries);
 
-        const sortedEntries = normalizedEntries.sort((a, b) => a[1].totalTTK + a[1].burstIntervalTime - b[1].totalTTK - b[1].burstIntervalTime);
+        const sortedEntries = normalizedEntries.sort((a, b) => a[1].totalTTK - b[1].totalTTK);
         const formatNumber = (value, fractionDigits = 2) => {
             const numericValue = Number(value);
             if(!Number.isFinite(numericValue)){
