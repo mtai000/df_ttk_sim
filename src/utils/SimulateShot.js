@@ -29,6 +29,19 @@ export default class SimulateShot {
             + (fullBurstCount * (burstCount - 1) + intraBurstShots) * shotInterval + triggerDelay + flyDelay;
     }
 
+    static calculateBurstIntervalTimeByBtk(weaponData, btk){
+        const burstCount = Number(weaponData.burstCount) || 0;
+        const burstInterval = Number(weaponData.burstInterval) || 0;
+        if(burstCount <= 0){
+            return 0;
+        }
+
+        const btkValue = Number(btk) || 1;
+        const fullBurstCount = Math.floor((btkValue - 1) / burstCount);
+
+        return fullBurstCount * burstInterval ;
+    }
+
     static calculateTtkByBtk(weaponData, btk, triggerDelay, flyDelay){
         if(weaponData.isBurst){
             return SimulateShot.calculateBurstTtkByBtk(weaponData, btk, triggerDelay, flyDelay);

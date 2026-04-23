@@ -526,5 +526,174 @@
       0.9,
       0.8
     ]
+  },
+  {
+    "name": "K416长枪管",
+    "velocity": 815,
+    "baseDamage": 31,
+    "armorDamage": 35,
+    "rof": 880,
+    "caliber": "5.56x45mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1.0,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      35.1,
+      71.5,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "AS VAL",
+    "velocity": 425,
+    "baseDamage": 29,
+    "armorDamage": 48,
+    "rof": 972,
+    "caliber": "9x39mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1.0,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      27.3,
+      52,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.8
+    ]
+  },
+  {
+    "name": "SR3M",
+    "velocity": 424,
+    "baseDamage": 36,
+    "armorDamage": 48,
+    "rof": 747,
+    "caliber": "9x39mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1.0,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      17.7,
+      35.4,
+      200
+    ],
+    "decay": [
+      1,
+      0.75,
+      0.65
+    ]
+  },
+  {
+    "name": "MP7月影",
+    "velocity": 585,
+    "baseDamage": 32,
+    "armorDamage": 28,
+    "rof": 950,
+    "caliber": "4.6x30mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1.0,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      26,
+      35.1,
+      52,
+      200
+    ],
+    "decay": [
+      1,
+      0.75,
+      0.65,
+      0.55
+    ]
+  },
+  {
+    "name": "Mk4",
+    "velocity": 673,
+    "baseDamage": 34,
+    "armorDamage": 30,
+    "rof": 793,
+    "caliber": "4.6x30mm",
+    "isBurst": true,
+    "burstCount": 3,
+    "burstRateOfFire": 1200,
+    "burstInterval": 127,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2.0,
+      "chest": 1.0,
+      "hand": 0.5,
+      "abdomen": 1.0,
+      "arm": 0.5,
+      "leg": 0.5,
+      "foot": 0.5
+    },
+    "range": [
+      26,
+      39,
+      52,
+      200
+    ],
+    "decay": [
+      1,
+      0.75,
+      0.65,
+      0.55
+    ]
   }
 ]

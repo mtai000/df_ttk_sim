@@ -7,8 +7,6 @@ export class TTKChart{
     static resultsMap = new Map();
     static chartInstance = null;
 
-
-
     static showResultsInChart(){
         console.log('显示结果');
         const canvas = document.getElementById('ttkChart');
@@ -61,12 +59,16 @@ export class TTKChart{
             const flyDelay = velocity > 0 ? Number(distance) / velocity * 1000 : 0;
 
             let totalTTK = 0;
+            let burstIntervalTime = 0;
             if(weaponData.isBurst){
                 let totalTtkSum = 0;
+                let burstIntervalSum = 0;
                 distributionMap.forEach((count, btk) => {
                     totalTtkSum += SimulateShot.calculateBurstTtkByBtk(weaponData, btk, triggerDelay, flyDelay) * count;
+                    burstIntervalSum += SimulateShot.calculateBurstIntervalTimeByBtk(weaponData, btk) * count;
                 });
                 totalTTK = totalTtkSum / totalCount;
+                burstIntervalTime = burstIntervalSum / totalCount;
             } else {
                 totalTTK = SimulateShot.calculateAutoTtkByBtk(weaponData, totalBtk / totalCount, triggerDelay, flyDelay);
             }
@@ -82,12 +84,14 @@ export class TTKChart{
                     triggerDelay,
                     flyDelay,
                     totalTTK,
-                    firingTTK: Math.max(0, totalTTK - triggerDelay - flyDelay)
+                    firingTTK: Math.max(0, totalTTK - triggerDelay - flyDelay),
+                    burstIntervalTime
                 }
             ]);
         });
+        Log.log('normalizedEntries', normalizedEntries);
 
-        const sortedEntries = normalizedEntries.sort((a, b) => a[1].totalTTK - b[1].totalTTK);
+        const sortedEntries = normalizedEntries.sort((a, b) => a[1].totalTTK + a[1].burstIntervalTime - b[1].totalTTK - b[1].burstIntervalTime);
         const formatNumber = (value, fractionDigits = 2) => {
             const numericValue = Number(value);
             if(!Number.isFinite(numericValue)){
@@ -101,9 +105,16 @@ export class TTKChart{
             datasets: [
                 {
                     label: '射击',
-                    data: sortedEntries.map(([, value]) => value.firingTTK),
+                    data: sortedEntries.map(([, value]) => value.firingTTK - value.burstIntervalTime),
                     backgroundColor: 'rgba(54, 162, 235, 0.5)',
                     borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'burst间隔',
+                    data: sortedEntries.map(([, value]) => value.burstIntervalTime),
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1
                 },
                 {
