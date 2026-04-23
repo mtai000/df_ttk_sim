@@ -10,7 +10,6 @@
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "range": [
@@ -32,8 +31,6 @@
       "leg": 0.4,
       "foot": 0.4
     },
-    "baseDamagePerSecond": 450,
-    "armorDamagePerSecond": 465
   },
   {
     "name": "mcx lt 焰魂",
@@ -42,13 +39,10 @@
     "armorDamage": 26,
     "rof": 870,
     "caliber": ".300",
-    "armorDamagePerSecond": 377,
-    "baseDamagePerSecond": 522,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -78,13 +72,10 @@
     "armorDamage": 32,
     "rof": 780,
     "caliber": ".300",
-    "armorDamagePerSecond": 416,
-    "baseDamagePerSecond": 468,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -114,13 +105,10 @@
     "armorDamage": 38,
     "rof": 858,
     "caliber": "5.56x45mm",
-    "armorDamagePerSecond": 543.4,
-    "baseDamagePerSecond": 429,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 50,
     "multiplier": {
@@ -146,17 +134,14 @@
   {
     "name": "KC17长管",
     "velocity": 815,
-    "baseDamage": 30,
-    "armorDamage": 38,
-    "rof": 858,
+    "baseDamage": 31,
+    "armorDamage": 48,
+    "rof":740,
     "caliber": "5.45x39mm",
-    "armorDamagePerSecond": 543.4,
-    "baseDamagePerSecond": 429,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -186,13 +171,10 @@
     "armorDamage": 40,
     "rof": 649,
     "caliber": "6.8x51mm",
-    "armorDamagePerSecond": 432.66666666666663,
-    "baseDamagePerSecond": 411.0333333333333,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -222,13 +204,10 @@
     "armorDamage": 42,
     "rof": 649,
     "caliber": "6.8x51mm",
-    "armorDamagePerSecond": 454.3,
-    "baseDamagePerSecond": 432.66666666666663,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -258,13 +237,10 @@
     "armorDamage": 46,
     "rof": 625,
     "caliber": "7.62x39mm",
-    "armorDamagePerSecond": 479.16666666666663,
-    "baseDamagePerSecond": 437.5,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -294,13 +270,10 @@
     "armorDamage": 47,
     "rof": 625,
     "caliber": "7.62x39mm",
-    "armorDamagePerSecond": 489.5833333333333,
-    "baseDamagePerSecond": 479.16666666666663,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -330,13 +303,10 @@
     "armorDamage": 46,
     "rof": 625,
     "caliber": "7.62x39mm",
-    "armorDamagePerSecond": 479.16666666666663,
-    "baseDamagePerSecond": 468.75,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -366,13 +336,10 @@
     "armorDamage": 42,
     "rof": 600,
     "caliber": "7.62x39mm",
-    "armorDamagePerSecond": 420,
-    "baseDamagePerSecond": 400,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -402,13 +369,10 @@
     "armorDamage": 33,
     "rof": 800,
     "caliber": "5.56x45mm",
-    "armorDamagePerSecond": 440,
-    "baseDamagePerSecond": 413.33333333333337,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -438,13 +402,10 @@
     "armorDamage": 34,
     "rof": 906,
     "caliber": "5.56x45mm",
-    "armorDamagePerSecond": 513.4,
-    "baseDamagePerSecond": 377.5,
     "isBurst": false,
     "burstCount": 0,
     "burstRateOfFire": 0,
     "burstInterval": 0,
-    "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": {
@@ -465,6 +426,105 @@
       1,
       0.85,
       0.75
+    ]
+  },
+  {
+    "name": "PTR32长枪管",
+    "velocity": 893,
+    "baseDamage": 36,
+    "armorDamage": 37,
+    "rof": 632,
+    "caliber": "7.62x39mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      52,
+      91,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "G3长枪管",
+    "velocity": 893,
+    "baseDamage": 39,
+    "armorDamage": 42,
+    "rof": 533,
+    "caliber": "7.62x51mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      71.5,
+      117,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.8
+    ]
+  },
+  {
+    "name": "AUG长枪管",
+    "velocity": 815,
+    "baseDamage": 32,
+    "armorDamage": 35,
+    "rof": 679,
+    "caliber": "5.56x45mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2,
+      "chest": 1.1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      71.5,
+      117,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.8
     ]
   }
 ]
