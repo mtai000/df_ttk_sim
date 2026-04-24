@@ -243,8 +243,10 @@ export class DistanceChart{
         });
 
         const lineColors = [
-            '#1f77b4', '#d62728', '#2ca02c', '#ff7f0e', '#9467bd',
-            '#8c564b', '#17becf', '#e377c2', '#7f7f7f', '#bcbd22'
+            '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f',
+            '#bcbd22', '#17becf', '#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33',
+            '#a65628', '#f781bf', '#999999', '#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854',
+            '#ffd92f', '#e5c494', '#b3b3b3', '#6a3d9a', '#cab2d6', '#ffed6f', '#b2df8a', '#1b9e77'
         ];
 
         const chartData = {
@@ -317,7 +319,7 @@ export class DistanceChart{
                         min: 0,
                         max: 100,
                         ticks: {
-                            stepSize: 10
+                            stepSize: 1
                         },
                         title: {
                             display: true,
@@ -414,12 +416,12 @@ export class DistanceChart{
                 continue;
             }
 
-            const ratio = rightX === leftX ? 0 : (meter - leftX) / (rightX - leftX);
-            const lerp = (a, b) => Number(a) + (Number(b) - Number(a)) * ratio;
+            const ratio = rightX === leftX ? 0 : (rightX - meter) / (rightX - leftX);
+            const lerp = (a, b) => Number(b) - (Number(b) - Number(a)) * ratio;
 
             return {
                 x: meter,
-                y: lerp(left.y, right.y),
+                y: lerp(right.y - right.flyDelay + left.flyDelay, right.y),
                 btkTtk: lerp(left.btkTtk || 0, right.btkTtk || 0),
                 triggerDelay: lerp(left.triggerDelay || 0, right.triggerDelay || 0),
                 flyDelay: lerp(left.flyDelay || 0, right.flyDelay || 0)

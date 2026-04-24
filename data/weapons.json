@@ -136,7 +136,7 @@
     "velocity": 815,
     "baseDamage": 31,
     "armorDamage": 48,
-    "rof":740,
+    "rof": 740,
     "caliber": "5.45x39mm",
     "isBurst": false,
     "burstCount": 0,
@@ -387,6 +387,39 @@
     "range": [
       52,
       91,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "M4A1特勤消音",
+    "velocity": 928,
+    "baseDamage": 31,
+    "armorDamage": 33,
+    "rof": 800,
+    "caliber": "5.56x45mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2.5,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      47.2,
+      82.6,
       200
     ],
     "decay": [
@@ -694,6 +727,108 @@
       0.75,
       0.65,
       0.55
+    ]
+  },
+  {
+    "name": "腾龙高速",
+    "velocity": 815,
+    "baseDamage": 35,
+    "armorDamage": 38,
+    "rof": 759,
+    "caliber": "5.8x42mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2.1,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      45.5,
+      80.6,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.7
+    ]
+  },
+  {
+    "name": "腾龙稳固",
+    "velocity": 815,
+    "baseDamage": 35,
+    "armorDamage": 38,
+    "rof": 660,
+    "caliber": "5.8x42mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2.1,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      45.5,
+      80.6,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.7
+    ]
+  },
+  {
+    "name": "M249链锯",
+    "velocity": 627,
+    "baseDamage": 30,
+    "armorDamage": 38,
+    "rof": 944,
+    "caliber": "5.56x45mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 50,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      40,
+      70,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
     ]
   }
 ]
