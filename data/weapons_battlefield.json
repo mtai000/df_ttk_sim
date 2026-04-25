@@ -1,0 +1,261 @@
+[
+    {
+        "name": "m4a1",
+        "velocity": 550,
+        "baseDamage": 20,
+        "armorDamage": 10000,
+        "rof": 800,
+        "caliber": "5.56x45mm",
+        "isBurst": false,
+        "burstCount": 0,
+        "burstRateOfFire": 0,
+        "burstInterval": 0,
+        "currentAmmoType": "global",
+        "triggerDelay": 0,
+        "multiplier": {
+            "head": 1.9,
+            "chest": 1.0,
+            "hand": 1.0,
+            "abdomen": 1.0,
+            "arm": 1.0,
+            "leg": 1.0,
+            "foot": 1.0
+        },
+        "range": [
+            25,
+            40,
+            60,
+            80,
+            200
+        ],
+        "decay": [
+            1,
+            0.85,
+            0.75,
+            0.65,
+            0.6
+        ]
+    },
+    {
+        "name": "k437",
+        "velocity": 450,
+        "baseDamage": 24,
+        "armorDamage": 10000,
+        "rof": 780,
+        "caliber": ".300",
+        "isBurst": false,
+        "burstCount": 0,
+        "burstRateOfFire": 0,
+        "burstInterval": 0,
+        "currentAmmoType": "global",
+        "triggerDelay": 0,
+        "multiplier": {
+            "head": 1.9,
+            "chest": 1,
+            "hand": 0.9,
+            "abdomen": 0.95,
+            "arm": 0.9,
+            "leg": 0.9,
+            "foot": 0.9
+        },
+        "range": [
+            25,
+            35,
+            55,
+            75,
+            200
+        ],
+        "decay": [
+            1,
+            0.75,
+            0.65,
+            0.55,
+            0.5
+        ]
+    },
+    {
+        "name": "ptr32",
+        "velocity": 550,
+        "baseDamage": 28,
+        "armorDamage": 10000,
+        "rof": 632,
+        "caliber": "7.62x39mm",
+        "isBurst": false,
+        "burstCount": 0,
+        "burstRateOfFire": 0,
+        "burstInterval": 0,
+        "currentAmmoType": "global",
+        "triggerDelay": 0,
+        "multiplier": {
+            "head": 1.9,
+            "chest": 1.0,
+            "hand": 1.0,
+            "abdomen": 0.95,
+            "arm": 1.0,
+            "leg": 0.8,
+            "foot": 0.8
+        },
+        "range": [
+            30,
+            40,
+            60,
+            80,
+            200
+        ],
+        "decay": [
+            1,
+            0.85,
+            0.7,
+            0.55,
+            0.5
+        ]
+    },
+    {
+        "name": "AKM",
+        "velocity": 550,
+        "baseDamage": 26,
+        "armorDamage": 10000,
+        "rof": 600,
+        "caliber": "7.62x39mm",
+        "isBurst": false,
+        "burstCount": 0,
+        "burstRateOfFire": 0,
+        "burstInterval": 0,
+        "currentAmmoType": "global",
+        "triggerDelay": 0,
+        "multiplier": {
+            "head": 1.9,
+            "chest": 1.31,
+            "hand": 1.0,
+            "abdomen": 1.0,
+            "arm": 1.0,
+            "leg": 1.0,
+            "foot": 1.0
+        },
+        "range": [
+            30,
+            40,
+            60,
+            80,
+            200
+        ],
+        "decay": [
+            1,
+            0.85,
+            0.7,
+            0.6,
+            0.5
+        ]
+    },
+    {
+        "name": "mk47",
+        "velocity": 525,
+        "baseDamage": 26,
+        "armorDamage": 10000,
+        "rof": 625,
+        "caliber": "7.62x39mm",
+        "isBurst": false,
+        "burstCount": 0,
+        "burstRateOfFire": 0,
+        "burstInterval": 0,
+        "currentAmmoType": "global",
+        "triggerDelay": 0,
+        "multiplier": {
+            "head": 2.0,
+            "chest": 1.0,
+            "hand": 0.9,
+            "abdomen": 1.0,
+            "arm": 0.9,
+            "leg": 0.9,
+            "foot": 0.9
+        },
+        "range": [
+            40,
+            50,
+            70,
+            90,
+            200
+        ],
+        "decay": [
+            1,
+            0.85,
+            0.75,
+            0.65,
+            0.55
+        ]
+    },
+    {
+        "name": "m7",
+        "velocity": 600,
+        "baseDamage": 25,
+        "armorDamage": 10000,
+        "rof": 649,
+        "caliber": "6.8x51mm",
+        "isBurst": false,
+        "burstCount": 0,
+        "burstRateOfFire": 0,
+        "burstInterval": 0,
+        "currentAmmoType": "global",
+        "triggerDelay": 0,
+        "multiplier": {
+            "head": 1.9,
+            "chest": 1.0,
+            "hand": 0.9,
+            "abdomen": 1.0,
+            "arm": 0.9,
+            "leg": 0.9,
+            "foot": 0.9
+        },
+        "range": [
+            30,
+            40,
+            60,
+            80,
+            200
+        ],
+        "decay": [
+            1,
+            0.8,
+            0.7,
+            0.6,
+            0.5
+        ]
+    },
+    {
+        "name": "kc17",
+        "velocity": 500,
+        "baseDamage": 24,
+        "armorDamage": 10000,
+        "rof": 740,
+        "caliber": "5.45x39mm",
+        "isBurst": false,
+        "burstCount": 0,
+        "burstRateOfFire": 0,
+        "burstInterval": 0,
+        "currentAmmoType": "global",
+        "triggerDelay": 0,
+        "multiplier": {
+            "head": 1.25,
+            "chest": 1.0,
+            "hand": 0.9,
+            "abdomen": 1.0,
+            "arm": 0.9,
+            "leg": 0.9,
+            "foot": 0.9
+        },
+        "range": [
+            25,
+            35,
+            45,
+            55,
+            200
+        ],
+        "decay": [
+            1,
+            0.9,
+            0.85,
+            0.65,
+            0.5
+        ]
+    }
+]
