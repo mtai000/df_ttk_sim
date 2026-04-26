@@ -48,11 +48,11 @@
     "multiplier": {
       "head": 1.9,
       "chest": 1,
-      "hand": 0.4,
+      "hand": 0.35,
       "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
+      "arm": 0.35,
+      "leg": 0.35,
+      "foot": 0.35
     },
     "range": [
       30,
