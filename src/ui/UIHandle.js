@@ -261,7 +261,7 @@ export class UIHandle {
             }
 
             const multipliers = {};
-            const multIds = ['Head', 'Chest', 'Hand', 'Abdomen', 'arm', 'Leg', 'Foot'];
+            const multIds = ['Head', 'Chest', 'Hand', 'Abdomen', 'Arm', 'Leg', 'Foot'];
             multIds.forEach(id => {
                 const value = parseFloat(document.getElementById(`bulletMult${id}`).value);
                 if (!Number.isNaN(value)) {
@@ -727,12 +727,12 @@ export class UIHandle {
             <td>${weaponData.name}</td>
             <td>${weaponData.baseDamagePerSecond.toFixed(2)}</td>
             <td>${weaponData.armorDamagePerSecond.toFixed(2)}</td>
-            <td>${weaponData.velocity || 0}</td>
+            <td>${weaponData.rof || 0}</td>
             <td>${rangeDisplay}</td>
             <td>${decayDisplay}</td>
             <td>${weaponData.baseDamage || 0}</td>
             <td>${weaponData.armorDamage || 0}</td>
-            <td>${weaponData.rof || 0}</td>
+            <td>${weaponData.velocity|| 0}</td>
             <td><select class="ammo-type-select" align="center">
                 ${bulletOptions}
                 <option value="global" ${weaponData.currentAmmoType === 'global' ? 'selected' : ''}>global</option>

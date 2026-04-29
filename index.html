@@ -91,19 +91,19 @@
                 <h2>🎯 击中部位权重</h2>
                 <div class="weight-group">
                     <label for="head">头</label>
-                    <input type="number" id="head" name="hit_part_weight" value="1">
+                    <input type="number" id="head" name="hit_part_weight" value="5">
                     <label for="chest">胸</label>
-                    <input type="number" id="chest" name="hit_part_weight" value="2">
+                    <input type="number" id="chest" name="hit_part_weight" value="10">
                     <label for="abdomen">腹</label>
-                    <input type="number" id="abdomen" name="hit_part_weight" value="3">
+                    <input type="number" id="abdomen" name="hit_part_weight" value="10">
                     <label for="arm">臂</label>
-                    <input type="number" id="arm" name="hit_part_weight" value="4">
+                    <input type="number" id="arm" name="hit_part_weight" value="5">
                     <label for="hand">手</label>
-                    <input type="number" id="hand" name="hit_part_weight" value="4">
+                    <input type="number" id="hand" name="hit_part_weight" value="2">
                     <label for="leg">腿</label>
-                    <input type="number" id="leg" name="hit_part_weight" value="5">
+                    <input type="number" id="leg" name="hit_part_weight" value="2">
                     <label for="foot">足</label>
-                    <input type="number" id="foot" name="hit_part_weight" value="6">
+                    <input type="number" id="foot" name="hit_part_weight" value="1">
                 </div>
             </section>
 
@@ -122,12 +122,12 @@
                             <th>武器</th>
                             <th>秒肉伤</th>
                             <th>秒甲伤</th>
-                            <th>初速</th>
+                            <th>射速</th>
                             <th>射程</th>
                             <th>衰减</th>
                             <th>基础伤害</th>
                             <th>护甲伤害</th>
-                            <th>射速</th>
+                            <th>初速</th>
                             <th>子弹类型</th>
                             <th>删除</th>
                         </tr>
@@ -193,7 +193,7 @@
                             <div><label>胸</label><input type="number" id="multChest" step="0.1" value="1.0" required></div>
                             <div><label>手</label><input type="number" id="multHand" step="0.1" value="0.4" required></div>
                             <div><label>腹</label><input type="number" id="multAbdomen" step="0.1" value="0.9" required></div>
-                            <div><label>臂</label><input type="number" id="multarm" step="0.1" value="0.4" required></div>
+                            <div><label>臂</label><input type="number" id="multArm" step="0.1" value="0.4" required></div>
                             <div><label>腿</label><input type="number" id="multLeg" step="0.1" value="0.4" required></div>
                             <div><label>足</label><input type="number" id="multFoot" step="0.1" value="0.4" required></div>
                         </div>
@@ -280,7 +280,7 @@
                         <div><label>胸</label><input type="number" id="bulletMultChest" step="0.1" placeholder="默认使用枪支"></div>
                         <div><label>手</label><input type="number" id="bulletMultHand" step="0.1" placeholder="默认使用枪支"></div>
                         <div><label>腹</label><input type="number" id="bulletMultAbdomen" step="0.1" placeholder="默认使用枪支"></div>
-                        <div><label>臂</label><input type="number" id="bulletMultarm" step="0.1" placeholder="默认使用枪支"></div>
+                        <div><label>臂</label><input type="number" id="bulletMultArm" step="0.1" placeholder="默认使用枪支"></div>
                         <div><label>腿</label><input type="number" id="bulletMultLeg" step="0.1" placeholder="默认使用枪支"></div>
                         <div><label>足</label><input type="number" id="bulletMultFoot" step="0.1" placeholder="默认使用枪支"></div>
                     </div>

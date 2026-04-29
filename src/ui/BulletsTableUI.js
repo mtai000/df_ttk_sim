@@ -11,7 +11,7 @@ export class BulletsTableUI {
             console.error(`容器 #${containerId} 不存在`);
             return;
         }
-        this.tableHeader =`<thead>
+        this.tableHeader = `<thead>
                             <tr>
                                 <th>子弹名称</th>
                                 <th>伤害系数</th>
@@ -22,7 +22,7 @@ export class BulletsTableUI {
                             </tr>
                         </thead>`;
         this.init();
-        
+
 
     }
 
@@ -61,8 +61,8 @@ export class BulletsTableUI {
                     <h2>管理子弹</h2>
                     <div class="bullets-actions">
                         <button class="btn btn-primary" id="btn-add-caliber">添加新口径</button>
-                        <button class="btn btn-secondary" id="btn-export-bullets">导出 JSON</button>
                         <button class="btn btn-secondary" id="btn-import-bullets">导入 JSON</button>
+                        <button class="btn btn-secondary" id="btn-export-bullets">导出 JSON</button>
                         <button type="button" class="btn btn-secondary" id="resetBulletsToDefault">重置数据</button>
                     </div>
                 </div>
@@ -79,7 +79,7 @@ export class BulletsTableUI {
         // 渲染每个口径的子弹
         Object.entries(structure).forEach(([caliber, caliberData]) => {
             if (caliber === 'default_bullets') return;
-            
+
             html += this.renderCaliberSection(caliber, caliberData);
         });
 
@@ -103,7 +103,7 @@ export class BulletsTableUI {
 
         Object.entries(defaultBullets).forEach(([bulletId, bulletData]) => {
             const armorData = bulletData.armor || {};
-            
+
             // 格式化护甲数据
             let armorDamageArray = [];
             let penetrateArray = [];
@@ -158,7 +158,7 @@ export class BulletsTableUI {
             const defaultBullets = getBulletsJsonStructure().default_bullets || {};
             const bulletData = defaultBullets[bulletId] || { damage: 1.0 };
             const armorData = bulletData.armor || {};
-            
+
             // 格式化护甲数据：分别提取所有 armorDamage 和 penetrate
             let armorDamageArray = [];
             let penetrateArray = [];
@@ -188,7 +188,7 @@ export class BulletsTableUI {
         // 渲染 special_bullets
         Object.entries(specialBullets).forEach(([bulletName, bulletData]) => {
             const armorData = bulletData.armor || {};
-            
+
             // 格式化护甲数据
             let armorDamageArray = [];
             let penetrateArray = [];
@@ -311,6 +311,16 @@ export class BulletsTableUI {
             const armor = armorData[i] || { armorDamage: 1.0, penetrate: 0 };
             document.getElementById(`armorDamage${i}`).value = armor.armorDamage || 1.0;
             document.getElementById(`penetrate${i}`).value = armor.penetrate || 0;
+        }
+
+        if (bulletData.multipliers) {
+            document.getElementById('bulletMultHead').value = bulletData.multipliers?.head;
+            document.getElementById('bulletMultChest').value = bulletData.multipliers?.chest;
+            document.getElementById('bulletMultHand').value = bulletData.multipliers?.hand;
+            document.getElementById('bulletMultAbdomen').value = bulletData.multipliers?.abdomen;
+            document.getElementById('bulletMultArm').value = bulletData.multipliers?.arm;
+            document.getElementById('bulletMultLeg').value = bulletData.multipliers?.leg;
+            document.getElementById('bulletMultFoot').value = bulletData.multipliers?.foot;
         }
 
         // 滚动到表单
