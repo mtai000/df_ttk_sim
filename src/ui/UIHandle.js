@@ -9,15 +9,17 @@ import { getSupportedAmmoTypes } from "../data/WeaponData.js";
 
 export class UIHandle {
     constructor() {
-        this.weaponDatas = LocalStorageUtil.loadWeapons();
+        this.init();
+    }
+
+    async init() {
+        this.weaponDatas = await LocalStorageUtil.loadWeapons();
         this.bulletsData = getMergedBulletsData();
         this.bindEventHandlers();
         this.showCaliberOptions();
         this.restoreHitPartWeights();
         this.addSegmentRow(0, 200, 1.0);
         this.refreshWeaponTable();
-
-        // 初始化子弹表格 UI
         this.bulletsTableUI = new BulletsTableUI('bullets-table-container');
     }
 
@@ -725,14 +727,14 @@ export class UIHandle {
         row.innerHTML = `
             <td><input type="checkbox" class="select_current_weapon" ${weaponData.isSelected ? 'checked' : ''}></input></td>
             <td>${weaponData.name}</td>
-            <td>${weaponData.baseDamagePerSecond.toFixed(2)}</td>
-            <td>${weaponData.armorDamagePerSecond.toFixed(2)}</td>
+            <td>${(weaponData.baseDamage * weaponData.rof / 60).toFixed(2)}</td>
+            <td>${(weaponData.armorDamage * weaponData.rof / 60).toFixed(2)}</td>
             <td>${weaponData.rof || 0}</td>
             <td>${rangeDisplay}</td>
             <td>${decayDisplay}</td>
             <td>${weaponData.baseDamage || 0}</td>
             <td>${weaponData.armorDamage || 0}</td>
-            <td>${weaponData.velocity|| 0}</td>
+            <td>${weaponData.velocity || 0}</td>
             <td><select class="ammo-type-select" align="center">
                 ${bulletOptions}
                 <option value="global" ${weaponData.currentAmmoType === 'global' ? 'selected' : ''}>global</option>

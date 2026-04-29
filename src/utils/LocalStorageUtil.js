@@ -1,4 +1,4 @@
-
+import { Log } from './Log.js';
 export class LocalStorageUtil {
     static STORAGE_KEY = 'df_ttk_sim_weapons';
     static BULLETS_STORAGE_KEY = 'df_ttk_sim_bullets';
@@ -14,15 +14,17 @@ export class LocalStorageUtil {
             localStorage.setItem('this.STORAGE_KEY', JSON.stringify([]));
         }
     }
-    static loadWeapons() {
+    static async loadWeapons() {
         const stored = localStorage.getItem(this.STORAGE_KEY);
         if (!stored) {
-            console.warn('没有找到存储的武器数据，返回空数组');
-            return [];
+            Log.log('没有找到存储的武器数据，使用默认数据');
+            const response= await fetch('./data/weapons.json')
+            const weaponsData = await response.json();
+            return weaponsData;
         }
         try {
             const weaponsData = JSON.parse(stored);
-            console.log('成功加载武器数据:', weaponsData);
+            Log.log('成功加载武器数据:', weaponsData);
             return weaponsData;
         } catch (error) {
             console.error('解析存储的武器数据时发生错误:', error);
