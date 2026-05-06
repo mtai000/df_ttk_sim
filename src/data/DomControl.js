@@ -15,10 +15,10 @@ export class DOMControl {
     }
     static getArmorDataFromUI() {
     return new ArmorData({
-        helmetLv: document.getElementById('helmet_lv').value,
-        armorLv: document.getElementById('armor_lv').value,
-        helmetPoint: document.getElementById('helmet_point').value,
-        armorPoint: document.getElementById('armor_point').value,
+        helmetLv: parseFloat(document.getElementById('helmet_lv').value),
+        armorLv: parseFloat(document.getElementById('armor_lv').value),
+        helmetPoint: parseFloat(document.getElementById('helmet_point').value) || 0,
+        armorPoint: parseFloat(document.getElementById('armor_point').value) || 0,
         protectArms: document.getElementById('is_protect_arms').checked,
         protectAbdomen: document.getElementById('is_protect_abdomen').checked,
     });

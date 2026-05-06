@@ -169,11 +169,12 @@ export class LocalStorageUtil {
             }
 
             const reader = new FileReader();
-            reader.onload = (e) => {
+            reader.onload = async (e) => {
                 try {
                     const importedWeapons = JSON.parse(e.target.result);
                     if (Array.isArray(importedWeapons)) {
-                        const current = this.loadWeapons();
+                        const current = await this.loadWeapons();
+                        Log.log('当前武器数据:', current);
                         const processedImported = importedWeapons.map(weapon => {
                             if (current.some(w => w.name === weapon.name)) {
                                 return { ...weapon, name: `${weapon.name}_${Date.now()}` };

@@ -26,7 +26,7 @@ export class SimulateEngine {
     resetStatus() {
         this.hp = this.default_hp;
         this.armorData = { ... this.default_armorData };
-        Log.log_detail(`重置状态，血量${this.hp},头 ${this.armorData.helmetPoint}, 甲 ${this.armorData.armorPoint}`)
+        Log.log_detail(`重置状态，血量${this.hp},${this.armorData.helmetLv}级头 ${this.armorData.helmetPoint}, ${this.armorData.armorLv}级甲 ${this.armorData.armorPoint}`)
 
     }
 
@@ -48,7 +48,6 @@ export class SimulateEngine {
         Log.log_detail(`开始模拟时间:${startTime}`);
         this.weaponDatas.forEach(weaponData => {
             this.resetStatus();
-            Log.log_detail(`武器 ${weaponData.name} 使用子弹类型 ${weaponData.currentAmmoType}`);
             let bulletData = this.getBulletData(weaponData);
             if (bulletData !== null) {
                 for (let sim_count = 0; sim_count < ConstConfig.SIMULATE_COUNT; sim_count++) {
@@ -76,8 +75,6 @@ export class SimulateEngine {
             Log.log(weaponData.range)
 
             let bulletData = this.getBulletData(weaponData);
-            Log.log_detail(`子弹数据: ${JSON.stringify(bulletData)}`);
-            Log.log_detail(`武器 ${weaponData.name} 使用子弹类型 ${weaponData.currentAmmoType}`);
 
             if (bulletData !== null) {
                 //获取武器衰减距离点
@@ -104,11 +101,13 @@ export class SimulateEngine {
 
     runSingleWeaponSimulate(weaponData, bulletData, distance = 20, hitChance) {
         this.resetStatus();
-        Log.log_detail(`正在计算武器: ${weaponData.name},初始生命 ${this.hp}`);
-        Log.log_detail(`护甲信息：${JSON.stringify(this.armorData)}`);
-        Log.log_detail(`子弹信息：${JSON.stringify(bulletData)}`);
-        Log.log_detail(`命中率为${hitChance}`)
-
+        Log.log_detail(`=============================================`)
+        Log.log_detail(`距离${distance}， ${weaponData.name}的衰减为${this.getWeaponDecay(weaponData, distance)}`);
+        if (bulletData.multipliers) {
+            Log.log_detail(`使用子弹部位数据`, bulletData.multipliers);
+        } else {
+            Log.log_detail(`未找到子弹部位数据, 使用武器部位系数`, weaponData.multiplier);
+        }
 
         //循环模拟射击，直到目标死亡
         let shotCount = 0;
@@ -142,7 +141,7 @@ export class SimulateEngine {
             Log.log_detail(`未找到子弹数据: ${ammoType}，使用默认数据`);
             return null;
         }
-        Log.log_detail(`子弹信息: ${JSON.stringify(bulletInfo.available_bullets)}`);
+        Log.log_detail(`子弹信息: ${JSON.stringify(bulletInfo.available_bullets)} ${JSON.stringify(bulletInfo.special_bullets)}`);
         Log.log_detail(`武器 ${weaponData.name} 当前子弹类型: ${ammoType}`);
         const inAvailableBullets = Array.isArray(bulletInfo.available_bullets) && bulletInfo.available_bullets.includes(ammoType);
         Log.log_detail(`子弹 ${ammoType} 是否适用于武器 ${weaponData.name}: ${inAvailableBullets}`);
@@ -160,6 +159,20 @@ export class SimulateEngine {
             }
         }
         return null;
+    }
+
+    getWeaponDecay(weaponData, distance) {
+        //计算衰减系数：距离命中衰减点边界时，仍按当前档处理。
+        //例如 range 为 [30, 50, 200] 时，30m 仍使用 decay[0]，50m 使用 decay[1]。
+        let decay = 1.0
+        const index = weaponData.range.findIndex(r => distance <= r);
+        if (index !== -1) {
+            decay = weaponData.decay[index];
+        }
+        else {
+            decay = weaponData.decay[weaponData.decay.length - 1];
+        }
+        return decay;
     }
 
     //模拟一次射击，传入武器数据，生命值,距离，防具数据，击中部位权重参数以及命中率参数
@@ -185,74 +198,70 @@ export class SimulateEngine {
             return false;
         }
 
-        //计算衰减系数：距离命中衰减点边界时，仍按当前档处理。
-        //例如 range 为 [30, 50, 200] 时，30m 仍使用 decay[0]，50m 使用 decay[1]。
-        let decay = 1.0
-        const index = weaponData.range.findIndex(r => distance <= r);
-        if (index !== -1) {
-            decay = weaponData.decay[index];
-        }
-        else {
-            decay = weaponData.decay[weaponData.decay.length - 1];
-        }
-        Log.log_detail(`距离${distance}， ${weaponData.name}的衰减为${decay}`);
+        const decay = this.getWeaponDecay(weaponData, distance);
         //计算伤害
         // 修复：bulletData 可能为 undefined
         let partMultiplier = 1.0;
         if (bulletData.multipliers) {
-            Log.log_detail(`使用子弹部位数据`);
             partMultiplier = (bulletData.multipliers && bulletData.multipliers[hitPart]) ? bulletData.multipliers[hitPart] : weaponData.multiplier[hitPart];
         } else {
-            Log.log_detail(`未找到子弹部位数据, 使用武器部位系数`);
             partMultiplier = weaponData.multiplier[hitPart];
         }
         const partDamage = (weaponData.baseDamage * (bulletData?.globalDamage ?? 1.0) * partMultiplier) * decay;
-        Log.log_detail(`命中部位: ${hitPart},${partMultiplier},${partDamage}`)
         const effectiveArmorDamage = weaponData.armorDamage * (bulletData?.globalArmorDamage ?? 1);
-        const headArmorDamage = (effectiveArmorDamage * (bulletData?.globalArmorDamage?? 1.0) * (bulletData?.entityArmor?.[this.armorData.helmetLv]?.armorDamageFactor ?? 1)) * decay;
+        const headArmorDamage = (effectiveArmorDamage * (bulletData?.globalArmorDamage ?? 1.0) * (bulletData?.entityArmor?.[this.armorData.helmetLv]?.armorDamageFactor ?? 1)) * decay;
         const headPenetrate = bulletData?.entityArmor?.[this.armorData.helmetLv]?.penetrate ?? 0;
         const bodyArmorDamage = (effectiveArmorDamage * (bulletData?.globalArmorDamage ?? 1.0) * (bulletData?.entityArmor?.[this.armorData.armorLv]?.armorDamageFactor ?? 1)) * decay;
         const bodyPenetrate = bulletData?.entityArmor?.[this.armorData.armorLv]?.penetrate ?? 0;
 
+        let shotDamage = 0;
+        let shotArmorDamage = 0;
         //命中部位如果有护甲，则先扣除护甲，如果穿甲值大于护甲值，则按百分比扣除生命值，如50%剩余穿甲值，则扣除50%的basedamage的血量以及按穿透值扣除生命
         if (hitPart == 'head') {
             //命中头部
             //如果头盔耐久不足以吸收甲伤
             if (this.armorData.helmetPoint <= 0) {
-                this.hp -= partDamage;
+                shotDamage = partDamage;
             } else if (this.armorData.helmetPoint < headArmorDamage) {
                 const overflowArmorDamagePercent = (headArmorDamage - this.armorData.helmetPoint) / headArmorDamage;
                 const overflowHealthDamage = partDamage * overflowArmorDamagePercent;
-                this.hp -= overflowHealthDamage * (1 - headPenetrate);
+                shotDamage = overflowHealthDamage * (1 - headPenetrate);
+                shotArmorDamage = this.armorData.helmetPoint;
                 this.armorData.helmetPoint = 0;
-                this.hp -= partDamage * headPenetrate;
+                shotDamage += partDamage * headPenetrate;
             } else {
                 this.armorData.helmetPoint -= headArmorDamage;
-                this.hp -= partDamage * headPenetrate;
+                shotArmorDamage = headArmorDamage;
+                shotDamage = partDamage * headPenetrate;
             }
-            Log.log_detail(`武器 ${weaponData.name} 命中 ${hitPart}，剩余血量为 ${this.hp.toFixed(2)} , 剩余头甲 ${this.armorData.helmetPoint.toFixed(2)}`);
+            this.hp -= shotDamage
+            Log.log_detail(`武器 ${weaponData.name} 命中 ${hitPart}，造成${shotDamage.toFixed(2)}点伤害，剩余血量为 ${this.hp.toFixed(2)} , 造成${shotArmorDamage.toFixed(2)}点护甲伤害，剩余头甲 ${this.armorData.helmetPoint.toFixed(2)}`);
         } else {
             if (this.isHitInArmor(hitPart)) {
                 if (this.armorData.armorPoint <= 0) {
-                    this.hp -= partDamage;
+                    shotDamage = partDamage;
                 } else if (this.armorData.armorPoint < bodyArmorDamage) {
                     const overflowArmorDamagePercent = (bodyArmorDamage - this.armorData.armorPoint) / bodyArmorDamage;
                     const overflowHealthDamage = partDamage * overflowArmorDamagePercent;
-                    this.hp -= overflowHealthDamage * (1 - bodyPenetrate);
-                    this.hp -= partDamage * bodyPenetrate;
+                    shotDamage = overflowHealthDamage * (1 - bodyPenetrate);
+                    shotDamage += partDamage * bodyPenetrate;
+                    shotArmorDamage = this.armorData.armorPoint;
                     this.armorData.armorPoint = 0;
                 }
                 else {
                     this.armorData.armorPoint -= bodyArmorDamage;
-                    this.hp -= partDamage * bodyPenetrate;
+                    shotDamage = partDamage * bodyPenetrate;
+                    shotArmorDamage = bodyArmorDamage;
                 }
+                this.hp -= shotDamage;
 
-                Log.log_detail(`武器 ${weaponData.name} 命中 ${hitPart}，剩余血量为 ${this.hp.toFixed(2)} , 剩余护甲 ${this.armorData.armorPoint.toFixed(2)}`);
+                Log.log_detail(`武器 ${weaponData.name} 命中 ${hitPart}，造成${shotDamage.toFixed(2)}点伤害，剩余血量为 ${this.hp.toFixed(2)} , 造成${shotArmorDamage.toFixed(2)}点护甲伤害，剩余护甲 ${this.armorData.armorPoint.toFixed(2)}`);
             } else {
                 this.hp -= partDamage;
-                Log.log_detail(`武器 ${weaponData.name} 命中 ${hitPart}，剩余血量为 ${this.hp.toFixed(2)}`);
+                Log.log_detail(`武器 ${weaponData.name} 命中 ${hitPart}，造成${partDamage.toFixed(2)}点伤害，剩余血量为 ${this.hp.toFixed(2)}`);
             }
         }
+        Log.log_detail(``);
         return true;
     }
 };

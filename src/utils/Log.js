@@ -44,8 +44,9 @@ export class Log{
         if (typeof window === 'undefined' || typeof document === 'undefined') {
             return;
         }
-
+        console.log('正在准备保存日志...',this.detailLogBuffer.length);
         const content = this.detailLogBuffer.join('\n');
+        console.log('正在保存日志到文件...');
         const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const filenameTime = new Date().toISOString().replace(/[:.]/g, '-');
@@ -66,6 +67,6 @@ export class Log{
 
     static log_detail(...args){
         this.appendDetailLog(args);
-        if(ConstConfig.LOG_LEVEL >= 2) console.log(...args);
+        if(ConstConfig.LOG_LEVEL > 2) console.log(...args);
     }
 }
