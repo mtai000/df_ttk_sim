@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>三角洲行动 ttk 模拟</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="tab-bar">
@@ -31,7 +33,8 @@
                     </div>
                     <div class="input-row">
                         <label for="health_point">生命值：</label>
-                        <input type="number" name="health_point" id="health_point" placeholder="生命值" value="100" min="0">
+                        <input type="number" name="health_point" id="health_point" placeholder="生命值" value="100"
+                            min="0">
                     </div>
                     <div class="input-row">
                         <label for="distance">距离：</label>
@@ -41,6 +44,10 @@
                         <label for="hit_chance">命中率：</label>
                         <input type="number" id="hit_chance" name="hit_chance" value="100" min="0" max="100">
                         <span class="suffix">%</span>
+                    </div>
+                    <div class="input-row">
+                        <label for="is_print_log">打印模拟日志：</label>
+                        <input type="checkbox" id="is_print_log" name="is_print_log" value="true">
                     </div>
                 </section>
 
@@ -59,7 +66,8 @@
                     </div>
                     <div class="input-row">
                         <label for="helmet_point">头盔耐久：</label>
-                        <input type="number" name="helmet_point" id="helmet_point" placeholder="头盔耐久" value="48" min="0">
+                        <input type="number" name="helmet_point" id="helmet_point" placeholder="头盔耐久" value="48"
+                            min="0">
                     </div>
                     <div class="input-row">
                         <label for="armor_lv">护甲等级：</label>
@@ -145,29 +153,30 @@
                 <h2>📋 武器参数</h2>
                 <form id="addWeaponForm">
                     <section class="settings-section">
-                    <div class="input-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
-                        <input type="text" id="newName" placeholder="武器名" required>
-                        <input type="number" id="newVelocity" placeholder="子弹初速" required>
-                        <input type="number" id="newBaseDamage" placeholder="基础伤害" step="0.1" required>
-                        <input type="number" id="newArmorDamage" placeholder="护甲伤害" step="0.01" required>
-                        <input type="number" id="newRateOfFire" placeholder="射速" step="1" required>
-                        <input type="number" id="triggerDelay" placeholder="扳机延迟,单位ms" step="0.1" required>
-                    </div>
-                    <div class="input-row" style="margin-top: 12px; gap: 12px; flex-wrap: wrap;">
-                        <label for="isBurst">是否连发:</label>
-                        <input type="checkbox" id="isBurst" value="true">
-                    </div>
-                    <div class="input-row" id="burstSettingsContainer" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px;">
-                        <input type="number" id="burstCount" placeholder="连发数" step="1">
-                        <input type="number" id="burstRateOfFire" placeholder="连发射速" step="1">
-                        <input type="number" id="burstInterval" placeholder="连发间隔时间" step="0.1">
-                    </div>
-                    <div class="input-row">
-                        <label for="caliberSelect">武器口径：</label>
-                        <select id="caliberSelect" required>
-                            <option value="">请选择口径</option>
-                        </select>
-                    </div>
+                        <div class="input-row" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;">
+                            <input type="text" id="newName" placeholder="武器名" required>
+                            <input type="number" id="newVelocity" placeholder="子弹初速" required>
+                            <input type="number" id="newBaseDamage" placeholder="基础伤害" step="0.1" required>
+                            <input type="number" id="newArmorDamage" placeholder="护甲伤害" step="0.01" required>
+                            <input type="number" id="newRateOfFire" placeholder="射速" step="1" required>
+                            <input type="number" id="triggerDelay" placeholder="扳机延迟,单位ms" step="0.1" required>
+                        </div>
+                        <div class="input-row" style="margin-top: 12px; gap: 12px; flex-wrap: wrap;">
+                            <label for="isBurst">是否连发:</label>
+                            <input type="checkbox" id="isBurst" value="true">
+                        </div>
+                        <div class="input-row" id="burstSettingsContainer"
+                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px;">
+                            <input type="number" id="burstCount" placeholder="连发数" step="1">
+                            <input type="number" id="burstRateOfFire" placeholder="连发射速" step="1">
+                            <input type="number" id="burstInterval" placeholder="连发间隔时间" step="0.1">
+                        </div>
+                        <div class="input-row">
+                            <label for="caliberSelect">武器口径：</label>
+                            <select id="caliberSelect" required>
+                                <option value="">请选择口径</option>
+                            </select>
+                        </div>
                     </section>
                     <h3 style="margin-top: 20px;">射程衰减区间：</h3>
                     <div style="margin-bottom: 12px;">
@@ -189,16 +198,23 @@
                     <h3>部位倍率：</h3>
                     <section class="settings-section">
                         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
-                            <div><label>头</label><input type="number" id="multHead" step="0.1" value="1.9" required></div>
-                            <div><label>胸</label><input type="number" id="multChest" step="0.1" value="1.0" required></div>
-                            <div><label>手</label><input type="number" id="multHand" step="0.1" value="0.4" required></div>
-                            <div><label>腹</label><input type="number" id="multAbdomen" step="0.1" value="0.9" required></div>
-                            <div><label>臂</label><input type="number" id="multArm" step="0.1" value="0.4" required></div>
-                            <div><label>腿</label><input type="number" id="multLeg" step="0.1" value="0.4" required></div>
-                            <div><label>足</label><input type="number" id="multFoot" step="0.1" value="0.4" required></div>
+                            <div><label>头</label><input type="number" id="multHead" step="0.1" value="1.9" required>
+                            </div>
+                            <div><label>胸</label><input type="number" id="multChest" step="0.1" value="1.0" required>
+                            </div>
+                            <div><label>手</label><input type="number" id="multHand" step="0.1" value="0.4" required>
+                            </div>
+                            <div><label>腹</label><input type="number" id="multAbdomen" step="0.1" value="0.9" required>
+                            </div>
+                            <div><label>臂</label><input type="number" id="multArm" step="0.1" value="0.4" required>
+                            </div>
+                            <div><label>腿</label><input type="number" id="multLeg" step="0.1" value="0.4" required>
+                            </div>
+                            <div><label>足</label><input type="number" id="multFoot" step="0.1" value="0.4" required>
+                            </div>
                         </div>
                     </section>
-              
+
                     <div style="margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap;">
                         <button type="button" id="addNewWeaponBtn">添加武器</button>
                     </div>
@@ -223,10 +239,10 @@
             <section class="settings-section">
                 <h2>管理子弹</h2>
                 <div class="input-row">
-                        <label for="bulletCaliberSelect">武器口径：</label>
-                        <select id="bulletCaliberSelect" required>
-                            <option value="">请选择口径</option>
-                        </select>
+                    <label for="bulletCaliberSelect">武器口径：</label>
+                    <select id="bulletCaliberSelect" required>
+                        <option value="">请选择口径</option>
+                    </select>
                 </div>
                 <div class="input-row">
                     <label for="newBulletName">子弹名称：</label>
@@ -238,7 +254,8 @@
                 </div>
                 <div class="input-row">
                     <label for="newBulletArmorDamage">甲伤系数：</label>
-                    <input type="number" id="newBulletArmorDamage" placeholder="护甲伤害倍率" step="0.01" value="1.0" required>
+                    <input type="number" id="newBulletArmorDamage" placeholder="护甲伤害倍率" step="0.01" value="1.0"
+                        required>
                 </div>
                 <h3>护甲详情：</h3>
                 <div class="armor-details">
@@ -276,13 +293,20 @@
                 <h3>部位倍率（可选，不设置则使用枪支的部位倍率）：</h3>
                 <section class="settings-section" style="padding: 16px;">
                     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
-                        <div><label>头</label><input type="number" id="bulletMultHead" step="0.1" placeholder="默认使用枪支"></div>
-                        <div><label>胸</label><input type="number" id="bulletMultChest" step="0.1" placeholder="默认使用枪支"></div>
-                        <div><label>手</label><input type="number" id="bulletMultHand" step="0.1" placeholder="默认使用枪支"></div>
-                        <div><label>腹</label><input type="number" id="bulletMultAbdomen" step="0.1" placeholder="默认使用枪支"></div>
-                        <div><label>臂</label><input type="number" id="bulletMultArm" step="0.1" placeholder="默认使用枪支"></div>
-                        <div><label>腿</label><input type="number" id="bulletMultLeg" step="0.1" placeholder="默认使用枪支"></div>
-                        <div><label>足</label><input type="number" id="bulletMultFoot" step="0.1" placeholder="默认使用枪支"></div>
+                        <div><label>头</label><input type="number" id="bulletMultHead" step="0.1" placeholder="默认使用枪支">
+                        </div>
+                        <div><label>胸</label><input type="number" id="bulletMultChest" step="0.1" placeholder="默认使用枪支">
+                        </div>
+                        <div><label>手</label><input type="number" id="bulletMultHand" step="0.1" placeholder="默认使用枪支">
+                        </div>
+                        <div><label>腹</label><input type="number" id="bulletMultAbdomen" step="0.1"
+                                placeholder="默认使用枪支"></div>
+                        <div><label>臂</label><input type="number" id="bulletMultArm" step="0.1" placeholder="默认使用枪支">
+                        </div>
+                        <div><label>腿</label><input type="number" id="bulletMultLeg" step="0.1" placeholder="默认使用枪支">
+                        </div>
+                        <div><label>足</label><input type="number" id="bulletMultFoot" step="0.1" placeholder="默认使用枪支">
+                        </div>
                     </div>
                 </section>
                 <button type="button" id="addNewBulletBtn">保存</button>
@@ -293,4 +317,5 @@
     </div>
     <script src="./main.js"></script>
 </body>
+
 </html>

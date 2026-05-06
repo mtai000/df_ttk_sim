@@ -18,8 +18,9 @@ export class LocalStorageUtil {
         const stored = localStorage.getItem(this.STORAGE_KEY);
         if (!stored) {
             Log.log('没有找到存储的武器数据，使用默认数据');
-            const response= await fetch('./data/weapons.json')
+            const response = await fetch('./data/weapons.json')
             const weaponsData = await response.json();
+            this.saveWeapons(weaponsData);
             return weaponsData;
         }
         try {
@@ -42,10 +43,13 @@ export class LocalStorageUtil {
         }
     }
 
-    static loadBullets() {
+    static async loadBullets() {
         const stored = localStorage.getItem(this.BULLETS_STORAGE_KEY);
         if (!stored) {
-            return {};
+            Log.log('没有找到存储的子弹数据，使用默认数据');
+            const response = await fetch('./data/bullets.json')
+            const bulletsData = await response.json();
+            return bulletsData;
         }
         try {
             const bullets = JSON.parse(stored);
@@ -139,11 +143,11 @@ export class LocalStorageUtil {
         this.saveWeapons(weapons);
     }
 
-    static removeWeapon(weapon) {
-        let weapons = this.loadWeapons();
+    static async removeWeapon(weapon) {
+        let weapons = await this.loadWeapons();
         weapons = weapons.filter(w => w.name !== weapon.name);
         this.saveWeapons(weapons);
-        
+
     }
 
     static import() {
@@ -171,22 +175,22 @@ export class LocalStorageUtil {
                     if (Array.isArray(importedWeapons)) {
                         const current = this.loadWeapons();
                         const processedImported = importedWeapons.map(weapon => {
-                        if (current.some(w => w.name === weapon.name)) {
-                            return { ...weapon, name: `${weapon.name}_${Date.now()}` };
-                        }
+                            if (current.some(w => w.name === weapon.name)) {
+                                return { ...weapon, name: `${weapon.name}_${Date.now()}` };
+                            }
                             return weapon;
                         });
                         const newWeapons = [...current, ...processedImported];
                         this.saveWeapons(newWeapons);
                         console.log('成功合并导入的武器数据:', newWeapons);
-                        window.location.reload();   
+                        window.location.reload();
                     } else {
                         console.error('导入的文件格式不正确，应该是一个武器数组');
                     }
                 } catch (error) {
                     console.error('解析导入的武器数据时发生错误:', error);
                 }
-                     
+
             };
             reader.readAsText(file);
         });
@@ -256,7 +260,7 @@ export class LocalStorageUtil {
     }
 
     // ==================== 原始结构（bullets.json 格式）相关方法 ====================
-    
+
     static BULLETS_JSON_STRUCTURE_KEY = 'df_ttk_sim_bullets_json_structure';
 
     /**
@@ -277,10 +281,13 @@ export class LocalStorageUtil {
      * 获取原始结构格式的子弹数据
      * @returns {object|null} 原始结构的子弹数据，如果不存在返回 null
      */
-    static getBulletsJsonStructure() {
+    static async getBulletsJsonStructure() {
         const stored = localStorage.getItem(this.BULLETS_JSON_STRUCTURE_KEY);
         if (!stored) {
-            return null;
+            Log.log('没有找到存储的结构化子弹数据，使用默认数据');
+            const response = await fetch('./data/bullets.json');
+            const bulletsJson = await response.json();
+            return bulletsJson;
         }
         try {
             const structure = JSON.parse(stored);

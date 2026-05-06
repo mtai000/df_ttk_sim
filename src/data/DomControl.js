@@ -51,4 +51,8 @@ export class DOMControl {
     static getBulletTypeFromUI() {
         return parseInt(document.getElementById('bullet_type').value);
     }
+
+    static getIsPrintLogFromUI() {
+        return document.getElementById('is_print_log').checked;
+    }
 }

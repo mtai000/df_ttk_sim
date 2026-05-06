@@ -1,4 +1,5 @@
 import { ConstConfig } from "../data/ConstConfig.js";
+import { DOMControl } from "../data/DomControl.js";
 
 export class Log{
     static detailLogBuffer = [];
@@ -37,7 +38,7 @@ export class Log{
     }
 
     static saveDetailLogToTempFile() {
-        if (ConstConfig.LOG_LEVEL < 2 || this.detailLogBuffer.length === 0) {
+        if (ConstConfig.LOG_LEVEL < 2 || this.detailLogBuffer.length === 0 || !DOMControl.getIsPrintLogFromUI()) {
             return;
         }
         if (typeof window === 'undefined' || typeof document === 'undefined') {
@@ -57,6 +58,7 @@ export class Log{
         document.body.removeChild(anchor);
         URL.revokeObjectURL(url);
     }
+
 
     static log(...args){
         if(ConstConfig.LOG_LEVEL >= 1) console.log(...args);

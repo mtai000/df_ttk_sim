@@ -125,7 +125,7 @@ export class UIHandle {
                 weaponData.setPartMultiplier('chest', parseFloat(document.getElementById('multChest').value) || 1.0);
                 weaponData.setPartMultiplier('hand', parseFloat(document.getElementById('multHand').value) || 0.4);
                 weaponData.setPartMultiplier('abdomen', parseFloat(document.getElementById('multAbdomen').value) || 0.9);
-                weaponData.setPartMultiplier('arm', parseFloat(document.getElementById('multarm').value) || 0.4);
+                weaponData.setPartMultiplier('arm', parseFloat(document.getElementById('multArm').value) || 0.4);
                 weaponData.setPartMultiplier('leg', parseFloat(document.getElementById('multLeg').value) || 0.4);
                 weaponData.setPartMultiplier('foot', parseFloat(document.getElementById('multFoot').value) || 0.4);
 

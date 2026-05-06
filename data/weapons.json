@@ -1066,5 +1066,243 @@
       0.9,
       0.8
     ]
+  },
+  {
+    "name": "vector",
+    "velocity": 545,
+    "baseDamage": 32,
+    "armorDamage": 28,
+    "rof": 1091,
+    "caliber": ".45",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      20,
+      27,
+      40,
+      55,
+      200
+    ],
+    "decay": [
+      1,
+      0.75,
+      0.65,
+      0.55,
+      0.45
+    ]
+  },
+  {
+    "name": "svd",
+    "velocity": 500,
+    "baseDamage": 56,
+    "armorDamage": 56,
+    "rof": 300,
+    "caliber": "7.62x54R",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2.32,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      70,
+      90,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.65
+    ]
+  },
+  {
+    "name": "svd长枪管",
+    "velocity": 807,
+    "baseDamage": 56,
+    "armorDamage": 56,
+    "rof": 300,
+    "caliber": "7.62x54R",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2.32,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      91,
+      117,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.65
+    ]
+  },
+  {
+    "name": "SKS长管",
+    "velocity": 815,
+    "baseDamage": 48,
+    "armorDamage": 49,
+    "rof": 510,
+    "caliber": "7.62x39mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      72,
+      117,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.65
+    ]
+  },
+  {
+    "name": "SR25短管",
+    "velocity": 681,
+    "baseDamage": 55,
+    "armorDamage": 55,
+    "rof": 448,
+    "caliber": "7.62x51mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2.1,
+      "chest": 1,
+      "hand": 0.5,
+      "abdomen": 1,
+      "arm": 0.5,
+      "leg": 0.5,
+      "foot": 0.5
+    },
+    "range": [
+      50,
+      80,
+      200
+    ],
+    "decay": [
+      1,
+      0.85,
+      0.7
+    ]
+  },
+  {
+    "name": "SR25超长",
+    "velocity": 981,
+    "baseDamage": 50,
+    "armorDamage": 55,
+    "rof": 364,
+    "caliber": "7.62x51mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2.1,
+      "chest": 1,
+      "hand": 0.5,
+      "abdomen": 1,
+      "arm": 0.5,
+      "leg": 0.5,
+      "foot": 0.5
+    },
+    "range": [
+      117,
+      200
+    ],
+    "decay": [
+      1,
+      0.85
+    ]
+  },
+  {
+    "name": "PSB-1神射",
+    "velocity": 815,
+    "baseDamage": 50,
+    "armorDamage": 55,
+    "rof": 300,
+    "caliber": "7.62x51mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "isSelected": false,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 2.1,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      122,
+      200
+    ],
+    "decay": [
+      1,
+      0.85
+    ]
   }
 ]

@@ -88,7 +88,7 @@ export class SimulateEngine {
 
                     Log.log(`正在模拟武器 ${weaponData.name} 在距离 ${distance} 米的表现`);
                     for (let sim_count = 0; sim_count < ConstConfig.SIMULATE_ACCORDING_DISTANCE_COUNT; sim_count++) {
-                        const shotStats = this.runSingleWeaponSimulate(weaponData,bulletData, distance, hitChance);
+                        const shotStats = this.runSingleWeaponSimulate(weaponData, bulletData, distance, hitChance);
                         Log.log_detail(`武器${weaponData.name}, 距离${distance}米, 第${sim_count + 1}次模拟，射击${shotStats.shotCount}枪,命中${shotStats.hitShot}枪`);
                         SimulateShot.addSimulateShotCount(DistanceChart, weaponData, shotStats, distance);
                     }
@@ -115,7 +115,7 @@ export class SimulateEngine {
         let hitShot = 0;
         while (this.hp > 0 && shotCount < 1000) {
             Log.log_detail(`第 ${shotCount + 1} 发射击:`);
-            if (this.simulateOneShot(weaponData,bulletData, distance, hitChance))
+            if (this.simulateOneShot(weaponData, bulletData, distance, hitChance))
                 hitShot++;
             shotCount++;
         }
@@ -134,7 +134,7 @@ export class SimulateEngine {
     getBulletData(weaponData) {
         let bulletInfo = this.bulletsData[weaponData.caliber];
         let ammoType = String(weaponData.currentAmmoType);
-        if(ammoType === "global") {
+        if (ammoType === "global") {
             ammoType = String(DOMControl.getBulletTypeFromUI());
         }
         Log.log_detail(`获取武器 ${weaponData.name} 的子弹数据，caliber: ${weaponData.caliber}, ammoType: ${ammoType}`);
@@ -145,15 +145,15 @@ export class SimulateEngine {
         Log.log_detail(`子弹信息: ${JSON.stringify(bulletInfo.available_bullets)}`);
         Log.log_detail(`武器 ${weaponData.name} 当前子弹类型: ${ammoType}`);
         const inAvailableBullets = Array.isArray(bulletInfo.available_bullets) && bulletInfo.available_bullets.includes(ammoType);
-        Log.log_detail(`子弹 ${ammoType} 是否适用于武器 ${weaponData.name}: ${ inAvailableBullets }`);
+        Log.log_detail(`子弹 ${ammoType} 是否适用于武器 ${weaponData.name}: ${inAvailableBullets}`);
 
-        
+
         if (inAvailableBullets) {
             const ammo = this.bulletsData["default_bullets"][ammoType];
             Log.log_detail(`使用默认子弹数据${ammo}`);
             return ammo;
         } else {
-            if(typeof bulletInfo.special_bullets === 'object' && bulletInfo.special_bullets[ammoType]) {
+            if (typeof bulletInfo.special_bullets === 'object' && bulletInfo.special_bullets[ammoType]) {
                 const ammo = this.bulletsData[weaponData.caliber].special_bullets[ammoType];
                 Log.log_detail(`使用特殊子弹数据${ammo}`);
                 return ammo;
@@ -163,7 +163,7 @@ export class SimulateEngine {
     }
 
     //模拟一次射击，传入武器数据，生命值,距离，防具数据，击中部位权重参数以及命中率参数
-    simulateOneShot(weaponData,bulletData, distance = 0, hitChance = 1.0) {
+    simulateOneShot(weaponData, bulletData, distance = 0, hitChance = 1.0) {
         //根据随机数判断是否命中
         const randomValue = this.rng.getRandomNumber();
         const isHit = randomValue <= hitChance;
@@ -206,13 +206,13 @@ export class SimulateEngine {
             Log.log_detail(`未找到子弹部位数据, 使用武器部位系数`);
             partMultiplier = weaponData.multiplier[hitPart];
         }
-        const partDamage = (weaponData.baseDamage * (bulletData?.damage ?? 1.0) * partMultiplier) * decay;
+        const partDamage = (weaponData.baseDamage * (bulletData?.globalDamage ?? 1.0) * partMultiplier) * decay;
         Log.log_detail(`命中部位: ${hitPart},${partMultiplier},${partDamage}`)
-        const effectiveArmorDamage = weaponData.armorDamage * (bulletData?.armorDamageMultiplier || 1);
-        const headArmorDamage = (effectiveArmorDamage * (bulletData?.armor?.[this.armorData.helmetLv]?.armorDamage ?? 1)) * decay;
-        const headPenetrate = bulletData?.armor?.[this.armorData.helmetLv]?.penetrate ?? 0;
-        const bodyArmorDamage = (effectiveArmorDamage * (bulletData?.armor?.[this.armorData.armorLv]?.armorDamage ?? 1)) * decay;
-        const bodyPenetrate = bulletData?.armor?.[this.armorData.armorLv]?.penetrate ?? 0;
+        const effectiveArmorDamage = weaponData.armorDamage * (bulletData?.globalArmorDamage ?? 1);
+        const headArmorDamage = (effectiveArmorDamage * (bulletData?.globalArmorDamage?? 1.0) * (bulletData?.entityArmor?.[this.armorData.helmetLv]?.armorDamageFactor ?? 1)) * decay;
+        const headPenetrate = bulletData?.entityArmor?.[this.armorData.helmetLv]?.penetrate ?? 0;
+        const bodyArmorDamage = (effectiveArmorDamage * (bulletData?.globalArmorDamage ?? 1.0) * (bulletData?.entityArmor?.[this.armorData.armorLv]?.armorDamageFactor ?? 1)) * decay;
+        const bodyPenetrate = bulletData?.entityArmor?.[this.armorData.armorLv]?.penetrate ?? 0;
 
         //命中部位如果有护甲，则先扣除护甲，如果穿甲值大于护甲值，则按百分比扣除生命值，如50%剩余穿甲值，则扣除50%的basedamage的血量以及按穿透值扣除生命
         if (hitPart == 'head') {

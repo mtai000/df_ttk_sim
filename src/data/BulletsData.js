@@ -96,9 +96,9 @@ export function getMergedBulletsData() {
 /**
  * 获取保持原始结构的子弹数据（合并本地存储的修改）
  */
-export function getBulletsJsonStructure() {
+export async function getBulletsJsonStructure() {
     // 获取本地存储的结构化数据（如果存在）
-    const storedStructure = LocalStorageUtil.getBulletsJsonStructure();
+    const storedStructure = await LocalStorageUtil.getBulletsJsonStructure();
     
     if (storedStructure) {
         return storedStructure;
