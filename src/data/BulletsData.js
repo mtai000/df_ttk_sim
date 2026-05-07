@@ -7,7 +7,7 @@ export class BulletData {
         this.name = String(name || '').trim();
         this.damageMultiplier = Number(damage) || 1.0;
         this.armorDamageMultiplier = Number(armorDamageMultiplier ?? rest.armor_damage ?? rest.armorDamage ?? 1.0) || 1.0;
-        this.armor = typeof armor === 'object' && armor !== null ? armor : {};
+        this.entityArmor = typeof armor === 'object' && armor !== null ? armor : {};
         this.partMultipliers = typeof multipliers === 'object' && multipliers !== null ? multipliers : {};
         Object.assign(this, rest);
     }

@@ -255,7 +255,7 @@ export class BulletsTableUI {
 
         // 读取默认子弹
         document.querySelectorAll('.btn-load').forEach(btn => {
-            btn.addEventListener('click', (e) => this.handleLoadBullet(e));
+            btn.addEventListener('click', (e) => this.handleEditBullet(e));
         });
 
         // 导出/导入
@@ -302,15 +302,15 @@ export class BulletsTableUI {
         // 填充表单数据
         document.getElementById('bulletCaliberSelect').value = caliber;
         document.getElementById('newBulletName').value = bulletId;
-        document.getElementById('newBulletDamage').value = bulletData.globalDamage || 1.0;
-        document.getElementById('newBulletArmorDamage').value = bulletData.globalDamage || 1.0;
+        document.getElementById('newBulletGlobalDamage').value = bulletData.globalDamage;
+        document.getElementById('newBulletGlobalArmorDamage').value = bulletData.globalArmorDamage;
 
         // 填充护甲详情
-        const armorData = bulletData.armor || {};
+        const armorData = bulletData.entityArmor;
         for (let i = 1; i <= 6; i++) {
             const armor = armorData[i];
-            document.getElementById(`armorDamage${i}`).value = armor.globalArmorDamage || 1.0;
-            document.getElementById(`penetrate${i}`).value = armor.penetrate || 0;
+            document.getElementById(`armorDamageFactor${i}`).value = armor.armorDamageFactor;
+            document.getElementById(`penetrate${i}`).value = armor.penetrate;
         }
 
         if (bulletData.multipliers) {
@@ -326,42 +326,6 @@ export class BulletsTableUI {
         // 滚动到表单
         document.getElementById('tab-data').scrollIntoView({ behavior: 'smooth' });
     }
-
-    handleLoadBullet(e) {
-        const caliber = e.target.dataset.caliber;
-        const bulletId = e.target.dataset.bulletId;
-        const bulletType = e.target.dataset.type || 'default';
-
-        const structure = getBulletsJsonStructure();
-        let bulletData = null;
-
-        // 根据类型获取子弹数据
-        if (bulletType === 'default') {
-            bulletData = structure.default_bullets?.[bulletId];
-        }
-
-        if (!bulletData) {
-            alert('子弹数据不存在');
-            return;
-        }
-
-        // 填充表单数据（不设置口径，让用户选择）
-        document.getElementById('newBulletName').value = bulletId;
-        document.getElementById('newBulletDamage').value = bulletData.globalDamage || 1.0;
-        document.getElementById('newBulletArmorDamage').value = bulletData.globalArmorDamage || 1.0;
-
-        // 填充护甲详情
-        const armorData = bulletData.armor || {};
-        for (let i = 1; i <= 6; i++) {
-            const armor = armorData[i] || { armorDamage: 1.0, penetrate: 0 };
-            document.getElementById(`armorDamage${i}`).value = armor.armorDamageFactor || 1.0;
-            document.getElementById(`penetrate${i}`).value = armor.penetrate || 0;
-        }
-
-        // 滚动到表单
-        document.getElementById('tab-data').scrollIntoView({ behavior: 'smooth' });
-    }
-
 
     handleAddCaliberClick() {
         const caliberName = prompt('请输入新口径名称 (例如: 5.56x45mm)');

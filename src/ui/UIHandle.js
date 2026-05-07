@@ -231,8 +231,8 @@ export class UIHandle {
             event.preventDefault();
             const caliber = document.getElementById('bulletCaliberSelect').value;
             const name = document.getElementById('newBulletName').value.trim();
-            const damage = parseFloat(document.getElementById('newBulletDamage').value);
-            const armorDamageMultiplier = parseFloat(document.getElementById('newBulletArmorDamage').value);
+            const globalDamage = parseFloat(document.getElementById('newBulletGlobalDamage').value);
+            const globalArmorDamage = parseFloat(document.getElementById('newBulletGlobalArmorDamage').value);
 
             if (!caliber || caliber === 'default_bullets') {
                 alert('默认模板不可修改，请选择一个具体的口径');
@@ -242,24 +242,24 @@ export class UIHandle {
                 alert('请填写子弹名称');
                 return;
             }
-            if (Number.isNaN(damage)) {
+            if (Number.isNaN(globalDamage)) {
                 alert('请填写有效的子弹伤害系数');
                 return;
             }
-            if (Number.isNaN(armorDamageMultiplier)) {
+            if (Number.isNaN(globalArmorDamage)) {
                 alert('请填写有效的子弹甲伤系数');
                 return;
             }
 
-            const armor = {};
+            const entityArmor = {};
             for (let lv = 1; lv <= 6; lv++) {
-                const armorDamage = parseFloat(document.getElementById(`armorDamage${lv}`).value);
+                const armorDamageFactor = parseFloat(document.getElementById(`armorDamageFactor${lv}`).value);
                 const penetrate = parseFloat(document.getElementById(`penetrate${lv}`).value);
-                if (Number.isNaN(armorDamage) || Number.isNaN(penetrate)) {
+                if (Number.isNaN(armorDamageFactor) || Number.isNaN(penetrate)) {
                     alert(`请填写护甲等级 ${lv} 的甲伤系数和穿透系数`);
                     return;
                 }
-                armor[lv] = { armorDamage, penetrate };
+                entityArmor[lv] = { armorDamageFactor, penetrate };
             }
 
             const multipliers = {};
@@ -276,9 +276,9 @@ export class UIHandle {
             const isExisting = structure[caliber]?.special_bullets?.[name];
 
             const bulletData = {
-                damage,
-                armorDamage: armorDamageMultiplier,
-                armor
+                globalDamage,
+                globalArmorDamage,
+                entityArmor
             };
             if (Object.keys(multipliers).length > 0) {
                 bulletData.multipliers = multipliers;
@@ -301,10 +301,10 @@ export class UIHandle {
 
             // 清空表单
             document.getElementById('newBulletName').value = '';
-            document.getElementById('newBulletDamage').value = '';
-            document.getElementById('newBulletArmorDamage').value = '1.0';
+            document.getElementById('newBulletGlobalDamage').value = '';
+            document.getElementById('newBulletGlobalArmorDamage').value = '1.0';
             for (let lv = 1; lv <= 6; lv++) {
-                document.getElementById(`armorDamage${lv}`).value = '';
+                document.getElementById(`armorDamageFactor${lv}`).value = '';
                 document.getElementById(`penetrate${lv}`).value = '';
             }
             multIds.forEach(id => {
@@ -653,8 +653,8 @@ export class UIHandle {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td><input type="text" class="bullet-name inline-input" value="${bulletName}"></td>
-            <td><input type="number" class="bullet-damage inline-input" value="${bulletData.damage || 0}" step="0.01"></td>
-            <td><textarea class="bullet-armor inline-textarea">${JSON.stringify(bulletData.armor || {}, null, 2)}</textarea></td>
+            <td><input type="number" class="bullet-damage inline-input" value="${bulletData.globalDamage || 0}" step="0.01"></td>
+            <td><textarea class="bullet-armor inline-textarea">${JSON.stringify(bulletData.globalarmor || {}, null, 2)}</textarea></td>
             <td><button type="button" class="remove-bullet-btn">-</button></td>
         `;
         bulletBody.appendChild(row);
