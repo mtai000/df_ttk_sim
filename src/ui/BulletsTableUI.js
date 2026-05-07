@@ -102,14 +102,14 @@ export class BulletsTableUI {
         `;
 
         Object.entries(defaultBullets).forEach(([bulletId, bulletData]) => {
-            const armorData = bulletData.armor || {};
+            const armorData = bulletData.entityArmor;
 
             // 格式化护甲数据
             let armorDamageArray = [];
             let penetrateArray = [];
             for (let i = 1; i <= 6; i++) {
-                const armor = armorData[i] || { armorDamage: 1.0, penetrate: 0 };
-                armorDamageArray.push(armor.armorDamage);
+                const armor = armorData[i];
+                armorDamageArray.push(armor.armorDamageFactor);
                 penetrateArray.push(armor.penetrate);
             }
 
@@ -117,10 +117,10 @@ export class BulletsTableUI {
                 <tr>
                     <td>${bulletId}</td>
                     <td>
-                        <span class="damage-value">${bulletData.damage || 1.0}</span>
+                        <span class="damage-value">${bulletData.globalDamage || 1.0}</span>
                     </td>
                     <td>
-                        <span class="danage-value">${bulletData.armorDamage || 1.0}</span>
+                        <span class="danage-value">${bulletData.globalArmorDamage || 1.0}</span>
                     </td>
                     <td>${armorDamageArray.join('/')}</td>
                     <td>${penetrateArray.join('/')}</td>
@@ -155,16 +155,16 @@ export class BulletsTableUI {
 
         // 渲染 available_bullets
         availableBullets.forEach(bulletId => {
-            const defaultBullets = getBulletsJsonStructure().default_bullets || {};
-            const bulletData = defaultBullets[bulletId] || { damage: 1.0 };
-            const armorData = bulletData.armor || {};
+            const defaultBullets = getBulletsJsonStructure().default_bullets;
+            const bulletData = defaultBullets[bulletId];
+            const armorData = bulletData.entityArmor;
 
             // 格式化护甲数据：分别提取所有 armorDamage 和 penetrate
             let armorDamageArray = [];
             let penetrateArray = [];
             for (let i = 1; i <= 6; i++) {
-                const armor = armorData[i] || { armorDamage: 1.0, penetrate: 0 };
-                armorDamageArray.push(armor.armorDamage);
+                const armor = armorData[i];
+                armorDamageArray.push(armor.armorDamageFactor);
                 penetrateArray.push(armor.penetrate);
             }
 
@@ -172,10 +172,10 @@ export class BulletsTableUI {
                 <tr class="available-bullet-row">
                     <td>${bulletId}</td>
                     <td>
-                        <span class="damage-value">${bulletData.damage || 1.0}</span>
+                        <span class="damage-value">${bulletData.globalDamage || 1.0}</span>
                     </td>
                     <td>
-                        <span class="danage-value">${bulletData.armorDamage || 1.0}</span>
+                        <span class="danage-value">${bulletData.globalArmorDamage || 1.0}</span>
                     </td>
                     <td>${armorDamageArray.join('/')}</td>
                     <td>${penetrateArray.join('/')}</td>
@@ -187,14 +187,14 @@ export class BulletsTableUI {
 
         // 渲染 special_bullets
         Object.entries(specialBullets).forEach(([bulletName, bulletData]) => {
-            const armorData = bulletData.armor || {};
+            const armorData = bulletData.entityArmor;
 
             // 格式化护甲数据
             let armorDamageArray = [];
             let penetrateArray = [];
             for (let i = 1; i <= 6; i++) {
-                const armor = armorData[i] || { armorDamage: 1.0, penetrate: 0 };
-                armorDamageArray.push(armor.armorDamage);
+                const armor = armorData[i] ;
+                armorDamageArray.push(armor.armorDamageFactor);
                 penetrateArray.push(armor.penetrate);
             }
 
@@ -204,10 +204,10 @@ export class BulletsTableUI {
                         <span class="bullet-type-badge special">${bulletName}</span>
                     </td>
                     <td>
-                        <span class="damage-value">${bulletData.damage || 1.0}</span>
+                        <span class="damage-value">${bulletData.globalDamage || 1.0}</span>
                     </td>
                     <td>
-                        <span class="danage-value">${bulletData.armorDamage || 1.0}</span>
+                        <span class="danage-value">${bulletData.globalArmorDamage || 1.0}</span>
                     </td>
                     <td>${armorDamageArray.join('/')}</td>
                     <td>${penetrateArray.join('/')}</td>
@@ -302,14 +302,14 @@ export class BulletsTableUI {
         // 填充表单数据
         document.getElementById('bulletCaliberSelect').value = caliber;
         document.getElementById('newBulletName').value = bulletId;
-        document.getElementById('newBulletDamage').value = bulletData.damage || 1.0;
-        document.getElementById('newBulletArmorDamage').value = bulletData.damage || 1.0;
+        document.getElementById('newBulletDamage').value = bulletData.globalDamage || 1.0;
+        document.getElementById('newBulletArmorDamage').value = bulletData.globalDamage || 1.0;
 
         // 填充护甲详情
         const armorData = bulletData.armor || {};
         for (let i = 1; i <= 6; i++) {
-            const armor = armorData[i] || { armorDamage: 1.0, penetrate: 0 };
-            document.getElementById(`armorDamage${i}`).value = armor.armorDamage || 1.0;
+            const armor = armorData[i];
+            document.getElementById(`armorDamage${i}`).value = armor.globalArmorDamage || 1.0;
             document.getElementById(`penetrate${i}`).value = armor.penetrate || 0;
         }
 
@@ -347,14 +347,14 @@ export class BulletsTableUI {
 
         // 填充表单数据（不设置口径，让用户选择）
         document.getElementById('newBulletName').value = bulletId;
-        document.getElementById('newBulletDamage').value = bulletData.damage || 1.0;
-        document.getElementById('newBulletArmorDamage').value = bulletData.armorDamage || 1.0;
+        document.getElementById('newBulletDamage').value = bulletData.globalDamage || 1.0;
+        document.getElementById('newBulletArmorDamage').value = bulletData.globalArmorDamage || 1.0;
 
         // 填充护甲详情
         const armorData = bulletData.armor || {};
         for (let i = 1; i <= 6; i++) {
             const armor = armorData[i] || { armorDamage: 1.0, penetrate: 0 };
-            document.getElementById(`armorDamage${i}`).value = armor.armorDamage || 1.0;
+            document.getElementById(`armorDamage${i}`).value = armor.armorDamageFactor || 1.0;
             document.getElementById(`penetrate${i}`).value = armor.penetrate || 0;
         }
 

@@ -33,11 +33,10 @@ export class SimulateEngine {
     //根据权重值，计算各部位的命中率
     calHitChanceByPartHitWeights(hitPartWeights) {
         const totalWeight = Object.values(hitPartWeights).reduce((sum, weight) => sum + weight, 0);
-        const hitChanceByPart = [];
+        const hitChanceByPart = {};
         for (const part in hitPartWeights) {
             hitChanceByPart[part] = hitPartWeights[part] / totalWeight;
         }
-        Log.log(hitChanceByPart);
         return hitChanceByPart;
     }
 
@@ -48,6 +47,7 @@ export class SimulateEngine {
         Log.log_detail(`开始模拟时间:${startTime}`);
         this.weaponDatas.forEach(weaponData => {
             this.resetStatus();
+            Log.log(`各部位命中概率: ${JSON.stringify(this.hitChanceByPart)}`);
             let bulletData = this.getBulletData(weaponData);
             if (bulletData !== null) {
                 for (let sim_count = 0; sim_count < ConstConfig.SIMULATE_COUNT; sim_count++) {

@@ -1,4 +1,5 @@
 import { Log } from './Log.js';
+import bulletsJson from "../../data/bullets.json";
 export class LocalStorageUtil {
     static STORAGE_KEY = 'df_ttk_sim_weapons';
     static BULLETS_STORAGE_KEY = 'df_ttk_sim_bullets';
@@ -43,13 +44,11 @@ export class LocalStorageUtil {
         }
     }
 
-    static async loadBullets() {
+    static loadBullets() {
         const stored = localStorage.getItem(this.BULLETS_STORAGE_KEY);
         if (!stored) {
             Log.log('没有找到存储的子弹数据，使用默认数据');
-            const response = await fetch('./data/bullets.json')
-            const bulletsData = await response.json();
-            return bulletsData;
+            return bulletsJson;
         }
         try {
             const bullets = JSON.parse(stored);
@@ -282,12 +281,10 @@ export class LocalStorageUtil {
      * 获取原始结构格式的子弹数据
      * @returns {object|null} 原始结构的子弹数据，如果不存在返回 null
      */
-    static async getBulletsJsonStructure() {
+    static getBulletsJsonStructure() {
         const stored = localStorage.getItem(this.BULLETS_JSON_STRUCTURE_KEY);
         if (!stored) {
             Log.log('没有找到存储的结构化子弹数据，使用默认数据');
-            const response = await fetch('./data/bullets.json');
-            const bulletsJson = await response.json();
             return bulletsJson;
         }
         try {

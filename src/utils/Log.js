@@ -28,10 +28,7 @@ export class Log{
         }
     }
 
-    static appendDetailLog(args) {
-        if (ConstConfig.LOG_LEVEL < 2) {
-            return;
-        }
+    static appendLog(args) {
         const timestamp = new Date().toISOString();
         const message = args.map((arg) => this.formatLogArg(arg)).join(' ');
         this.detailLogBuffer.push(`[${timestamp}] ${message}`);
@@ -62,11 +59,12 @@ export class Log{
 
 
     static log(...args){
+        this.appendLog(args);
         if(ConstConfig.LOG_LEVEL >= 1) console.log(...args);
     }
 
     static log_detail(...args){
-        this.appendDetailLog(args);
+        this.appendLog(args);
         if(ConstConfig.LOG_LEVEL > 2) console.log(...args);
     }
 }
