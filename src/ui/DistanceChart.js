@@ -209,7 +209,7 @@ export class DistanceChart{
                 const velocity = Number(weaponData.velocity || 0);
                 const flyDelay = velocity > 0 ? Number(distance) / velocity * 1000 : 0;
                 const simCount = Array.from(btkDistribution.values()).reduce((sum, count) => sum + count, 0)
-                    || ConstConfig.SIMULATE_ACCORDING_DISTANCE_COUNT;
+                    || DOMControl.getSimaulteCountFromUI();
 
                 let btkTtk = 0;
                 if(weaponData.isBurst){

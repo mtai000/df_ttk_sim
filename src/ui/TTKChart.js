@@ -48,7 +48,7 @@ export class TTKChart{
                 return;
             }
 
-            const totalCount = Array.from(distributionMap.values()).reduce((sum, count) => sum + count, 0) || ConstConfig.SIMULATE_COUNT;
+            const totalCount = Array.from(distributionMap.values()).reduce((sum, count) => sum + count, 0) || DOMControl.getSimaulteCountFromUI();
             let totalBtk = 0;
             distributionMap.forEach((count, btk) => {
                 totalBtk += Number(btk) * count;

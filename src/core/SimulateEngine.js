@@ -14,8 +14,8 @@ export class SimulateEngine {
         this.bulletsData = getMergedBulletsData();
         this.hitChanceByPart = this.calHitChanceByPartHitWeights(DOMControl.getPartHitWeightsFromUI());
         this.setDefault();
-        this.resetStatus();
         this.rng = new Prng();
+        this.resetStatus();
     }
 
     setDefault() {
@@ -27,7 +27,6 @@ export class SimulateEngine {
         this.hp = this.default_hp;
         this.armorData = { ... this.default_armorData };
         Log.log_detail(`重置状态，血量${this.hp},${this.armorData.helmetLv}级头 ${this.armorData.helmetPoint}, ${this.armorData.armorLv}级甲 ${this.armorData.armorPoint}`)
-
     }
 
     //根据权重值，计算各部位的命中率
@@ -46,11 +45,12 @@ export class SimulateEngine {
         const startTime = Date.now();
         Log.log_detail(`开始模拟时间:${startTime}`);
         this.weaponDatas.forEach(weaponData => {
+            this.rng.resetSeed();
             this.resetStatus();
             Log.log(`各部位命中概率: ${JSON.stringify(this.hitChanceByPart)}`);
             let bulletData = this.getBulletData(weaponData);
             if (bulletData !== null) {
-                for (let sim_count = 0; sim_count < ConstConfig.SIMULATE_COUNT; sim_count++) {
+                for (let sim_count = 0; sim_count < DOMControl.getSimaulteCountFromUI(); sim_count++) {
                     const shotStats = this.runSingleWeaponSimulate(weaponData, bulletData, distance, hitChance);
                     Log.log_detail(`武器${weaponData.name}, 第${sim_count + 1}次模拟，射击${shotStats.shotCount}枪,命中${shotStats.hitShot}枪`);
                     SimulateShot.addSimulateShotCount(TTKChart, weaponData, shotStats, distance);
@@ -71,6 +71,7 @@ export class SimulateEngine {
         const startTime = Date.now();
         Log.log_detail(`开始距离模拟，时间:${startTime}`);
         this.weaponDatas.forEach(weaponData => {
+            this.rng.resetSeed();
             this.resetStatus();
             Log.log(weaponData.range)
 
@@ -84,7 +85,7 @@ export class SimulateEngine {
                     }
 
                     Log.log(`正在模拟武器 ${weaponData.name} 在距离 ${distance} 米的表现`);
-                    for (let sim_count = 0; sim_count < ConstConfig.SIMULATE_ACCORDING_DISTANCE_COUNT; sim_count++) {
+                    for (let sim_count = 0; sim_count < DOMControl.getSimaulteCountFromUI(); sim_count++) {
                         const shotStats = this.runSingleWeaponSimulate(weaponData, bulletData, distance, hitChance);
                         Log.log_detail(`武器${weaponData.name}, 距离${distance}米, 第${sim_count + 1}次模拟，射击${shotStats.shotCount}枪,命中${shotStats.hitShot}枪`);
                         SimulateShot.addSimulateShotCount(DistanceChart, weaponData, shotStats, distance);

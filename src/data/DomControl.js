@@ -55,4 +55,7 @@ export class DOMControl {
     static getIsPrintLogFromUI() {
         return document.getElementById('is_print_log').checked;
     }
+    static getSimaulteCountFromUI(){
+        return parseInt(document.getElementById('simulate_count').value)||1000;
+    }
 }

@@ -871,5 +871,14 @@
             "5"
         ],
         "special_bullets": {}
+    }, 
+    ".50": {
+        "available_bullets": [
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+        "special_bullets": {}
     }
 }
