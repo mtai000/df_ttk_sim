@@ -211,7 +211,7 @@ export class TTKChart {
                                             c[i] += count;
                                         }
                                     }
-                                    return `BTK ${btk}: ${formatNumber(probability, 1)}% (${count}/${totalCount}), TTK: ${formatNumber(ttk, 0)}ms`;
+                                    return `BTK ${btk}: ${formatNumber(probability, 1)}% (${count}/${totalCount}), TTK: ${formatNumber(fTTK, 0)}ms`;
                                 });
 
 

@@ -3,13 +3,13 @@ import { Log } from "./Log";
 
 export default class SimulateShot {
     static calculateAutoTtkByBtk(weaponData, btk, triggerDelay, flyDelay) {
-        const rof = Number(weaponData.rof) || 0;
+        const rof = Number(weaponData.rof);
         if (rof <= 0) {
             console.error('射速数据异常');
         }
 
-        const btkValue = Math.max(1, Number(btk) || 1);
-        const fTTK = (btkValue - 1) * 60000 / rof + triggerDelay + flyDelay;
+        const btkValue = Number(btk);
+        const fTTK = (btkValue - 1) * 60000 / rof + triggerDelay;
         return [fTTK, fTTK + flyDelay];
     }
 
@@ -22,7 +22,7 @@ export default class SimulateShot {
         }
 
         const shotInterval = 60000 / burstRof;
-        const btkValue = Number(btk) || 1;
+        const btkValue = Number(btk);
         const fullBurstCount = Math.floor((btkValue - 1) / burstCount);
         const intraBurstShots = (btkValue - 1) % burstCount;
 
