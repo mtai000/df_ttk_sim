@@ -225,8 +225,8 @@ export class DistanceChart{
                     });
                     btkTtk = SimulateShot.calculateAutoTtkByBtk(weaponData, totalBtk / simCount, 0, 0);
                 }
-
-                const totalTTK = btkTtk + triggerDelay + flyDelay;
+                const fireTtk = btkTtk[0];
+                const totalTTK = fireTtk + triggerDelay + flyDelay;
 
                 if(!weaponLines.has(weaponName)){
                     weaponLines.set(weaponName, []);
@@ -235,7 +235,7 @@ export class DistanceChart{
                 weaponLines.get(weaponName).push({
                     x: distance,
                     y: totalTTK,
-                    btkTtk,
+                    fireTtk,
                     triggerDelay,
                     flyDelay
                 });

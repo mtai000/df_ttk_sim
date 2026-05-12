@@ -264,6 +264,72 @@
     ]
   },
   {
+    "name": "M7蓝管",
+    "velocity": 810,
+    "baseDamage": 38,
+    "armorDamage": 40,
+    "rof": 649,
+    "caliber": "6.8x51mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 1,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      59,
+      83.3,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.8
+    ]
+  },
+  {
+    "name": "M7蓝管_无胸腹同伤",
+    "velocity": 810,
+    "baseDamage": 38,
+    "armorDamage": 40,
+    "rof": 649,
+    "caliber": "6.8x51mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": {
+      "head": 1.9,
+      "chest": 1,
+      "hand": 0.4,
+      "abdomen": 0.9,
+      "arm": 0.4,
+      "leg": 0.4,
+      "foot": 0.4
+    },
+    "range": [
+      59,
+      83.3,
+      200
+    ],
+    "decay": [
+      1,
+      0.9,
+      0.8
+    ]
+  },
+  {
     "name": "M7堤风",
     "velocity": 893,
     "baseDamage": 40,
@@ -430,7 +496,7 @@
   },
   {
     "name": "akm长枪管",
-    "velocity": 605,
+    "velocity": 744,
     "baseDamage": 40,
     "armorDamage": 42,
     "rof": 600,
