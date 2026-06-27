@@ -210,9 +210,9 @@ export class SimulateEngine {
         }
         const partDamage = (weaponData.baseDamage * (bulletData?.globalDamage ?? 1.0) * partMultiplier) * decay;
         const effectiveArmorDamage = weaponData.armorDamage * (bulletData?.globalArmorDamage ?? 1);
-        const headArmorDamage = (effectiveArmorDamage * (bulletData?.globalArmorDamage ?? 1.0) * (bulletData?.entityArmor?.[this.armorData.helmetLv]?.armorDamageFactor ?? 1)) * decay;
+        const headArmorDamage = (effectiveArmorDamage * (bulletData?.entityArmor?.[this.armorData.helmetLv]?.armorDamageFactor ?? 1)) * decay;
         const headPenetrate = bulletData?.entityArmor?.[this.armorData.helmetLv]?.penetrate ?? 0;
-        const bodyArmorDamage = (effectiveArmorDamage * (bulletData?.globalArmorDamage ?? 1.0) * (bulletData?.entityArmor?.[this.armorData.armorLv]?.armorDamageFactor ?? 1)) * decay;
+        const bodyArmorDamage = (effectiveArmorDamage * (bulletData?.entityArmor?.[this.armorData.armorLv]?.armorDamageFactor ?? 1)) * decay;
         const bodyPenetrate = bulletData?.entityArmor?.[this.armorData.armorLv]?.penetrate ?? 0;
 
         let shotDamage = 0;

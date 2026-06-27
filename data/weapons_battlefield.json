@@ -257,5 +257,42 @@
             0.65,
             0.5
         ]
-    }
+    },
+    {
+        "name": "mk4auto",
+        "velocity": 627,
+        "baseDamage": 23,
+        "armorDamage": 10000,
+        "rof": 872,
+        "caliber": "4.6x30mm",
+        "isBurst": false,
+        "burstCount": 0,
+        "burstRateOfFire": 0,
+        "burstInterval": 0,
+        "currentAmmoType": "global",
+        "triggerDelay": 0,
+        "multiplier": {
+            "head": 1.25,
+            "chest": 1.0,
+            "hand": 1.0,
+            "abdomen": 1.0,
+            "arm": 1.0,
+            "leg": 1.0,
+            "foot": 1.0
+        },
+        "range": [
+            15,
+            30,
+            40,
+            50,
+            200
+        ],
+        "decay": [
+            1,
+            0.7,
+            0.6,
+            0.55,
+            0.5
+        ]
+    } 
 ]

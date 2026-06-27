@@ -186,6 +186,96 @@
                         "penetrate": 0.5
                     }
                 }
+            },
+            "PLY-I": {
+                "globalDamage": 1.0,
+                "globalArmorDamage": 0.9,
+                "entityArmor": {
+                    "1": {
+                        "armorDamageFactor": 0.9,
+                        "penetrate": 1.0
+                    },
+                    "2": {
+                        "armorDamageFactor": 0.9,
+                        "penetrate": 0.75
+                    },
+                    "3": {
+                        "armorDamageFactor": 0.9,
+                        "penetrate": 0.5
+                    },
+                    "4": {
+                        "armorDamageFactor": 0.9,
+                        "penetrate": 0.0
+                    },
+                    "5": {
+                        "armorDamageFactor": 0.5,
+                        "penetrate": 0.0
+                    },
+                    "6": {
+                        "armorDamageFactor": 0.4,
+                        "penetrate": 0.0
+                    }
+                }
+            },
+            "PLY-II": {
+                "globalDamage": 1.0,
+                "globalArmorDamage": 0.9,
+                "entityArmor": {
+                    "1": {
+                        "armorDamageFactor": 1.0,
+                        "penetrate": 1.0
+                    },
+                    "2": {
+                        "armorDamageFactor": 1.0,
+                        "penetrate": 1.0
+                    },
+                    "3": {
+                        "armorDamageFactor": 1.0,
+                        "penetrate": 0.75
+                    },
+                    "4": {
+                        "armorDamageFactor": 1.0,
+                        "penetrate": 0.5
+                    },
+                    "5": {
+                        "armorDamageFactor": 1.0,
+                        "penetrate": 0.0
+                    },
+                    "6": {
+                        "armorDamageFactor": 0.6,
+                        "penetrate": 0.0
+                    }
+                }
+            },
+            "PLY-III": {
+                "globalDamage": 1.0,
+                "globalArmorDamage": 0.9,
+                "entityArmor": {
+                    "1": {
+                        "armorDamageFactor": 1.1,
+                        "penetrate": 1.0
+                    },
+                    "2": {
+                        "armorDamageFactor": 1.1,
+                        "penetrate": 1.0
+                    },
+                    "3": {
+                        "armorDamageFactor": 1.1,
+                        "penetrate": 1.0
+                    },
+                    "4": {
+                        "armorDamageFactor": 1.1,
+                        "penetrate": 0.75
+                    },
+                    "5": {
+                        "armorDamageFactor": 1.1,
+                        "penetrate": 0.5
+                    },
+                    "6": {
+                        "armorDamageFactor": 1.1,
+                        "penetrate": 0.0
+                    }
+                }
             }
         }
     },
@@ -304,6 +394,41 @@
                         "armorDamageFactor": 0.2,
                         "penetrate": 0.0
                     }
+                }
+            },
+            "CT": {
+                "globalDamage": 1.75,
+                "globalArmorDamage": 1.0,
+                "entityArmor": {
+                    "1": {
+                        "armorDamageFactor": 0.4,
+                        "penetrate": 0.0
+                    },
+                    "2": {
+                        "armorDamageFactor": 0.3,
+                        "penetrate": 0.0
+                    },
+                    "3": {
+                        "armorDamageFactor": 0.2,
+                        "penetrate": 0.0
+                    },
+                    "4": {
+                        "armorDamageFactor": 0.2,
+                        "penetrate": 0.0
+                    },
+                    "5": {
+                        "armorDamageFactor": 0.2,
+                        "penetrate": 0.0
+                    },
+                    "6": {
+                        "armorDamageFactor": 0.2,
+                        "penetrate": 0.0
+                    }
+                },
+                "multipliers": {
+                    "head": 1.9,
+                    "chest": 1,
+                    "abdomen": 0.9
                 }
             }
         }
@@ -633,6 +758,41 @@
                     }
                 }
             },
+            "ACP CT": {
+                "globalDamage": 1.6,
+                "globalArmorDamage": 1.0,
+                "entityArmor": {
+                    "1": {
+                        "armorDamageFactor": 0.4,
+                        "penetrate": 0.0
+                    },
+                    "2": {
+                        "armorDamageFactor": 0.3,
+                        "penetrate": 0.0
+                    },
+                    "3": {
+                        "armorDamageFactor": 0.2,
+                        "penetrate": 0.0
+                    },
+                    "4": {
+                        "armorDamageFactor": 0.2,
+                        "penetrate": 0.0
+                    },
+                    "5": {
+                        "armorDamageFactor": 0.2,
+                        "penetrate": 0.0
+                    },
+                    "6": {
+                        "armorDamageFactor": 0.2,
+                        "penetrate": 0.0
+                    }
+                },
+                "multipliers": {
+                    "head": 1.9,
+                    "chest": 1,
+                    "abdomen": 0.9
+                }
+            },
             ".45 AP": {
                 "globalDamage": 0.85,
                 "globalArmorDamage": 1.15,
@@ -871,7 +1031,7 @@
             "5"
         ],
         "special_bullets": {}
-    }, 
+    },
     ".50": {
         "available_bullets": [
             "2",
