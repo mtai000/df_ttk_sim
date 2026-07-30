@@ -212,18 +212,16 @@ export class DistanceChart{
                     || DOMControl.getSimaulteCountFromUI();
 
                 let btkTtk = 0;
+                // 先计算平均 BTK
+                let totalBtk = 0;
+                btkDistribution.forEach((count, btk) => {
+                    totalBtk += Number(btk) * count;
+                });
+                const avgBtk = totalBtk / simCount;
                 if(weaponData.isBurst){
-                    let btkTtkSum = 0;
-                    btkDistribution.forEach((count, btk) => {
-                        btkTtkSum += SimulateShot.calculateBurstTtkByBtk(weaponData, btk, 0, 0) * count;
-                    });
-                    btkTtk = btkTtkSum / simCount;
+                    btkTtk = SimulateShot.calculateBurstTtkByBtk(weaponData, avgBtk, 0, 0);
                 } else {
-                    let totalBtk = 0;
-                    btkDistribution.forEach((count, btk) => {
-                        totalBtk += Number(btk) * count;
-                    });
-                    btkTtk = SimulateShot.calculateAutoTtkByBtk(weaponData, totalBtk / simCount, 0, 0);
+                    btkTtk = SimulateShot.calculateAutoTtkByBtk(weaponData, avgBtk, 0, 0);
                 }
                 const fireTtk = btkTtk[0];
                 const totalTTK = fireTtk + triggerDelay + flyDelay;
@@ -260,8 +258,8 @@ export class DistanceChart{
                         const firstPoint = sortedPoints[0];
                         sortedPoints.unshift({
                             x: 0,
-                            y: firstPoint.btkTtk + firstPoint.triggerDelay,
-                            btkTtk: firstPoint.btkTtk,
+                            y: firstPoint.fireTtk + firstPoint.triggerDelay,
+                            fireTtk: firstPoint.fireTtk,
                             triggerDelay: firstPoint.triggerDelay,
                             flyDelay: 0
                         });

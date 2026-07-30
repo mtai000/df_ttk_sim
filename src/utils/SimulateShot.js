@@ -18,7 +18,7 @@ export default class SimulateShot {
         const burstInterval = Number(weaponData.burstInterval) || 0;
         const burstRof = Number(weaponData.burstRateOfFire) || 0;
         if (burstCount <= 0 || burstRof <= 0) {
-            return triggerDelay + flyDelay;
+            return [triggerDelay + flyDelay, triggerDelay + flyDelay];
         }
 
         const shotInterval = 60000 / burstRof;
