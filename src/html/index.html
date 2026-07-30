@@ -130,16 +130,18 @@
                 <table id="weapon_table">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" id="select_all_weapons"></th>
-                            <th>武器</th>
-                            <th>秒肉伤</th>
-                            <th>秒甲伤</th>
-                            <th>射速</th>
-                            <th>射程</th>
-                            <th>衰减</th>
+                            <th style="width: 40px;"><input type="checkbox" id="select_all_weapons"></th>
+                            <th>武器名称</th>
                             <th>基础伤害</th>
                             <th>护甲伤害</th>
-                            <th>初速</th>
+                            <th>射速</th>
+                            <th>子弹初速</th>
+                            <th>扳机延迟</th>
+                            <th>连发</th>
+                            <th>部位倍率</th>
+                            <th>射程衰减</th>
+                            <th>秒肉伤</th>
+                            <th>秒甲伤</th>
                             <th>子弹类型</th>
                             <th>删除</th>
                         </tr>
@@ -221,9 +223,15 @@
 
                     <div style="margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap;">
                         <button type="button" id="addNewWeaponBtn">添加武器</button>
+                        <button type="button" id="cancelEditWeaponBtn" style="display: none; background: #6b7280;">取消编辑</button>
                     </div>
+                    <input type="hidden" id="editingWeaponIndex" value="-1">
                 </form>
             </section>
+
+            <!-- 武器管理表格 -->
+            <div id="weapons-management-container" style="margin-top: 24px;"></div>
+
             <section class="settings-section" style="margin-top: 24px;">
                 <h2>📦 武器数据编辑 (JSON)</h2>
                 <button type="button" id="toggleWeaponsJsonEditor">展开/折叠 JSON 编辑器</button>

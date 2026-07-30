@@ -397,7 +397,7 @@
                 }
             },
             "CT": {
-                "globalDamage": 1.75,
+                "globalDamage": 1.0,
                 "globalArmorDamage": 1.0,
                 "entityArmor": {
                     "1": {
@@ -426,9 +426,10 @@
                     }
                 },
                 "multipliers": {
-                    "head": 1.9,
-                    "chest": 1,
-                    "abdomen": 0.9
+                    "hand": 1.75,
+                    "arm": 1.75,
+                    "foot": 1.75,
+                    "leg": 1.75
                 }
             }
         }
@@ -759,7 +760,7 @@
                 }
             },
             "ACP CT": {
-                "globalDamage": 1.6,
+                "globalDamage": 1.0,
                 "globalArmorDamage": 1.0,
                 "entityArmor": {
                     "1": {
@@ -788,9 +789,10 @@
                     }
                 },
                 "multipliers": {
-                    "head": 1.9,
-                    "chest": 1,
-                    "abdomen": 0.9
+                    "hand": 1.6,
+                    "arm": 1.6,
+                    "foot": 1.6,
+                    "leg": 1.6
                 }
             },
             ".45 AP": {
@@ -935,13 +937,13 @@
                     }
                 },
                 "multipliers": {
-                    "head": 2.2,
+                    "head": 1.159,
                     "chest": 1,
-                    "hand": 0.35,
-                    "abdomen": 0.9,
-                    "arm": 0.35,
-                    "leg": 0.35,
-                    "foot": 0.35
+                    "hand": 0.875,
+                    "abdomen": 1,
+                    "arm": 0.875,
+                    "leg": 0.875,
+                    "foot": 0.875
                 }
             },
             "BT ST+": {
@@ -974,13 +976,13 @@
                     }
                 },
                 "multipliers": {
-                    "head": 2.2,
+                    "head": 1.159,
                     "chest": 1,
-                    "hand": 0.35,
-                    "abdomen": 1,
-                    "arm": 0.35,
-                    "leg": 0.35,
-                    "foot": 0.35
+                    "hand": 0.875,
+                    "abdomen": 1.111,
+                    "arm": 0.875,
+                    "leg": 0.875,
+                    "foot": 0.875
                 }
             },
             "BT+P": {

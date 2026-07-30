@@ -203,11 +203,8 @@ export class SimulateEngine {
         //计算伤害
         // 修复：bulletData 可能为 undefined
         let partMultiplier = 1.0;
-        if (bulletData.multipliers) {
-            partMultiplier = (bulletData.multipliers && bulletData.multipliers[hitPart]) ? bulletData.multipliers[hitPart] : weaponData.multiplier[hitPart];
-        } else {
-            partMultiplier = weaponData.multiplier[hitPart];
-        }
+        partMultiplier = (bulletData.multipliers && bulletData.multipliers[hitPart]) ? bulletData.multipliers[hitPart] * weaponData.multiplier[hitPart] : weaponData.multiplier[hitPart];
+        
         const partDamage = (weaponData.baseDamage * (bulletData?.globalDamage ?? 1.0) * partMultiplier) * decay;
         const effectiveArmorDamage = weaponData.armorDamage * (bulletData?.globalArmorDamage ?? 1);
         const headArmorDamage = (effectiveArmorDamage * (bulletData?.entityArmor?.[this.armorData.helmetLv]?.armorDamageFactor ?? 1)) * decay;

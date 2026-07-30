@@ -5,6 +5,7 @@ import { WeaponData } from "../data/WeaponData.js";
 import { LocalStorageUtil } from "../utils/LocalStorageUtil.js";
 import { Log } from "../utils/Log.js";
 import { BulletsTableUI } from "./BulletsTableUI.js";
+import { WeaponsTableUI, renderWeaponBaseCells } from "./WeaponsTableUI.js";
 import { getSupportedAmmoTypes } from "../data/WeaponData.js";
 
 export class UIHandle {
@@ -15,22 +16,57 @@ export class UIHandle {
     async init() {
         this.weaponDatas = await LocalStorageUtil.loadWeapons();
         this.bulletsData = getMergedBulletsData();
+        this.editingWeaponIndex = -1; // -1 表示添加新模式
         this.bindEventHandlers();
         this.showCaliberOptions();
         this.restoreHitPartWeights();
         this.addSegmentRow(0, 200, 1.0);
         this.refreshWeaponTable();
         this.bulletsTableUI = new BulletsTableUI('bullets-table-container');
+        this.weaponsTableUI = new WeaponsTableUI('weapons-management-container');
+        this.weaponsTableUI.setWeaponDatas(this.weaponDatas);
+        this.weaponsTableUI.setOnEditWeapon((weapon, index) => this.editWeapon(weapon, index));
+        this.weaponsTableUI.setOnWeaponListChanged(() => {
+            this.refreshWeaponTable();
+            this.saveWeaponsToStorage();
+            this.updateJsonEditorsIfVisible();
+        });
+        this.weaponsTableUI.render();
     }
 
     refreshWeaponTable() {
         const tbody = document.querySelector('#weapon_table tbody');
-        if (tbody) {
-            tbody.innerHTML = '';
-        }
-        this.weaponDatas.forEach(weaponData => {
-            this.showWeaponInTable(weaponData);
+        if (!tbody) return;
+
+        tbody.innerHTML = '';
+
+        // 按口径分组
+        const grouped = {};
+        this.weaponDatas.forEach(weapon => {
+            const caliber = weapon.caliber || '未分类';
+            if (!grouped[caliber]) grouped[caliber] = [];
+            grouped[caliber].push(weapon);
         });
+
+        const caliberKeys = Object.keys(grouped).sort();
+        caliberKeys.forEach(caliber => {
+            const weapons = grouped[caliber];
+            // 口径分组标题行
+            const headerRow = document.createElement('tr');
+            headerRow.className = 'caliber-group-row';
+            headerRow.innerHTML = `<td colspan="14" class="caliber-group-cell">${caliber}</td>`;
+            tbody.appendChild(headerRow);
+
+            weapons.forEach(weapon => {
+                this.showWeaponInTable(weapon);
+            });
+        });
+
+        // 同步更新武器管理表
+        if (this.weaponsTableUI) {
+            this.weaponsTableUI.setWeaponDatas(this.weaponDatas);
+            this.weaponsTableUI.render();
+        }
     }
 
     bindCalTTk() {
@@ -113,8 +149,14 @@ export class UIHandle {
                     return;
                 }
 
+                const newName = document.getElementById('newName').value.trim();
+                if (!newName) {
+                    alert('请输入武器名称');
+                    return;
+                }
+
                 const weaponData = new WeaponData({
-                    name: document.getElementById('newName').value,
+                    name: newName,
                     velocity: parseFloat(document.getElementById('newVelocity').value),
                     baseDamage: parseFloat(document.getElementById('newBaseDamage').value),
                     armorDamage: parseFloat(document.getElementById('newArmorDamage').value),
@@ -138,11 +180,151 @@ export class UIHandle {
                 });
                 weaponData.triggerDelay = parseFloat(document.getElementById('triggerDelay').value) || 0;
 
-                this.weaponDatas.push(weaponData);
-                this.showWeaponInTable(weaponData);
+                if (this.editingWeaponIndex >= 0) {
+                    // 编辑模式
+                    const oldWeapon = this.weaponDatas[this.editingWeaponIndex];
+                    const isNameChanged = oldWeapon.name !== newName;
+
+                    if (isNameChanged) {
+                        // 名称变了：保留旧武器，添加为新武器（重命名即新增）
+                        const existing = this.weaponDatas.find(w => w.name === newName);
+                        if (existing) {
+                            alert(`武器名 "${newName}" 已存在，请使用不同名称`);
+                            return;
+                        }
+                        this.weaponDatas.push(weaponData);
+                        Log.log(`编辑武器: 从 "${oldWeapon.name}" 重命名为 "${newName}"，已保存为新武器`);
+                    } else {
+                        // 名称没变：直接更新
+                        this.weaponDatas[this.editingWeaponIndex] = weaponData;
+                        Log.log(`更新武器: ${newName}`);
+                    }
+                } else {
+                    // 添加模式
+                    const existing = this.weaponDatas.find(w => w.name === newName);
+                    if (existing) {
+                        alert(`武器名 "${newName}" 已存在`);
+                        return;
+                    }
+                    this.weaponDatas.push(weaponData);
+                    Log.log('添加武器');
+                }
+
                 this.saveWeaponsToStorage();
+                this.clearEditMode();
+                this.refreshWeaponTable();
+                this.weaponsTableUI.setWeaponDatas(this.weaponDatas);
+                this.weaponsTableUI.render();
                 this.updateJsonEditorsIfVisible();
-                Log.log('添加武器');
+                Log.log('保存武器');
+            });
+        }
+    }
+
+    editWeapon(weapon, index) {
+        this.editingWeaponIndex = index;
+
+        // 填充表单
+        document.getElementById('newName').value = weapon.name || '';
+        document.getElementById('newVelocity').value = weapon.velocity || '';
+        document.getElementById('newBaseDamage').value = weapon.baseDamage || '';
+        document.getElementById('newArmorDamage').value = weapon.armorDamage || '';
+        document.getElementById('newRateOfFire').value = weapon.rof || '';
+        document.getElementById('triggerDelay').value = weapon.triggerDelay || '';
+
+        if (weapon.caliber) {
+            document.getElementById('caliberSelect').value = weapon.caliber;
+        }
+
+        // 连发设置
+        const isBurstCheckbox = document.getElementById('isBurst');
+        isBurstCheckbox.checked = weapon.isBurst || false;
+        isBurstCheckbox.dispatchEvent(new Event('change'));
+
+        if (weapon.isBurst) {
+            document.getElementById('burstCount').value = weapon.burstCount || '';
+            document.getElementById('burstRateOfFire').value = weapon.burstRateOfFire || '';
+            document.getElementById('burstInterval').value = weapon.burstInterval || '';
+        }
+
+        // 部位倍率
+        if (weapon.multiplier) {
+            const multMap = {
+                'multHead': 'head', 'multChest': 'chest', 'multHand': 'hand',
+                'multAbdomen': 'abdomen', 'multArm': 'arm', 'multLeg': 'leg', 'multFoot': 'foot'
+            };
+            Object.entries(multMap).forEach(([elId, part]) => {
+                const el = document.getElementById(elId);
+                if (el && weapon.multiplier[part] != null) {
+                    el.value = weapon.multiplier[part];
+                }
+            });
+        }
+
+        // 射程衰减
+        const decayTableBody = document.getElementById('decayTableBody');
+        if (decayTableBody) {
+            decayTableBody.innerHTML = '';
+            const ranges = weapon.range || weapon.ranges || [200];
+            const decays = weapon.decay || weapon.decays || [1.0];
+            ranges.forEach((end, i) => {
+                const start = i === 0 ? 0 : ranges[i - 1];
+                this.addSegmentRow(start, end, decays[i] || 1.0);
+            });
+        }
+
+        // 显示取消编辑按钮，修改按钮文字
+        document.getElementById('addNewWeaponBtn').textContent = '保存修改';
+        document.getElementById('cancelEditWeaponBtn').style.display = 'inline-block';
+
+        // 滚动到表单
+        document.getElementById('tab-add').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    clearEditMode() {
+        this.editingWeaponIndex = -1;
+        document.getElementById('addNewWeaponBtn').textContent = '添加武器';
+        document.getElementById('cancelEditWeaponBtn').style.display = 'none';
+        this.clearForm();
+    }
+
+    clearForm() {
+        document.getElementById('newName').value = '';
+        document.getElementById('newVelocity').value = '';
+        document.getElementById('newBaseDamage').value = '';
+        document.getElementById('newArmorDamage').value = '';
+        document.getElementById('newRateOfFire').value = '';
+        document.getElementById('triggerDelay').value = '';
+        document.getElementById('isBurst').checked = false;
+        document.getElementById('isBurst').dispatchEvent(new Event('change'));
+        document.getElementById('burstCount').value = '';
+        document.getElementById('burstRateOfFire').value = '';
+        document.getElementById('burstInterval').value = '';
+
+        // 重置部位倍率
+        document.getElementById('multHead').value = '1.9';
+        document.getElementById('multChest').value = '1.0';
+        document.getElementById('multHand').value = '0.4';
+        document.getElementById('multAbdomen').value = '0.9';
+        document.getElementById('multArm').value = '0.4';
+        document.getElementById('multLeg').value = '0.4';
+        document.getElementById('multFoot').value = '0.4';
+
+        // 重置射程衰减
+        const decayTableBody = document.getElementById('decayTableBody');
+        if (decayTableBody) {
+            decayTableBody.innerHTML = '';
+        }
+        this.addSegmentRow(0, 200, 1.0);
+    }
+
+    bindCancelEdit() {
+        const cancelBtn = document.getElementById('cancelEditWeaponBtn');
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', () => {
+                if (confirm('取消编辑将丢失未保存的更改，确认取消？')) {
+                    this.clearEditMode();
+                }
             });
         }
     }
@@ -215,6 +397,11 @@ export class UIHandle {
 
         if (tabId === 'tab-add') {
             this.showCaliberOptions();
+            // 刷新武器管理表格
+            if (this.weaponsTableUI) {
+                this.weaponsTableUI.setWeaponDatas(this.weaponDatas);
+                this.weaponsTableUI.render();
+            }
         }
         if (tabId === 'tab-data') {
             // Delay loading JSON editors to prevent UI blocking on large data
@@ -330,6 +517,7 @@ export class UIHandle {
         this.bindJsonEditors();
         this.bindToggleJsonEditors();
         this.bindResetToDefault();
+        this.bindCancelEdit();
     }
 
     bindHitPartWeightsPersistence() {
@@ -484,6 +672,11 @@ export class UIHandle {
             weaponData.armorDamagePerSecond = armorDamage * (rof / 60);
         });
         LocalStorageUtil.saveWeapons(this.weaponDatas);
+        // 同步更新武器管理表
+        if (this.weaponsTableUI) {
+            this.weaponsTableUI.setWeaponDatas(this.weaponDatas);
+            this.weaponsTableUI.render();
+        }
     }
 
     saveBulletsToStorage() {
@@ -714,8 +907,8 @@ export class UIHandle {
             return;
         }
 
-        const rangeDisplay = (Array.isArray(weaponData.range) && weaponData.range.length) ? weaponData.range.join('/') : ((Array.isArray(weaponData.ranges) && weaponData.ranges.length) ? weaponData.ranges.join('/') : '');
-        const decayDisplay = (Array.isArray(weaponData.decay) && weaponData.decay.length) ? weaponData.decay.join('/') : ((Array.isArray(weaponData.decays) && weaponData.decays.length) ? weaponData.decays.join('/') : '');
+        const { html: baseCells } = renderWeaponBaseCells(weaponData);
+
         // 根据口径获取支持的子弹类型
         let bulletList = getSupportedAmmoTypes(weaponData);
         let bulletOptions = bulletList.map(ammo => {
@@ -723,23 +916,23 @@ export class UIHandle {
             const selected = this.currentAmmoType?.toString() === value ? 'selected' : '';
             return `<option value="${value}" ${selected}>${value}</option>`;
         }).join('');
+
+        // 秒伤（模拟页专用）
+        const dpsBase = (weaponData.baseDamage * weaponData.rof / 60).toFixed(2);
+        const dpsArmor = (weaponData.armorDamage * weaponData.rof / 60).toFixed(2);
+
         const row = document.createElement('tr');
+        row.className = 'sim-weapon-row';
         row.innerHTML = `
             <td><input type="checkbox" class="select_current_weapon" ${weaponData.isSelected ? 'checked' : ''}></input></td>
-            <td>${weaponData.name}</td>
-            <td>${(weaponData.baseDamage * weaponData.rof / 60).toFixed(2)}</td>
-            <td>${(weaponData.armorDamage * weaponData.rof / 60).toFixed(2)}</td>
-            <td>${weaponData.rof || 0}</td>
-            <td>${rangeDisplay}</td>
-            <td>${decayDisplay}</td>
-            <td>${weaponData.baseDamage || 0}</td>
-            <td>${weaponData.armorDamage || 0}</td>
-            <td>${weaponData.velocity || 0}</td>
-            <td><select class="ammo-type-select" align="center">
+            ${baseCells}
+            <td style="font-size: 0.8rem; color: #475569;">${dpsBase}</td>
+            <td style="font-size: 0.8rem; color: #475569;">${dpsArmor}</td>
+            <td><select class="ammo-type-select" style="max-width: 85px; padding: 4px 6px; font-size: 0.8rem;">
                 ${bulletOptions}
                 <option value="global" ${weaponData.currentAmmoType === 'global' ? 'selected' : ''}>global</option>
             </select></td>
-            <td><button type="button" class="remove-weapon-btn">-</button></td>
+            <td><button type="button" class="remove-weapon-btn" style="width:24px;height:24px;font-size:16px;display:flex;align-items:center;justify-content:center;margin:0 auto;">-</button></td>
             `;
         tbody.appendChild(row);
 

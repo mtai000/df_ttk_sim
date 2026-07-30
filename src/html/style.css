@@ -177,7 +177,7 @@ button:active {
   width: 100%;
   border-collapse: collapse;
   background: white;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 #weapon_table thead tr {
@@ -190,20 +190,58 @@ button:active {
 }
 
 #weapon_table th {
-  padding: 16px 12px;
+  padding: 12px 8px;
   text-align: center;
   white-space: nowrap;
 }
 
 #weapon_table td {
   text-align: center;
-  padding: 14px 12px;
+  padding: 12px 8px;
   border-bottom: 1px solid #e2e8f0;
   color: #334155;
+  vertical-align: middle;
 }
 
-#weapon_table tbody tr:hover {
+#weapon_table tbody tr:not(.caliber-group-row):hover {
   background: #f1f5f9;
+}
+
+/* 口径分组标题行（第一页） */
+#weapon_table .caliber-group-row td {
+  padding: 0;
+  border-bottom: none;
+}
+#weapon_table .caliber-group-row:hover {
+  background: transparent;
+}
+.caliber-group-cell {
+  background: #eef2f6;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 10px 16px !important;
+  text-align: left !important;
+  border-bottom: 2px solid #cbd5e1 !important;
+  letter-spacing: 0.3px;
+}
+
+/* 第二页的口径分组 */
+.caliber-group {
+  margin-bottom: 20px;
+}
+.caliber-group:last-child {
+  margin-bottom: 0;
+}
+.caliber-group-header {
+  background: #eef2f6;
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 10px 16px;
+  margin: 0;
+  border-bottom: 2px solid #cbd5e1;
+  letter-spacing: 0.3px;
 }
 #decayTable{
   font-size: 14px;
@@ -534,5 +572,52 @@ textarea {
 }
 
 .bullets-table tbody tr:hover {
+  background: #f1f5f9;
+}
+
+/* 武器管理表格 */
+.weapons-table-ui {
+  margin-top: 20px;
+}
+
+.weapons-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.weapons-management-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  font-size: 0.85rem;
+}
+
+.weapons-management-table thead {
+  background: #1e293b;
+  color: white;
+}
+
+.weapons-management-table th {
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.weapons-management-table td {
+  padding: 12px 8px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.weapons-management-table tbody tr:hover {
   background: #f1f5f9;
 }

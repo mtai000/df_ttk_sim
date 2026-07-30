@@ -12,25 +12,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "range": [
-      45.5,
-      65,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.75
-    ],
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "hand": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    }
+    "range": [ 45.5, 65, 200 ],
+    "decay": [ 1, 0.85, 0.75 ],
+    "multiplier": { "head": 1.9, "chest": 1, "abdomen": 0.9, "arm": 0.4, "hand": 0.4, "leg": 0.4, "foot": 0.4 }
   },
   {
     "name": "P90长弓",
@@ -45,25 +29,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "range": [
-      35,
-      60,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.75
-    ],
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "hand": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    }
+    "range": [ 35, 60, 200 ],
+    "decay": [ 1, 0.85, 0.75 ],
+    "multiplier": { "head": 1.9, "chest": 1, "abdomen": 0.9, "arm": 0.4, "hand": 0.4, "leg": 0.4, "foot": 0.4 }
   },
   {
     "name": "mcx lt 焰魂",
@@ -78,25 +46,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.35,
-      "abdomen": 0.9,
-      "arm": 0.35,
-      "leg": 0.35,
-      "foot": 0.35
-    },
-    "range": [
-      30,
-      50,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.35, "abdomen": 0.9, "arm": 0.35, "leg": 0.35, "foot": 0.35 },
+    "range": [ 30, 50, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "k437长管",
@@ -111,25 +63,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      45.5,
-      78,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 45.5, 78, 200 ],
+    "decay": [ 1, 0.9, 0.7 ]
   },
   {
     "name": "k249长管",
@@ -144,25 +80,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 50,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      52,
-      91,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 52, 91, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "KC17长管",
@@ -177,25 +97,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      71.5,
-      121,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.8
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 71.5, 121, 200 ],
+    "decay": [ 1, 0.85, 0.8 ]
   },
   {
     "name": "AK12长管",
@@ -210,30 +114,14 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      52,
-      91,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.75
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.45, "abdomen": 0.9, "arm": 0.45, "leg": 0.45, "foot": 0.45 },
+    "range": [ 52, 91, 200 ],
+    "decay": [ 1, 0.9, 0.75 ]
   },
   {
     "name": "M7",
     "velocity": 630,
-    "baseDamage": 38,
+    "baseDamage": 37,
     "armorDamage": 40,
     "rof": 649,
     "caliber": "6.8x51mm",
@@ -243,58 +131,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 1,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      50,
-      70,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.8
-    ]
-  },
-  {
-    "name": "M7蓝管",
-    "velocity": 810,
-    "baseDamage": 38,
-    "armorDamage": 40,
-    "rof": 649,
-    "caliber": "6.8x51mm",
-    "isBurst": false,
-    "burstCount": 0,
-    "burstRateOfFire": 0,
-    "burstInterval": 0,
-    "currentAmmoType": "global",
-    "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 1,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      59,
-      83.3,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.8
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.35, "abdomen": 1, "arm": 0.35, "leg": 0.35, "foot": 0.35 },
+    "range": [ 50, 70, 200 ],
+    "decay": [ 1, 0.9, 0.8 ]
   },
   {
     "name": "M250",
@@ -310,25 +149,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 100,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      52,
-      91,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 52, 91, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "RM2770",
@@ -344,28 +167,12 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 1,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      84.15,
-      138.7,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.8
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 1, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 84.15, 138.7, 200 ],
+    "decay": [ 1, 0.9, 0.8 ]
   },
   {
-    "name": "M7堤风",
+    "name": "M7堤风_s9",
     "velocity": 893,
     "baseDamage": 40,
     "armorDamage": 42,
@@ -377,25 +184,26 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 1,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      65,
-      91,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.8
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 1, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 65, 91, 200 ],
+    "decay": [ 1, 0.9, 0.8 ]
+  },
+  {
+    "name": "M7堤风_s10",
+    "velocity": 893,
+    "baseDamage": 39,
+    "armorDamage": 42,
+    "rof": 649,
+    "caliber": "6.8x51mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.35, "abdomen": 1, "arm": 0.35, "leg": 0.35, "foot": 0.35 },
+    "range": [ 65, 91, 200 ],
+    "decay": [ 1, 0.9, 0.8 ]
   },
   {
     "name": "MK47",
@@ -410,25 +218,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      30,
-      45,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 30, 45, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "MK47短管",
@@ -443,25 +235,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      25,
-      40,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 25, 40, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "MK47长管",
@@ -476,25 +252,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      35,
-      50,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 35, 50, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "akm性能枪管",
@@ -509,25 +269,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.5,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      42,
-      74,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 2.5, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 42, 74, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "akm长枪管",
@@ -542,25 +286,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      52,
-      91,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 52, 91, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "M4A1加百列",
@@ -575,25 +303,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      52,
-      91,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 52, 91, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "M4A1特勤消音",
@@ -608,25 +320,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.5,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      47.2,
-      82.6,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 2.5, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 47.2, 82.6, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "SG552",
@@ -641,25 +337,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      41.3,
-      76.7,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.75
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 41.3, 76.7, 200 ],
+    "decay": [ 1, 0.85, 0.75 ]
   },
   {
     "name": "PTR32长枪管",
@@ -674,25 +354,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      52,
-      91,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 52, 91, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "G3长枪管",
@@ -707,25 +371,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      71.5,
-      117,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.8
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 71.5, 117, 200 ],
+    "decay": [ 1, 0.9, 0.8 ]
   },
   {
     "name": "AUG长枪管",
@@ -740,25 +388,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2,
-      "chest": 1.1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      71.5,
-      117,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.8
-    ]
+    "multiplier": { "head": 2, "chest": 1.1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 71.5, 117, 200 ],
+    "decay": [ 1, 0.9, 0.8 ]
   },
   {
     "name": "K416长枪管",
@@ -773,25 +405,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1.0,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      35.1,
-      71.5,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1.0, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 35.1, 71.5, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "AS VAL海啸",
@@ -806,25 +422,26 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1.0,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      27.3,
-      52,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.8
-    ]
+    "multiplier": { "head": 1.9, "chest": 1.0, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 27.3, 52, 200 ],
+    "decay": [ 1, 0.9, 0.8 ]
+  },
+  {
+    "name": "AS VAL海啸_S10",
+    "velocity": 425,
+    "baseDamage": 28,
+    "armorDamage": 44,
+    "rof": 972,
+    "caliber": "9x39mm",
+    "isBurst": false,
+    "burstCount": 0,
+    "burstRateOfFire": 0,
+    "burstInterval": 0,
+    "currentAmmoType": "global",
+    "triggerDelay": 0,
+    "multiplier": { "head": 1.9, "chest": 1.0, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 27.3, 52, 200 ],
+    "decay": [ 1, 0.9, 0.8 ]
   },
   {
     "name": "AS VAL刺客",
@@ -839,25 +456,9 @@
     "burstInterval": 140,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.7,
-      "chest": 1.0,
-      "hand": 0.6,
-      "abdomen": 1.0,
-      "arm": 0.6,
-      "leg": 0.6,
-      "foot": 0.6
-    },
-    "range": [
-      40,
-      60,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.75
-    ]
+    "multiplier": { "head": 1.7, "chest": 1.0, "hand": 0.6, "abdomen": 1.0, "arm": 0.6, "leg": 0.6, "foot": 0.6 },
+    "range": [ 40, 60, 200 ],
+    "decay": [ 1, 0.85, 0.75 ]
   },
   {
     "name": "SR3M",
@@ -872,25 +473,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1.0,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      17.7,
-      35.4,
-      200
-    ],
-    "decay": [
-      1,
-      0.75,
-      0.65
-    ]
+    "multiplier": { "head": 1.9, "chest": 1.0, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 17.7, 35.4, 200 ],
+    "decay": [ 1, 0.75, 0.65 ]
   },
   {
     "name": "MP7月影",
@@ -905,27 +490,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1.0,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      26,
-      35.1,
-      52,
-      200
-    ],
-    "decay": [
-      1,
-      0.75,
-      0.65,
-      0.55
-    ]
+    "multiplier": { "head": 1.9, "chest": 1.0, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 26, 35.1, 52, 200 ],
+    "decay": [ 1, 0.75, 0.65, 0.55 ]
   },
   {
     "name": "MP7格斗",
@@ -940,33 +507,15 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1.0,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      20,
-      27,
-      40,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.8,
-      0.55
-    ]
+    "multiplier": { "head": 1.9, "chest": 1.0, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 20, 27, 40, 200 ],
+    "decay": [ 1, 0.85, 0.8, 0.55 ]
   },
   {
     "name": "Mk4",
     "velocity": 673,
     "baseDamage": 34,
-    "armorDamage": 30,
+    "armorDamage": 35,
     "rof": 793,
     "caliber": "4.6x30mm",
     "isBurst": true,
@@ -975,33 +524,15 @@
     "burstInterval": 127,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.0,
-      "chest": 1.0,
-      "hand": 0.5,
-      "abdomen": 1.0,
-      "arm": 0.5,
-      "leg": 0.5,
-      "foot": 0.5
-    },
-    "range": [
-      26,
-      39,
-      52,
-      200
-    ],
-    "decay": [
-      1,
-      0.75,
-      0.65,
-      0.55
-    ]
+    "multiplier": { "head": 2.0, "chest": 1.0, "hand": 0.5, "abdomen": 1.0, "arm": 0.5, "leg": 0.5, "foot": 0.5 },
+    "range": [ 26, 39, 52, 200 ],
+    "decay": [ 1, 0.75, 0.65, 0.55 ]
   },
   {
     "name": "Mk4全自动",
     "velocity": 627,
-    "baseDamage": 32,
-    "armorDamage": 27,
+    "baseDamage": 34,
+    "armorDamage": 30,
     "rof": 872,
     "caliber": "4.6x30mm",
     "isBurst": false,
@@ -1010,27 +541,9 @@
     "burstInterval": 0,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1.0,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      25,
-      35,
-      45,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.65,
-      0.55
-    ]
+    "multiplier": { "head": 1.9, "chest": 1.0, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 25, 35, 45, 200 ],
+    "decay": [ 1, 0.85, 0.65, 0.55 ]
   },
   {
     "name": "腾龙高速",
@@ -1046,25 +559,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.1,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      45.5,
-      80.6,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.7
-    ]
+    "multiplier": { "head": 2.1, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 45.5, 80.6, 200 ],
+    "decay": [ 1, 0.9, 0.7 ]
   },
   {
     "name": "腾龙稳固",
@@ -1080,25 +577,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.1,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      45.5,
-      80.6,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.7
-    ]
+    "multiplier": { "head": 2.1, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 45.5, 80.6, 200 ],
+    "decay": [ 1, 0.9, 0.7 ]
   },
   {
     "name": "qbz95",
@@ -1114,25 +595,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.3,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      71.5,
-      117,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 2.3, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 71.5, 117, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "M249链锯",
@@ -1148,25 +613,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 50,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      40,
-      70,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 40, 70, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "M14洞察",
@@ -1182,25 +631,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      52,
-      91,
-      200
-    ],
-    "decay": [
-      1,
-      0.8,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 52, 91, 200 ],
+    "decay": [ 1, 0.8, 0.7 ]
   },
   {
     "name": "SCARH长管",
@@ -1216,25 +649,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      52,
-      91,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.75
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.5, "abdomen": 0.9, "arm": 0.5, "leg": 0.5, "foot": 0.5 },
+    "range": [ 52, 91, 200 ],
+    "decay": [ 1, 0.9, 0.75 ]
   },
   {
     "name": "ASH-12歼灭",
@@ -1250,25 +667,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.45,
-      "abdomen": 0.9,
-      "arm": 0.45,
-      "leg": 0.45,
-      "foot": 0.45
-    },
-    "range": [
-      71.5,
-      121,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.8
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.45, "abdomen": 0.9, "arm": 0.45, "leg": 0.45, "foot": 0.45 },
+    "range": [ 71.5, 121, 200 ],
+    "decay": [ 1, 0.9, 0.8 ]
   },
   {
     "name": "ASH-12战斧",
@@ -1284,25 +685,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.75,
-      "chest": 1,
-      "hand": 0.25,
-      "abdomen": 0.7,
-      "arm": 0.25,
-      "leg": 0.25,
-      "foot": 0.25
-    },
-    "range": [
-      71.5,
-      121,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.8
-    ]
+    "multiplier": { "head": 1.75, "chest": 1, "hand": 0.25, "abdomen": 0.7, "arm": 0.25, "leg": 0.25, "foot": 0.25 },
+    "range": [ 71.5, 121, 200 ],
+    "decay": [ 1, 0.9, 0.8 ]
   },
   {
     "name": "vector",
@@ -1318,29 +703,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      20,
-      27,
-      40,
-      55,
-      200
-    ],
-    "decay": [
-      1,
-      0.75,
-      0.65,
-      0.55,
-      0.45
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 20, 27, 40, 55, 200 ],
+    "decay": [ 1, 0.75, 0.65, 0.55, 0.45 ]
   },
   {
     "name": "svd",
@@ -1356,25 +721,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.32,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      70,
-      90,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.65
-    ]
+    "multiplier": { "head": 2.32, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 70, 90, 200 ],
+    "decay": [ 1, 0.9, 0.65 ]
   },
   {
     "name": "PKM",
@@ -1390,25 +739,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      40,
-      70,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 40, 70, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "svd长枪管",
@@ -1424,25 +757,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.32,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      91,
-      117,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.65
-    ]
+    "multiplier": { "head": 2.32, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 91, 117, 200 ],
+    "decay": [ 1, 0.9, 0.65 ]
   },
   {
     "name": "SKS长管",
@@ -1458,25 +775,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      72,
-      117,
-      200
-    ],
-    "decay": [
-      1,
-      0.9,
-      0.65
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 72, 117, 200 ],
+    "decay": [ 1, 0.9, 0.65 ]
   },
   {
     "name": "SR25短管",
@@ -1492,25 +793,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.1,
-      "chest": 1,
-      "hand": 0.5,
-      "abdomen": 1,
-      "arm": 0.5,
-      "leg": 0.5,
-      "foot": 0.5
-    },
-    "range": [
-      50,
-      80,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7
-    ]
+    "multiplier": { "head": 2.1, "chest": 1, "hand": 0.5, "abdomen": 1, "arm": 0.5, "leg": 0.5, "foot": 0.5 },
+    "range": [ 50, 80, 200 ],
+    "decay": [ 1, 0.85, 0.7 ]
   },
   {
     "name": "SR25超长",
@@ -1526,23 +811,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.1,
-      "chest": 1,
-      "hand": 0.5,
-      "abdomen": 1,
-      "arm": 0.5,
-      "leg": 0.5,
-      "foot": 0.5
-    },
-    "range": [
-      117,
-      200
-    ],
-    "decay": [
-      1,
-      0.85
-    ]
+    "multiplier": { "head": 2.1, "chest": 1, "hand": 0.5, "abdomen": 1, "arm": 0.5, "leg": 0.5, "foot": 0.5 },
+    "range": [ 117, 200 ],
+    "decay": [ 1, 0.85 ]
   },
   {
     "name": "PSB-1神射",
@@ -1558,23 +829,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.1,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      122,
-      200
-    ],
-    "decay": [
-      1,
-      0.85
-    ]
+    "multiplier": { "head": 2.1, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 122, 200 ],
+    "decay": [ 1, 0.85 ]
   },
   {
     "name": "93R",
@@ -1590,25 +847,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      22,
-      45,
-      200
-    ],
-    "decay": [
-      1,
-      0.8,
-      0.65
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 22, 45, 200 ],
+    "decay": [ 1, 0.8, 0.65 ]
   },
   {
     "name": "G18",
@@ -1624,27 +865,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      13,
-      26,
-      39,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.7,
-      0.6
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 13, 26, 39, 200 ],
+    "decay": [ 1, 0.85, 0.7, 0.6 ]
   },
   {
     "name": "沙鹰",
@@ -1660,25 +883,9 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 2.8,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      18,
-      35,
-      200
-    ],
-    "decay": [
-      1,
-      0.85,
-      0.6
-    ]
+    "multiplier": { "head": 2.8, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 18, 35, 200 ],
+    "decay": [ 1, 0.85, 0.6 ]
   },
   {
     "name": "SMG45",
@@ -1694,26 +901,8 @@
     "isSelected": false,
     "currentAmmoType": "global",
     "triggerDelay": 0,
-    "multiplier": {
-      "head": 1.9,
-      "chest": 1,
-      "hand": 0.4,
-      "abdomen": 0.9,
-      "arm": 0.4,
-      "leg": 0.4,
-      "foot": 0.4
-    },
-    "range": [
-      32,
-      65,
-      106,
-      200
-    ],
-    "decay": [
-      1,
-      0.75,
-      0.65,
-      0.55
-    ]
+    "multiplier": { "head": 1.9, "chest": 1, "hand": 0.4, "abdomen": 0.9, "arm": 0.4, "leg": 0.4, "foot": 0.4 },
+    "range": [ 32, 65, 106, 200 ],
+    "decay": [ 1, 0.75, 0.65, 0.55 ]
   }
 ]
