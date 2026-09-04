@@ -1,1046 +1,468 @@
 {
-    "default_bullets": {
-        "1": {
-            "globalDamage": 1.1,
-            "globalArmorDamage": 1.0,
-            "entityArmor": {
-                "1": {
-                    "armorDamageFactor": 0.6,
-                    "penetrate": 0.5
-                },
-                "2": {
-                    "armorDamageFactor": 0.6,
-                    "penetrate": 0.0
-                },
-                "3": {
-                    "armorDamageFactor": 0.4,
-                    "penetrate": 0.0
-                },
-                "4": {
-                    "armorDamageFactor": 0.3,
-                    "penetrate": 0.0
-                },
-                "5": {
-                    "armorDamageFactor": 0.2,
-                    "penetrate": 0.0
-                },
-                "6": {
-                    "armorDamageFactor": 0.2,
-                    "penetrate": 0.0
-                }
-            }
-        },
-        "2": {
-            "globalDamage": 1.1,
-            "globalArmorDamage": 1.0,
-            "entityArmor": {
-                "1": {
-                    "armorDamageFactor": 0.7,
-                    "penetrate": 0.75
-                },
-                "2": {
-                    "armorDamageFactor": 0.7,
-                    "penetrate": 0.5
-                },
-                "3": {
-                    "armorDamageFactor": 0.7,
-                    "penetrate": 0.0
-                },
-                "4": {
-                    "armorDamageFactor": 0.5,
-                    "penetrate": 0.0
-                },
-                "5": {
-                    "armorDamageFactor": 0.4,
-                    "penetrate": 0.0
-                },
-                "6": {
-                    "armorDamageFactor": 0.3,
-                    "penetrate": 0.0
-                }
-            }
-        },
-        "3": {
-            "globalDamage": 1.0,
-            "globalArmorDamage": 1.0,
-            "entityArmor": {
-                "1": {
-                    "armorDamageFactor": 0.9,
-                    "penetrate": 1.0
-                },
-                "2": {
-                    "armorDamageFactor": 0.9,
-                    "penetrate": 0.75
-                },
-                "3": {
-                    "armorDamageFactor": 0.9,
-                    "penetrate": 0.5
-                },
-                "4": {
-                    "armorDamageFactor": 0.9,
-                    "penetrate": 0.0
-                },
-                "5": {
-                    "armorDamageFactor": 0.5,
-                    "penetrate": 0.0
-                },
-                "6": {
-                    "armorDamageFactor": 0.4,
-                    "penetrate": 0.0
-                }
-            }
-        },
-        "4": {
-            "globalDamage": 1.0,
-            "globalArmorDamage": 1.0,
-            "entityArmor": {
-                "1": {
-                    "armorDamageFactor": 1.0,
-                    "penetrate": 1.0
-                },
-                "2": {
-                    "armorDamageFactor": 1.0,
-                    "penetrate": 1.0
-                },
-                "3": {
-                    "armorDamageFactor": 1.0,
-                    "penetrate": 0.75
-                },
-                "4": {
-                    "armorDamageFactor": 1.0,
-                    "penetrate": 0.5
-                },
-                "5": {
-                    "armorDamageFactor": 1.0,
-                    "penetrate": 0.0
-                },
-                "6": {
-                    "armorDamageFactor": 0.6,
-                    "penetrate": 0.0
-                }
-            }
-        },
-        "5": {
-            "globalDamage": 1.0,
-            "globalArmorDamage": 1.0,
-            "entityArmor": {
-                "1": {
-                    "armorDamageFactor": 1.1,
-                    "penetrate": 1.0
-                },
-                "2": {
-                    "armorDamageFactor": 1.1,
-                    "penetrate": 1.0
-                },
-                "3": {
-                    "armorDamageFactor": 1.1,
-                    "penetrate": 1.0
-                },
-                "4": {
-                    "armorDamageFactor": 1.1,
-                    "penetrate": 0.75
-                },
-                "5": {
-                    "armorDamageFactor": 1.1,
-                    "penetrate": 0.5
-                },
-                "6": {
-                    "armorDamageFactor": 1.1,
-                    "penetrate": 0.0
-                }
-            }
-        }
+  "default_bullets": {
+    "1": {
+      "globalDamage": 1.1,
+      "globalArmorDamage": 1,
+      "entityArmor": {
+        "1": { "armorDamageFactor": 0.6, "penetrate": 0.5 },
+        "2": { "armorDamageFactor": 0.6, "penetrate": 0 },
+        "3": { "armorDamageFactor": 0.4, "penetrate": 0 },
+        "4": { "armorDamageFactor": 0.3, "penetrate": 0 },
+        "5": { "armorDamageFactor": 0.2, "penetrate": 0 },
+        "6": { "armorDamageFactor": 0.2, "penetrate": 0 }
+      }
     },
-    "6.8x51mm": {
-        "available_bullets": [
-            "4",
-            "5"
-        ],
-        "special_bullets": {
-            "6": {
-                "globalDamage": 1.0,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.75
-                    },
-                    "6": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.5
-                    }
-                }
-            },
-            "PLY-I": {
-                "globalDamage": 1.0,
-                "globalArmorDamage": 0.9,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 0.9,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 0.9,
-                        "penetrate": 0.75
-                    },
-                    "3": {
-                        "armorDamageFactor": 0.9,
-                        "penetrate": 0.5
-                    },
-                    "4": {
-                        "armorDamageFactor": 0.9,
-                        "penetrate": 0.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 0.5,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.4,
-                        "penetrate": 0.0
-                    }
-                }
-            },
-            "PLY-II": {
-                "globalDamage": 1.0,
-                "globalArmorDamage": 0.9,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 1.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.75
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.5
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.6,
-                        "penetrate": 0.0
-                    }
-                }
-            },
-            "PLY-III": {
-                "globalDamage": 1.0,
-                "globalArmorDamage": 0.9,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.75
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.5
-                    },
-                    "6": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.0
-                    }
-                }
-            }
-        }
+    "2": {
+      "globalDamage": 1.1,
+      "globalArmorDamage": 1,
+      "entityArmor": {
+        "1": { "armorDamageFactor": 0.7, "penetrate": 0.75 },
+        "2": { "armorDamageFactor": 0.7, "penetrate": 0.5 },
+        "3": { "armorDamageFactor": 0.7, "penetrate": 0 },
+        "4": { "armorDamageFactor": 0.5, "penetrate": 0 },
+        "5": { "armorDamageFactor": 0.4, "penetrate": 0 },
+        "6": { "armorDamageFactor": 0.3, "penetrate": 0 }
+      }
     },
-    "7.62x51mm": {
-        "available_bullets": [
-            "2",
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {
-            "6": {
-                "globalDamage": 1.0,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 1.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 1.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 1.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 0.75
-                    },
-                    "6": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 0.5
-                    }
-                }
-            }
-        }
+    "3": {
+      "globalDamage": 1,
+      "globalArmorDamage": 1,
+      "entityArmor": {
+        "1": { "armorDamageFactor": 0.9, "penetrate": 1 },
+        "2": { "armorDamageFactor": 0.9, "penetrate": 0.75 },
+        "3": { "armorDamageFactor": 0.9, "penetrate": 0.5 },
+        "4": { "armorDamageFactor": 0.9, "penetrate": 0 },
+        "5": { "armorDamageFactor": 0.5, "penetrate": 0 },
+        "6": { "armorDamageFactor": 0.4, "penetrate": 0 }
+      }
     },
-    "12.7x55mm": {
-        "available_bullets": [
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {
-            "双头弹": {
-                "globalDamage": 1.32,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 1.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.75
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.5
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.4
-                    },
-                    "6": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.3
-                    }
-                }
-            }
-        }
+    "4": {
+      "globalDamage": 1,
+      "globalArmorDamage": 1,
+      "entityArmor": {
+        "1": { "armorDamageFactor": 1, "penetrate": 1 },
+        "2": { "armorDamageFactor": 1, "penetrate": 1 },
+        "3": { "armorDamageFactor": 1, "penetrate": 0.75 },
+        "4": { "armorDamageFactor": 1, "penetrate": 0.5 },
+        "5": { "armorDamageFactor": 1, "penetrate": 0 },
+        "6": { "armorDamageFactor": 0.6, "penetrate": 0 }
+      }
     },
-    "9x19mm": {
-        "available_bullets": [
-            "1",
-            "2",
-            "3",
-            "4"
-        ],
-        "special_bullets": {
-            "RIP": {
-                "globalDamage": 1.4,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 0.4,
-                        "penetrate": 0.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 0.3,
-                        "penetrate": 0.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    }
-                }
-            },
-            "CT": {
-                "globalDamage": 1.0,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 0.4,
-                        "penetrate": 0.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 0.3,
-                        "penetrate": 0.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    }
-                },
-                "multipliers": {
-                    "hand": 1.75,
-                    "arm": 1.75,
-                    "foot": 1.75,
-                    "leg": 1.75
-                }
-            }
-        }
-    },
-    "9x39mm": {
-        "available_bullets": [
-            "3",
-            "4",
-            "5"
-        ]
-    },
-    "7.62x54R": {
-        "available_bullets": [
-            "2",
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {
-            "6": {
-                "globalDamage": 1.0,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 1.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 1.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 1.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 0.75
-                    },
-                    "6": {
-                        "armorDamageFactor": 1.2,
-                        "penetrate": 0.5
-                    }
-                }
-            }
-        }
-    },
-    "7.62x39mm": {
-        "available_bullets": [
-            "2",
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {
-            "BP SUB": {
-                "globalDamage": 1.05,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 1.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.75
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.5
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.6,
-                        "penetrate": 0.0
-                    }
-                }
-            },
-            "AP SUB": {
-                "globalDamage": 1.05,
-                "globalArmorDamage": 0.95,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.75
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.5
-                    },
-                    "6": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.0
-                    }
-                }
-            }
-        }
-    },
-    "5.7x28mm": {
-        "available_bullets": [
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {
-            "1": {
-                "globalDamage": 1.2,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 0.6,
-                        "penetrate": 0.5
-                    },
-                    "2": {
-                        "armorDamageFactor": 0.6,
-                        "penetrate": 0.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 0.4,
-                        "penetrate": 0.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 0.3,
-                        "penetrate": 0.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    }
-                }
-            },
-            "2": {
-                "globalDamage": 1.2,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 0.7,
-                        "penetrate": 0.75
-                    },
-                    "2": {
-                        "armorDamageFactor": 0.7,
-                        "penetrate": 0.5
-                    },
-                    "3": {
-                        "armorDamageFactor": 0.7,
-                        "penetrate": 0.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 0.5,
-                        "penetrate": 0.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 0.4,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.3,
-                        "penetrate": 0.0
-                    }
-                }
-            },
-            "RIP": {
-                "globalDamage": 1.4,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 0.4,
-                        "penetrate": 0.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 0.3,
-                        "penetrate": 0.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    }
-                }
-            }
-        }
-    },
-    ".300": {
-        "name": ".300",
-        "available_bullets": [
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {
-            ".300 V SUB": {
-                "globalDamage": 1.05,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 0.9,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 0.9,
-                        "penetrate": 0.75
-                    },
-                    "3": {
-                        "armorDamageFactor": 0.9,
-                        "penetrate": 0.5
-                    },
-                    "4": {
-                        "armorDamageFactor": 0.9,
-                        "penetrate": 0.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 0.5,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.4,
-                        "penetrate": 0.0
-                    }
-                }
-            },
-            ".300 BCP SUB": {
-                "globalDamage": 1.05,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 1.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.75
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.5
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.0,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.6,
-                        "penetrate": 0.0
-                    }
-                }
-            }
-        }
-    },
-    ".45": {
-        "name": ".45",
-        "available_bullets": [
-            "1",
-            "2",
-            "3",
-            "4"
-        ],
-        "special_bullets": {
-            "RIP": {
-                "globalDamage": 1.35,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 0.4,
-                        "penetrate": 0.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 0.3,
-                        "penetrate": 0.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    }
-                }
-            },
-            "ACP CT": {
-                "globalDamage": 1.0,
-                "globalArmorDamage": 1.0,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 0.4,
-                        "penetrate": 0.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 0.3,
-                        "penetrate": 0.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "5": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.2,
-                        "penetrate": 0.0
-                    }
-                },
-                "multipliers": {
-                    "hand": 1.6,
-                    "arm": 1.6,
-                    "foot": 1.6,
-                    "leg": 1.6
-                }
-            },
-            ".45 AP": {
-                "globalDamage": 0.85,
-                "globalArmorDamage": 1.15,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1.0
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.75
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.5
-                    },
-                    "6": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.0
-                    }
-                }
-            }
-        }
-    },
-    "5.56x45mm": {
-        "available_bullets": [
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {
-            "M855 APC": {
-                "globalDamage": 1,
-                "globalArmorDamage": 1.3,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0.75
-                    },
-                    "2": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0.5
-                    },
-                    "3": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0
-                    },
-                    "4": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0
-                    },
-                    "5": {
-                        "armorDamageFactor": 0.6,
-                        "penetrate": 0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.5,
-                        "penetrate": 0
-                    }
-                }
-            },
-            "M855A1 APC+": {
-                "globalDamage": 1.1,
-                "globalArmorDamage": 1.15,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 1
-                    },
-                    "2": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 1
-                    },
-                    "3": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0.75
-                    },
-                    "4": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0.5
-                    },
-                    "5": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.7,
-                        "penetrate": 0
-                    }
-                }
-            }
-        }
-    },
-    "5.45x39mm": {
-        "available_bullets": [
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {
-            "BT ST": {
-                "globalDamage": 1,
-                "globalArmorDamage": 1,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 1
-                    },
-                    "2": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 1
-                    },
-                    "3": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0.75
-                    },
-                    "4": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0.5
-                    },
-                    "5": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.6,
-                        "penetrate": 0
-                    }
-                },
-                "multipliers": {
-                    "head": 1.159,
-                    "chest": 1,
-                    "hand": 0.875,
-                    "abdomen": 1,
-                    "arm": 0.875,
-                    "leg": 0.875,
-                    "foot": 0.875
-                }
-            },
-            "BT ST+": {
-                "globalDamage": 1,
-                "globalArmorDamage": 1,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1
-                    },
-                    "2": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1
-                    },
-                    "3": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 1
-                    },
-                    "4": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.75
-                    },
-                    "5": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0.5
-                    },
-                    "6": {
-                        "armorDamageFactor": 1.1,
-                        "penetrate": 0
-                    }
-                },
-                "multipliers": {
-                    "head": 1.159,
-                    "chest": 1,
-                    "hand": 0.875,
-                    "abdomen": 1.111,
-                    "arm": 0.875,
-                    "leg": 0.875,
-                    "foot": 0.875
-                }
-            },
-            "BT+P": {
-                "globalDamage": 1.1,
-                "globalArmorDamage": 1,
-                "entityArmor": {
-                    "1": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 1
-                    },
-                    "2": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 1
-                    },
-                    "3": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0.75
-                    },
-                    "4": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0.5
-                    },
-                    "5": {
-                        "armorDamageFactor": 1,
-                        "penetrate": 0
-                    },
-                    "6": {
-                        "armorDamageFactor": 0.6,
-                        "penetrate": 0
-                    }
-                }
-            }
-        }
-    },
-    "4.6x30mm": {
-        "available_bullets": [
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {}
-    },
-    "5.8x42mm": {
-        "available_bullets": [
-            "2",
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {}
-    },
-    ".50": {
-        "available_bullets": [
-            "2",
-            "3",
-            "4",
-            "5"
-        ],
-        "special_bullets": {}
+    "5": {
+      "globalDamage": 1,
+      "globalArmorDamage": 1,
+      "entityArmor": {
+        "1": { "armorDamageFactor": 1.1, "penetrate": 1 },
+        "2": { "armorDamageFactor": 1.1, "penetrate": 1 },
+        "3": { "armorDamageFactor": 1.1, "penetrate": 1 },
+        "4": { "armorDamageFactor": 1.1, "penetrate": 0.75 },
+        "5": { "armorDamageFactor": 1.1, "penetrate": 0.5 },
+        "6": { "armorDamageFactor": 1.1, "penetrate": 0 }
+      }
     }
+  },
+  "6.8x51mm": {
+    "available_bullets": [ "4", "5" ],
+    "special_bullets": {
+      "6": {
+        "globalDamage": 1,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "4": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "5": { "armorDamageFactor": 1.1, "penetrate": 0.75 },
+          "6": { "armorDamageFactor": 1.1, "penetrate": 0.5 }
+        }
+      },
+      "PLY-I": {
+        "globalDamage": 1,
+        "globalArmorDamage": 0.9,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 0.9, "penetrate": 1 },
+          "2": { "armorDamageFactor": 0.9, "penetrate": 0.75 },
+          "3": { "armorDamageFactor": 0.9, "penetrate": 0.5 },
+          "4": { "armorDamageFactor": 0.9, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.5, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.4, "penetrate": 0 }
+        }
+      },
+      "PLY-II": {
+        "globalDamage": 1,
+        "globalArmorDamage": 0.9,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1, "penetrate": 0.75 },
+          "4": { "armorDamageFactor": 1, "penetrate": 0.5 },
+          "5": { "armorDamageFactor": 1, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.6, "penetrate": 0 }
+        }
+      },
+      "PLY-III": {
+        "globalDamage": 1,
+        "globalArmorDamage": 0.9,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "4": { "armorDamageFactor": 1.1, "penetrate": 0.75 },
+          "5": { "armorDamageFactor": 1.1, "penetrate": 0.5 },
+          "6": { "armorDamageFactor": 1.1, "penetrate": 0 }
+        }
+      }
+    }
+  },
+  "7.62x51mm": {
+    "available_bullets": [ "2", "3", "4", "5" ],
+    "special_bullets": {
+      "6": {
+        "globalDamage": 1,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1.2, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1.2, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1.2, "penetrate": 1 },
+          "4": { "armorDamageFactor": 1.2, "penetrate": 1 },
+          "5": { "armorDamageFactor": 1.2, "penetrate": 0.75 },
+          "6": { "armorDamageFactor": 1.2, "penetrate": 0.5 }
+        }
+      }
+    }
+  },
+  "12.7x55mm": {
+    "available_bullets": [ "3", "4", "5" ],
+    "special_bullets": {
+      "双头弹": {
+        "globalDamage": 1.32,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1, "penetrate": 0.75 },
+          "4": { "armorDamageFactor": 1, "penetrate": 0.5 },
+          "5": { "armorDamageFactor": 1, "penetrate": 0.4 },
+          "6": { "armorDamageFactor": 1, "penetrate": 0.3 }
+        }
+      }
+    }
+  },
+  "9x19mm": {
+    "available_bullets": [ "1", "2", "3", "4" ],
+    "special_bullets": {
+      "RIP": {
+        "globalDamage": 1.4,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 0.4, "penetrate": 0 },
+          "2": { "armorDamageFactor": 0.3, "penetrate": 0 },
+          "3": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "4": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.2, "penetrate": 0 }
+        }
+      },
+      "CT": {
+        "globalDamage": 1.75,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 0.4, "penetrate": 0 },
+          "2": { "armorDamageFactor": 0.3, "penetrate": 0 },
+          "3": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "4": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.2, "penetrate": 0 }
+        },
+        "multipliers": { "head": 1.9, "chest": 1, "abdomen": 0.9 }
+      }
+    }
+  },
+  "9x39mm": {
+    "available_bullets": [ "3", "4", "5" ]
+  },
+  "7.62x54R": {
+    "available_bullets": [ "2", "3", "4", "5" ],
+    "special_bullets": {
+      "6": {
+        "globalDamage": 1,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1.2, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1.2, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1.2, "penetrate": 1 },
+          "4": { "armorDamageFactor": 1.2, "penetrate": 1 },
+          "5": { "armorDamageFactor": 1.2, "penetrate": 0.75 },
+          "6": { "armorDamageFactor": 1.2, "penetrate": 0.5 }
+        }
+      }
+    }
+  },
+  "7.62x39mm": {
+    "available_bullets": [ "2", "3", "4", "5" ],
+    "special_bullets": {
+      "BP SUB": {
+        "globalDamage": 1.05,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1, "penetrate": 0.75 },
+          "4": { "armorDamageFactor": 1, "penetrate": 0.5 },
+          "5": { "armorDamageFactor": 1, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.6, "penetrate": 0 }
+        }
+      },
+      "AP SUB": {
+        "globalDamage": 1.05,
+        "globalArmorDamage": 0.95,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "4": { "armorDamageFactor": 1.1, "penetrate": 0.75 },
+          "5": { "armorDamageFactor": 1.1, "penetrate": 0.5 },
+          "6": { "armorDamageFactor": 1.1, "penetrate": 0 }
+        }
+      }
+    }
+  },
+  "5.7x28mm": {
+    "available_bullets": [ "3", "4", "5" ],
+    "special_bullets": {
+      "1": {
+        "globalDamage": 1.2,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 0.6, "penetrate": 0.5 },
+          "2": { "armorDamageFactor": 0.6, "penetrate": 0 },
+          "3": { "armorDamageFactor": 0.4, "penetrate": 0 },
+          "4": { "armorDamageFactor": 0.3, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.2, "penetrate": 0 }
+        }
+      },
+      "2": {
+        "globalDamage": 1.2,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 0.7, "penetrate": 0.75 },
+          "2": { "armorDamageFactor": 0.7, "penetrate": 0.5 },
+          "3": { "armorDamageFactor": 0.7, "penetrate": 0 },
+          "4": { "armorDamageFactor": 0.5, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.4, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.3, "penetrate": 0 }
+        }
+      },
+      "RIP": {
+        "globalDamage": 1.4,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 0.4, "penetrate": 0 },
+          "2": { "armorDamageFactor": 0.3, "penetrate": 0 },
+          "3": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "4": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.2, "penetrate": 0 }
+        }
+      }
+    }
+  },
+  ".300": {
+    "name": ".300",
+    "available_bullets": [ "3", "4", "5" ],
+    "special_bullets": {
+      ".300 V SUB": {
+        "globalDamage": 1.05,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 0.9, "penetrate": 1 },
+          "2": { "armorDamageFactor": 0.9, "penetrate": 0.75 },
+          "3": { "armorDamageFactor": 0.9, "penetrate": 0.5 },
+          "4": { "armorDamageFactor": 0.9, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.5, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.4, "penetrate": 0 }
+        }
+      },
+      ".300 BCP SUB": {
+        "globalDamage": 1.05,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1, "penetrate": 0.75 },
+          "4": { "armorDamageFactor": 1, "penetrate": 0.5 },
+          "5": { "armorDamageFactor": 1, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.6, "penetrate": 0 }
+        }
+      }
+    }
+  },
+  ".45": {
+    "name": ".45",
+    "available_bullets": [ "1", "2", "3", "4" ],
+    "special_bullets": {
+      "RIP": {
+        "globalDamage": 1.35,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 0.4, "penetrate": 0 },
+          "2": { "armorDamageFactor": 0.3, "penetrate": 0 },
+          "3": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "4": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.2, "penetrate": 0 }
+        }
+      },
+      "ACP CT": {
+        "globalDamage": 1,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 0.4, "penetrate": 0 },
+          "2": { "armorDamageFactor": 0.3, "penetrate": 0 },
+          "3": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "4": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.2, "penetrate": 0 }
+        },
+        "multipliers": { "hand": 1.6, "arm": 1.6, "leg": 1.6, "foot": 1.6 }
+      },
+      ".45 AP": {
+        "globalDamage": 0.85,
+        "globalArmorDamage": 1.0,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "4": { "armorDamageFactor": 1.1, "penetrate": 0.75 },
+          "5": { "armorDamageFactor": 1.1, "penetrate": 0.5 },
+          "6": { "armorDamageFactor": 1.1, "penetrate": 0 }
+        }
+      }
+    }
+  },
+  "5.56x45mm": {
+    "available_bullets": [ "1", "2", "3", "4", "5" ],
+    "special_bullets": {
+      "M855 APC": {
+        "globalDamage": 1,
+        "globalArmorDamage": 1.3,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1, "penetrate": 0.75 },
+          "2": { "armorDamageFactor": 1, "penetrate": 0.5 },
+          "3": { "armorDamageFactor": 1, "penetrate": 0 },
+          "4": { "armorDamageFactor": 1, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.6, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.5, "penetrate": 0 }
+        }
+      },
+      "M855A1 APC+": {
+        "globalDamage": 1.1,
+        "globalArmorDamage": 1.15,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1, "penetrate": 0.75 },
+          "4": { "armorDamageFactor": 1, "penetrate": 0.5 },
+          "5": { "armorDamageFactor": 1, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.7, "penetrate": 0 }
+        }
+      }
+    }
+  },
+  "5.45x39mm": {
+    "available_bullets": [ "1", "2", "3", "4", "5" ],
+    "special_bullets": {
+      "BT ST": {
+        "globalDamage": 1,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1, "penetrate": 0.75 },
+          "4": { "armorDamageFactor": 1, "penetrate": 0.5 },
+          "5": { "armorDamageFactor": 1, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.6, "penetrate": 0 }
+        },
+        "multipliers": { "head": 2.2, "chest": 1, "hand": 0.35, "abdomen": 0.9, "arm": 0.35, "leg": 0.35, "foot": 0.35 }
+      },
+      "BT ST+": {
+        "globalDamage": 1,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "4": { "armorDamageFactor": 1.1, "penetrate": 0.75 },
+          "5": { "armorDamageFactor": 1.1, "penetrate": 0.5 },
+          "6": { "armorDamageFactor": 1.1, "penetrate": 0 }
+        },
+        "multipliers": { "head": 2.2, "chest": 1, "hand": 0.35, "abdomen": 1, "arm": 0.35, "leg": 0.35, "foot": 0.35 }
+      },
+      "BT+P": {
+        "globalDamage": 1.1,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1, "penetrate": 0.75 },
+          "4": { "armorDamageFactor": 1, "penetrate": 0.5 },
+          "5": { "armorDamageFactor": 1, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.6, "penetrate": 0 }
+        }
+      }
+    }
+  },
+  "4.6x30mm": {
+    "available_bullets": [ "3", "4", "5" ],
+    "special_bullets": {
+      "CT": {
+        "globalDamage": 1,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 0.4, "penetrate": 0 },
+          "2": { "armorDamageFactor": 0.3, "penetrate": 0 },
+          "3": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "4": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "5": { "armorDamageFactor": 0.2, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.2, "penetrate": 0 }
+        },
+        "multipliers": { "hand": 1.85, "arm": 1.85, "leg": 1.85, "foot": 1.85 }
+      },
+      "AP ST": {
+        "globalDamage": 1,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1.1, "penetrate": 1 },
+          "4": { "armorDamageFactor": 1.1, "penetrate": 0.75 },
+          "5": { "armorDamageFactor": 1.1, "penetrate": 0.5 },
+          "6": { "armorDamageFactor": 1.1, "penetrate": 0 }
+        },
+        "multipliers": { "head": 1.25, "chest": 1.25, "hand": 0.9, "abdomen": 0.9, "arm": 0.9, "leg": 0.9, "foot": 0.9 }
+      },
+      "FMJ ST": {
+        "globalDamage": 1,
+        "globalArmorDamage": 1,
+        "entityArmor": {
+          "1": { "armorDamageFactor": 1, "penetrate": 1 },
+          "2": { "armorDamageFactor": 1, "penetrate": 1 },
+          "3": { "armorDamageFactor": 1, "penetrate": 0.75 },
+          "4": { "armorDamageFactor": 1, "penetrate": 0.5 },
+          "5": { "armorDamageFactor": 1, "penetrate": 0 },
+          "6": { "armorDamageFactor": 0.6, "penetrate": 0 }
+        },
+        "multipliers": { "head": 1.25, "chest": 1.25, "hand": 0.9, "abdomen": 0.9, "arm": 0.9, "leg": 0.9, "foot": 0.9 }
+      }
+    }
+  },
+  "5.8x42mm": {
+    "available_bullets": [ "2", "3", "4", "5" ],
+    "special_bullets": {  }
+  },
+  ".50": {
+    "available_bullets": [ "2", "3", "4", "5" ],
+    "special_bullets": {  }
+  }
 }

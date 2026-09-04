@@ -18,6 +18,7 @@ export class BulletsTableUI {
                                 <th>全局甲伤系数</th>
                                 <th>对不同护甲的甲伤系数</th>
                                 <th>对不同护甲的穿透系数</th>
+                                <th>部位倍率</th>
                                 <th>操作</th>
                             </tr>
                         </thead>`;
@@ -51,6 +52,23 @@ export class BulletsTableUI {
             option.textContent = caliber;
             caliberSelect.appendChild(option);
         });
+    }
+
+    formatMultiplier(val) {
+        if (val === undefined || val === null || val === '') return 1;
+        return val;
+    }
+
+    formatMultipliers(bulletData) {
+        const m = (bulletData && bulletData.multipliers) || {};
+        const head = this.formatMultiplier(m.head);
+        const chest = this.formatMultiplier(m.chest);
+        const abdomen = this.formatMultiplier(m.abdomen);
+        const hand = this.formatMultiplier(m.hand);
+        const arm = this.formatMultiplier(m.arm);
+        const leg = this.formatMultiplier(m.leg);
+        const foot = this.formatMultiplier(m.foot);
+        return `${head}/${chest}/${abdomen}/${hand}/${arm}/${leg}/${foot}`;
     }
 
     render() {
@@ -124,6 +142,7 @@ export class BulletsTableUI {
                     </td>
                     <td>${armorDamageArray.join('/')}</td>
                     <td>${penetrateArray.join('/')}</td>
+                    <td>${this.formatMultipliers(bulletData)}</td>
                     <td>
                         <button class="btn btn-sm btn-load" data-bullet-id="${bulletId}" data-caliber="default_bullets" data-type="default">读取</button>
                     </td>
@@ -179,6 +198,7 @@ export class BulletsTableUI {
                     </td>
                     <td>${armorDamageArray.join('/')}</td>
                     <td>${penetrateArray.join('/')}</td>
+                    <td>${this.formatMultipliers(bulletData)}</td>
                     <td>
                     </td>
                 </tr>
@@ -211,6 +231,7 @@ export class BulletsTableUI {
                     </td>
                     <td>${armorDamageArray.join('/')}</td>
                     <td>${penetrateArray.join('/')}</td>
+                    <td>${this.formatMultipliers(bulletData)}</td>
                     <td>
                         <button class="btn btn-sm btn-edit" data-bullet-id="${bulletName}" data-caliber="${caliber}" data-type="special">编辑</button>
                         <button class="btn btn-sm btn-delete" data-bullet-id="${bulletName}" data-caliber="${caliber}" data-type="special">删除</button>
@@ -316,8 +337,8 @@ export class BulletsTableUI {
         if (bulletData.multipliers) {
             document.getElementById('bulletMultHead').value = bulletData.multipliers?.head;
             document.getElementById('bulletMultChest').value = bulletData.multipliers?.chest;
-            document.getElementById('bulletMultHand').value = bulletData.multipliers?.hand;
             document.getElementById('bulletMultAbdomen').value = bulletData.multipliers?.abdomen;
+            document.getElementById('bulletMultHand').value = bulletData.multipliers?.hand;
             document.getElementById('bulletMultArm').value = bulletData.multipliers?.arm;
             document.getElementById('bulletMultLeg').value = bulletData.multipliers?.leg;
             document.getElementById('bulletMultFoot').value = bulletData.multipliers?.foot;
