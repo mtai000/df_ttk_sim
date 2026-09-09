@@ -58,4 +58,12 @@ export class DOMControl {
     static getSimaulteCountFromUI(){
         return parseInt(document.getElementById('simulate_count').value)||1000;
     }
+
+    static getEnemyReactionAvgFromUI(){
+        return parseFloat(document.getElementById('enemy_reaction_avg').value) || 350;
+    }
+
+    static getEnemyReactionJitterFromUI(){
+        return parseFloat(document.getElementById('enemy_reaction_jitter').value) || 40;
+    }
 }

@@ -701,7 +701,7 @@
     "burstRateOfFire": 0,
     "burstInterval": 0,
     "isSelected": false,
-    "currentAmmoType": "4",
+    "currentAmmoType": "global",
     "triggerDelay": 0,
     "multiplier": { "head": 1.9, "chest": 1, "hand": 0.35, "abdomen": 1, "arm": 0.35, "leg": 0.35, "foot": 0.35 },
     "range": [ 23.4, 39, 58.5, 200 ],

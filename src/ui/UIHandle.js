@@ -7,6 +7,9 @@ import { Log } from "../utils/Log.js";
 import { BulletsTableUI } from "./BulletsTableUI.js";
 import { WeaponsTableUI, renderWeaponBaseCells } from "./WeaponsTableUI.js";
 import { getSupportedAmmoTypes } from "../data/WeaponData.js";
+import { ArmorPresetsUI } from "./ArmorPresetsUI.js";
+import { runAndRenderRandomArmor } from "./RandomArmorChart.js";
+import { runAndRenderRandomArmorDistance } from "./RandomArmorDistanceChart.js";
 
 export class UIHandle {
     constructor() {
@@ -24,6 +27,7 @@ export class UIHandle {
         this.refreshWeaponTable();
         this.bulletsTableUI = new BulletsTableUI('bullets-table-container');
         this.weaponsTableUI = new WeaponsTableUI('weapons-management-container');
+        this.armorPresetsUI = new ArmorPresetsUI('armor-presets-container');
         this.weaponsTableUI.setWeaponDatas(this.weaponDatas);
         this.weaponsTableUI.setOnEditWeapon((weapon, index) => this.editWeapon(weapon, index));
         this.weaponsTableUI.setOnWeaponListChanged(() => {
@@ -32,6 +36,12 @@ export class UIHandle {
             this.updateJsonEditorsIfVisible();
         });
         this.weaponsTableUI.render();
+        if (this.armorPresetsUI) {
+            this.armorPresetsUI.render();
+            if (this.armorPresetsUI.bindEvents) this.armorPresetsUI.bindEvents();
+        }
+        // expose for other modules to call helper methods (e.g., refresh preset dropdown)
+        window.UI = this;
     }
 
     refreshWeaponTable() {
@@ -518,6 +528,37 @@ export class UIHandle {
         this.bindToggleJsonEditors();
         this.bindResetToDefault();
         this.bindCancelEdit();
+        this.showArmorPresetOptions();
+        this.bindRandomArmorSim();
+        this.bindRandomArmorDistanceSim();
+    }
+
+    bindRandomArmorSim() {
+        const btn = document.getElementById('button_cal_ttk_random_armor');
+        if (!btn) return;
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+            const selectedWeapons = this.weaponDatas.filter(w => w.isSelected);
+            if (selectedWeapons.length === 0) {
+                alert('请至少选择一把武器');
+                return;
+            }
+            runAndRenderRandomArmor(selectedWeapons, DOMControl.getDistanceFromUI(), DOMControl.getHitChanceFromUI());
+        });
+    }
+
+    bindRandomArmorDistanceSim() {
+        const btn = document.getElementById('button_random_armor_distance');
+        if (!btn) return;
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+            const selectedWeapons = this.weaponDatas.filter(w => w.isSelected);
+            if (selectedWeapons.length === 0) {
+                alert('请至少选择一把武器');
+                return;
+            }
+            runAndRenderRandomArmorDistance(selectedWeapons, DOMControl.getHitChanceFromUI());
+        });
     }
 
     bindHitPartWeightsPersistence() {
@@ -835,6 +876,35 @@ export class UIHandle {
     bindResetToDefault() {
         this.bindResetWeapons();
         this.bindResetBullets();
+    }
+
+    
+
+    showArmorPresetOptions() {
+        const sel = document.getElementById('armorPresetSelect');
+        if (!sel) return;
+        while (sel.options.length > 1) sel.remove(1);
+        const presets = LocalStorageUtil.loadArmorPresets();
+        Object.keys(presets).sort().forEach(name => {
+            const opt = document.createElement('option');
+            opt.value = name;
+            opt.textContent = name;
+            sel.appendChild(opt);
+        });
+        // 当选择发生变化时立即应用预设
+        sel.onchange = () => {
+            const name = sel.value;
+            if (!name) return;
+            const presetsNow = LocalStorageUtil.loadArmorPresets();
+            const p = presetsNow[name];
+            if (!p) return;
+            document.getElementById('helmet_lv').value = p.helmetLv;
+            document.getElementById('helmet_point').value = p.helmetPoint;
+            document.getElementById('armor_lv').value = p.armorLv;
+            document.getElementById('armor_point').value = p.armorPoint;
+            document.getElementById('is_protect_abdomen').checked = !!p.isProtectAbdomen;
+            document.getElementById('is_protect_arms').checked = !!p.isProtectArms;
+        };
     }
 
     showEditableBulletRow(bulletName, bulletData) {

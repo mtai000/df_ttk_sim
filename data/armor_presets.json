@@ -1,0 +1,73 @@
+{
+  "3听_机甲": {
+    "helmetLv": 3,
+    "helmetPoint": 35,
+    "armorLv": 4,
+    "armorPoint": 55,
+    "isProtectAbdomen": true,
+    "isProtectArms": false,
+    "weight": 8
+  },
+  "4听_mk2": {
+    "helmetLv": 4,
+    "helmetPoint": 35,
+    "armorLv": 4,
+    "armorPoint": 110,
+    "isProtectAbdomen": true,
+    "isProtectArms": false,
+    "weight": 8
+  },
+  "4耐_mk2": {
+    "helmetLv": 4,
+    "helmetPoint": 48,
+    "armorLv": 4,
+    "armorPoint": 110,
+    "isProtectAbdomen": true,
+    "isProtectArms": false,
+    "weight": 8
+  },
+  "4听_精英防弹背心": {
+    "helmetLv": 4,
+    "helmetPoint": 35,
+    "armorLv": 5,
+    "armorPoint": 95,
+    "isProtectAbdomen": true,
+    "isProtectArms": false,
+    "weight": 8
+  },
+  "5听_精英防弹背心": {
+    "helmetLv": 4,
+    "helmetPoint": 35,
+    "armorLv": 5,
+    "armorPoint": 95,
+    "isProtectAbdomen": true,
+    "isProtectArms": false,
+    "weight": 3
+  },
+  "GN_重突": {
+    "helmetLv": 5,
+    "helmetPoint": 40,
+    "armorLv": 5,
+    "armorPoint": 125,
+    "isProtectAbdomen": true,
+    "isProtectArms": true,
+    "weight": 2
+  },
+  "5听_FS": {
+    "helmetLv": 5,
+    "helmetPoint": 40,
+    "armorLv": 5,
+    "armorPoint": 105,
+    "isProtectAbdomen": true,
+    "isProtectArms": false,
+    "weight": 4
+  },
+  "6听_特里克": {
+    "helmetLv": 6,
+    "helmetPoint": 50,
+    "armorLv": 6,
+    "armorPoint": 125,
+    "isProtectArms": false,
+    "isProtectAbdomen": true
+  }
+}

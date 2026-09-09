@@ -1,8 +1,10 @@
 import { Log } from './Log.js';
 import bulletsJson from "../../data/bullets.json";
+import armorPresetsJson from "../../data/armor_presets.json";
 export class LocalStorageUtil {
     static STORAGE_KEY = 'df_ttk_sim_weapons';
     static BULLETS_STORAGE_KEY = 'df_ttk_sim_bullets';
+    static ARMOR_PRESETS_KEY = 'df_ttk_sim_armor_presets';
     static HIT_PART_WEIGHTS_KEY = 'df_ttk_sim_hit_part_weights';
     static HIT_PART_KEYS = ['head', 'chest', 'abdomen', 'arm', 'hand', 'leg', 'foot'];
     static initialize() {
@@ -69,6 +71,98 @@ export class LocalStorageUtil {
             console.log('成功保存子弹数据:', bullets);
         } catch (error) {
             console.error('保存子弹数据时发生错误:', error);
+        }
+    }
+
+    // ============= 护甲预设相关 =============
+    static loadArmorPresets() {
+        const stored = localStorage.getItem(this.ARMOR_PRESETS_KEY);
+        if (!stored) {
+            Log.log('没有找到存储的护甲预设，使用 data/armor_presets.json');
+            return armorPresetsJson || {};
+        }
+        try {
+            const presets = JSON.parse(stored);
+            if (presets && typeof presets === 'object') return presets;
+            return armorPresetsJson || {};
+        } catch (error) {
+            console.error('解析存储的护甲预设时发生错误:', error);
+            return armorPresetsJson || {};
+        }
+    }
+
+    static saveArmorPresets(presets) {
+        try {
+            const json = JSON.stringify(presets);
+            localStorage.setItem(this.ARMOR_PRESETS_KEY, json);
+            console.log('成功保存护甲预设:', presets);
+        } catch (error) {
+            console.error('保存护甲预设时发生错误:', error);
+        }
+    }
+
+    static addArmorPreset(name, preset) {
+        const presets = this.loadArmorPresets();
+        presets[name] = preset;
+        this.saveArmorPresets(presets);
+    }
+
+    static removeArmorPreset(name) {
+        const presets = this.loadArmorPresets();
+        if (presets.hasOwnProperty(name)) {
+            delete presets[name];
+            this.saveArmorPresets(presets);
+        }
+    }
+
+    static exportArmorPresets() {
+        const presets = this.loadArmorPresets();
+        const jsonStr = JSON.stringify(presets, null, 2);
+        const blob = new Blob([jsonStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `armor_presets_${new Date().toISOString().slice(0,10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    static importArmorPresets() {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'application/json';
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (imported && typeof imported === 'object') {
+                        this.saveArmorPresets(imported);
+                        window.location.reload();
+                    } else {
+                        console.error('导入的护甲预设格式不正确');
+                    }
+                } catch (err) {
+                    console.error('解析导入护甲预设时发生错误:', err);
+                }
+            };
+            reader.readAsText(file);
+        });
+        fileInput.click();
+    }
+
+    static getDefaultArmorPresets() {
+        return armorPresetsJson || {};
+    }
+
+    static resetArmorPresetsToDefault() {
+        try {
+            this.saveArmorPresets(this.getDefaultArmorPresets());
+            console.log('已重置护甲预设为 data/armor_presets.json');
+        } catch (err) {
+            console.error('重置护甲预设失败:', err);
         }
     }
 

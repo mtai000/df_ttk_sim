@@ -2,6 +2,7 @@ import { BulletsData, getMergedBulletsData } from "../data/BulletsData.js";
 import { DOMControl, ArmorData } from "../data/DomControl.js";
 import { ConstConfig } from "../data/ConstConfig.js"
 import { Log } from "../utils/Log.js";
+import { LocalStorageUtil } from "../utils/LocalStorageUtil.js";
 import { Prng } from "../utils/Rng.js";
 import { TTKChart } from "../ui/TTKChart.js";
 import { DistanceChart } from "../ui/DistanceChart.js";
@@ -98,6 +99,121 @@ export class SimulateEngine {
         Log.log(`完成用间:${endTime - startTime}`);
         Log.saveDetailLogToTempFile();
         DistanceChart.showResultsInDistanceChart();
+    }
+
+    // 依据护甲预设按权重随机抽样并运行多次模拟（用于平均 TTK 分析）
+    runMultipleSimulationsWithRandomArmor(distance, hitChance) {
+        Log.startDetailLogSession();
+        const startTime = Date.now();
+        Log.log_detail(`开始随机护甲击杀概率模拟时间:${startTime}`);
+
+        const presets = LocalStorageUtil.loadArmorPresets();
+        const presetNames = Object.keys(presets);
+        if (presetNames.length === 0) {
+            Log.log('没有可用的护甲预设，跳过随机护甲模拟');
+            return;
+        }
+
+        // 计算权重数组
+        const weights = presetNames.map(n => Number(presets[n].weight) || 1);
+        const totalWeight = weights.reduce((s, w) => s + w, 0);
+
+        const baseCount = DOMControl.getSimaulteCountFromUI() || 1000;
+        const simCount = baseCount; // 增加次数以降低随机误差
+
+        // 概率统计：武器名 -> 成功次数
+        const successCounts = new Map();
+        this.weaponDatas.forEach(weaponData => {
+            successCounts.set(weaponData.name, 0);
+        });
+
+        // 以武器为主循环：对每把武器重置随机种子，然后运行 simCount 次抽样
+        this.weaponDatas.forEach(weaponData => {
+            if (!weaponData.isSelected) return;
+            // 在武器循环层重置随机数种子（保证不同武器之间的可比性）
+            this.rng.resetSeed();
+
+            for (let sim = 0; sim < simCount; sim++) {
+                // 根据权重抽选一个预设名称
+                const r = this.rng.getRandomNumber() * totalWeight;
+                let acc = 0;
+                let chosenName = presetNames[0];
+                for (let i = 0; i < presetNames.length; i++) {
+                    acc += weights[i];
+                    if (r <= acc) { chosenName = presetNames[i]; break; }
+                }
+                const p = presets[chosenName];
+
+                // 随机采样敌人的反应时间
+                const avg = DOMControl.getEnemyReactionAvgFromUI();
+                const jitter = DOMControl.getEnemyReactionJitterFromUI();
+                const reactionRandom = (this.rng.getRandomNumber() * 2 - 1) * jitter; // [-jitter, +jitter]
+                const sampledReactionMs = Math.max(0, avg + reactionRandom);
+
+                // 构建临时护甲并重置生命
+                const tempArmor = {
+                    helmetLv: Number(p.helmetLv) || 1,
+                    armorLv: Number(p.armorLv) || 1,
+                    helmetPoint: Number(p.helmetPoint) || 0,
+                    armorPoint: Number(p.armorPoint) || 0,
+                    isProtectArms: !!p.isProtectArms,
+                    isProtectAbdomen: !!p.isProtectAbdomen,
+                };
+                this.hp = this.default_hp;
+                this.armorData = { ...tempArmor };
+
+                let bulletData = this.getBulletData(weaponData);
+                if (bulletData === null) continue;
+
+                const shotStats = this.runSingleWeaponSimulateWithArmor(weaponData, bulletData, distance, hitChance);
+                const btk = Number(shotStats.shotCount) || 0;
+
+                const triggerDelay = Number(weaponData.triggerDelay || 0);
+                const velocity = Number(weaponData.velocity || 0);
+                const flyDelay = velocity > 0 ? (Number(distance) / velocity) * 1000 : 0;
+
+                const [firingTtk, fullTtk] = SimulateShot.calculateTtkByBtk(weaponData, btk, triggerDelay, flyDelay);
+
+                // 判断是否在反应时间内完成击杀（使用 fullTtk，包含飞行时间）
+                if (fullTtk <= sampledReactionMs) {
+                    successCounts.set(weaponData.name, successCounts.get(weaponData.name) + 1);
+                }
+            }
+        });
+
+        // 将结果按成功次数排序并返回给调用方渲染
+        const results = Array.from(successCounts.entries()).map(([name, count]) => ({ name, count }));
+        results.sort((a, b) => b.count - a.count);
+
+        Log.log('随机护甲击杀概率模拟完成');
+        const endTime = Date.now();
+        Log.log(`完成用间:${endTime - startTime}`);
+        Log.saveDetailLogToTempFile();
+
+        return { results, simCount };
+    }
+
+    runSingleWeaponSimulateWithArmor(weaponData, bulletData, distance = 20, hitChance) {
+        // 不重置默认状态，由调用方提前设置 this.hp 和 this.armorData
+        Log.log_detail(`=============================================`)
+        Log.log_detail(`距离${distance}， ${weaponData.name}的衰减为${this.getWeaponDecay(weaponData, distance)}`);
+
+        if (bulletData.multipliers) {
+            Log.log_detail(`使用子弹部位数据`, bulletData.multipliers);
+        } else {
+            Log.log_detail(`未找到子弹部位数据, 使用武器部位系数`, weaponData.multiplier);
+        }
+
+        let shotCount = 0;
+        let hitShot = 0;
+        while (this.hp > 0 && shotCount < 1000) {
+            Log.log_detail(`第 ${shotCount + 1} 发射击:`);
+            if (this.simulateOneShot(weaponData, bulletData, distance, hitChance))
+                hitShot++;
+            shotCount++;
+        }
+
+        return { shotCount, hitShot };
     }
 
     runSingleWeaponSimulate(weaponData, bulletData, distance = 20, hitChance) {
@@ -262,4 +378,4 @@ export class SimulateEngine {
         Log.log_detail(``);
         return true;
     }
-};
+}

@@ -15,6 +15,7 @@
             <button type="button" class="tab-btn active" data-tab="tab-simulation">模拟主页</button>
             <button type="button" class="tab-btn" data-tab="tab-add">管理武器</button>
             <button type="button" class="tab-btn" data-tab="tab-data">管理子弹</button>
+            <button type="button" class="tab-btn" data-tab="tab-armor">管理护甲预设</button>
         </div>
 
         <div id="tab-simulation" class="tab-page active">
@@ -50,6 +51,16 @@
                         <input type="number" id="simulate_count" name="simulate_count" value="1000" min="0" max="1000000">
                     </div>
                     <div class="input-row">
+                        <label for="enemy_reaction_avg">敌人平均反应时间：</label>
+                        <input type="number" id="enemy_reaction_avg" name="enemy_reaction_avg" value="350" min="0">
+                        <span class="suffix">ms</span>
+                    </div>
+                    <div class="input-row">
+                        <label for="enemy_reaction_jitter">反应时间波动：</label>
+                        <input type="number" id="enemy_reaction_jitter" name="enemy_reaction_jitter" value="40" min="0">
+                        <span class="suffix">±ms</span>
+                    </div>
+                    <div class="input-row">
                         <label for="is_print_log">打印模拟日志：</label>
                         <input type="checkbox" id="is_print_log" name="is_print_log" value="true">
                     </div>
@@ -57,6 +68,12 @@
 
                 <section class="settings-section">
                     <h2>🛡️ 防护装备</h2>
+                    <div class="input-row">
+                        <label for="armorPresetSelect">护甲预设：</label>
+                        <select id="armorPresetSelect">
+                            <option value="">-- 选择预设 --</option>
+                        </select>
+                    </div>
                     <div class="input-row">
                         <label for="helmet_lv">头盔等级：</label>
                         <select name="helmet_lv" id="helmet_lv">
@@ -122,6 +139,8 @@
             <div class="actions-section">
                 <button type="button" id="button_cal_ttk">模拟计算 ttk 对比</button>
                 <button type="button" id="button_cal_ttk_according_distance">按距离对比 ttk</button>
+                <button type="button" id="button_cal_ttk_random_armor">随机护甲 击杀次数</button>
+                <button type="button" id="button_random_armor_distance">按距离+随机护甲 击杀次数</button>
             </div>
             <canvas id="ttkChart" width="800" height="400"></canvas>
             <canvas id="distanceChart" width="1200" height="800"></canvas>
@@ -323,6 +342,13 @@
                 <button type="button" id="addNewBulletBtn">保存</button>
             </section>
             <div id="bullets-table-container"></div>
+        </div>
+        
+        <div id="tab-armor" class="tab-page">
+            <section class="settings-section">
+                <h1>护甲预设管理</h1>
+                <div id="armor-presets-container"></div>
+            </section>
         </div>
     </div>
     </div>
