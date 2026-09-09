@@ -1,6 +1,9 @@
 import { Chart } from "chart.js/auto";
 import { Log } from "../utils/Log.js";
 import { DistanceChart } from "./DistanceChart.js";
+import { getMergedBulletsData } from "../data/BulletsData.js";
+import { LocalStorageUtil } from "../utils/LocalStorageUtil.js";
+import { DOMControl } from "../data/DomControl.js";
 
 function getOrCreateCountTooltip(chart) {
     const parent = chart.canvas.parentNode;
@@ -91,6 +94,9 @@ export async function runAndRenderRandomArmorDistance(weaponDatas, hitChance) {
     // dataset per weapon name (收集在不同距离的击杀次数)
     const datasetsMap = new Map();
 
+    // 为每把武器创建任务，使用受限并发运行 Worker 池来控制同时运行的线程数量
+    const tasks = [];
+
     for (const weaponData of weaponDatas) {
         // 计算该武器的 base distances
         let baseDistances = Array.isArray(weaponData.range) ? weaponData.range.map(Number).filter(d => Number.isFinite(d)).sort((a, b) => a - b) : [];
@@ -111,21 +117,83 @@ export async function runAndRenderRandomArmorDistance(weaponDatas, hitChance) {
         if (!samplePoints.includes(100)) samplePoints.push(100);
         samplePoints = Array.from(new Set(samplePoints.map(Number))).sort((a, b) => a - b);
 
-        // 在该武器的 samplePoints 上运行模拟，仅对当前武器进行模拟
-        const pointsMap = new Map();
-        for (let si = 0; si < samplePoints.length; si++) {
-            const distance = samplePoints[si];
-            const engine = new SimulateEngine([weaponData]);
-            const { results, simCount } = engine.runMultipleSimulationsWithRandomArmor(distance, hitChance);
-            // 结果数组只包含当前 weapon 的统计
-            results.forEach(r => {
-                // r.name should equal weaponData.name
-                pointsMap.set(Number(distance), Number(r.count));
-            });
-        }
+        // push task for this weapon
+        tasks.push(async () => {
+            const pointsMap = new Map();
+            try {
+                const workerUrl = new URL('../workers/randomArmorWorker.js', import.meta.url);
+                const bulletsData = getMergedBulletsData();
+                const armorPresets = LocalStorageUtil.loadArmorPresets();
 
-        datasetsMap.set(weaponData.name, { label: weaponData.name, points: pointsMap, samples: samplePoints });
+                const simulateCount = DOMControl.getSimaulteCountFromUI();
+                const enemyReactionAvg = DOMControl.getEnemyReactionAvgFromUI();
+                const enemyReactionJitter = DOMControl.getEnemyReactionJitterFromUI();
+                const partHitWeights = DOMControl.getPartHitWeightsFromUI();
+                const defaultHp = DOMControl.getHealthPointFromUI();
+
+                await new Promise((resolve, reject) => {
+                    const w = new Worker(workerUrl, { type: 'module' });
+                    const timeout = setTimeout(() => { try { w.terminate(); } catch (e) {} ; reject(new Error('worker timeout')); }, 5 * 60 * 1000);
+                    w.onmessage = function(ev) {
+                        clearTimeout(timeout);
+                        const data = ev.data || {};
+                        const results = Array.isArray(data.results) ? data.results : [];
+                        results.forEach(r => {
+                            pointsMap.set(Number(r.distance), Number(r.count));
+                        });
+                        try { w.terminate(); } catch (e) {}
+                        resolve();
+                    };
+                    w.onerror = function(err) { clearTimeout(timeout); try { w.terminate(); } catch (e) {} ; reject(err); };
+
+                    w.postMessage({
+                        weaponData,
+                        bulletsData,
+                        armorPresets,
+                        samplePoints,
+                        simulateCount,
+                        hitChance,
+                        enemyReactionAvg,
+                        enemyReactionJitter,
+                        partHitWeights,
+                        defaultHp
+                    });
+                });
+            } catch (e) {
+                // fallback to single-threaded simulation
+                Log.log_detail('Worker 模拟失败，回退到主线程: ' + (e && e.message));
+                for (let si = 0; si < samplePoints.length; si++) {
+                    const distance = samplePoints[si];
+                    const engine = new SimulateEngine([weaponData]);
+                    const { results, simCount } = engine.runMultipleSimulationsWithRandomArmor(distance, hitChance);
+                    results.forEach(r => {
+                        pointsMap.set(Number(distance), Number(r.count));
+                    });
+                }
+            }
+
+            datasetsMap.set(weaponData.name, { label: weaponData.name, points: pointsMap, samples: samplePoints });
+        });
     }
+
+    // 并发控制：依据硬件线程数决定并发数，最少 1，最多 8
+    const hw = (typeof navigator !== 'undefined' && navigator.hardwareConcurrency) ? navigator.hardwareConcurrency : 4;
+    const concurrency = Math.max(1, Math.min(hw > 1 ? hw - 1 : hw, 8));
+
+    // helper: run tasks with concurrency limit
+    async function runWithConcurrency(taskFns, limit) {
+        const executing = new Set();
+        for (const fn of taskFns) {
+            const p = fn().then(() => executing.delete(p)).catch(() => executing.delete(p));
+            executing.add(p);
+            if (executing.size >= limit) {
+                await Promise.race(executing);
+            }
+        }
+        await Promise.all(Array.from(executing));
+    }
+
+    await runWithConcurrency(tasks, concurrency);
 
     const lineColors = [
         '#1f77b4','#ff7f0e','#2ca02c','#d62728','#9467bd','#8c564b','#e377c2','#7f7f7f','#bcbd22','#17becf'

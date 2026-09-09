@@ -129,7 +129,7 @@ export class SimulateEngine {
 
         // 以武器为主循环：对每把武器重置随机种子，然后运行 simCount 次抽样
         this.weaponDatas.forEach(weaponData => {
-            if (!weaponData.isSelected) return;
+            if (!weaponData.isSelected || distance > 100 ) return;
             // 在武器循环层重置随机数种子（保证不同武器之间的可比性）
             this.rng.resetSeed();
 
@@ -179,13 +179,14 @@ export class SimulateEngine {
                     successCounts.set(weaponData.name, successCounts.get(weaponData.name) + 1);
                 }
             }
+
+            Log.log(`${weaponData.name}于${distance}m的随机护甲击杀概率模拟完成`);
         });
 
         // 将结果按成功次数排序并返回给调用方渲染
         const results = Array.from(successCounts.entries()).map(([name, count]) => ({ name, count }));
         results.sort((a, b) => b.count - a.count);
 
-        Log.log('随机护甲击杀概率模拟完成');
         const endTime = Date.now();
         Log.log(`完成用间:${endTime - startTime}`);
         Log.saveDetailLogToTempFile();
