@@ -305,7 +305,7 @@ export async function runAndRenderRandomArmorDistance(weaponDatas, hitChance) {
                         const maxReactionTime = DOMControl.getEnemyReactionAvgFromUI() + DOMControl.getEnemyReactionJitterFromUI(); 
                         return { 
                             display: true, 
-                            text: `随机护甲 敌人反应时间${minReaction}至${maxReactionTime} 击杀次数}`
+                            text: `随机护甲 敌人反应时间${minReactionTime}至${maxReactionTime}ms 击杀次数`
                         };
                     })(),
                     legend: { position: 'bottom', labels: { usePointStyle: true } },
