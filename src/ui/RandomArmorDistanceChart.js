@@ -300,7 +300,14 @@ export async function runAndRenderRandomArmorDistance(weaponDatas, hitChance) {
                     }
                 },
                 plugins: {
-                    title: { display: true, text: '随机护甲 - 距离 vs 击杀次数' },
+                    title: (() => {
+                        const minReactionTime = DOMControl.getEnemyReactionAvgFromUI() - DOMControl.getEnemyReactionJitterFromUI();
+                        const maxReactionTime = DOMControl.getEnemyReactionAvgFromUI() + DOMControl.getEnemyReactionJitterFromUI(); 
+                        return { 
+                            display: true, 
+                            text: `随机护甲 敌人反应时间${minReaction}至${maxReactionTime} 击杀次数}`
+                        };
+                    })(),
                     legend: { position: 'bottom', labels: { usePointStyle: true } },
                     tooltip: {
                         enabled: false,
